@@ -3,11 +3,14 @@ import {
   Users, Cog, Briefcase, HeadphonesIcon, ArrowRight, CheckCircle,
   Building, Target, DollarSign, Calendar, Shield, Factory, Building2,
   Cpu, ChevronRight, MapPin, Layers, Brain, Wrench, GraduationCap,
-  FileText, Clock, TrendingUp, Award, MessageSquare, Send, Camera
+  FileText, Clock, TrendingUp, Award, MessageSquare, Send, Camera,
+  Presentation, Rocket, Database, Globe
 } from "lucide-react";
 import { Navbar } from "@/components/layout/Navbar";
 import { PresentationLayout } from "@/components/presentation/PresentationLayout";
 import { PresentationSlide, SlideTitle, SlideGrid, SlideCard } from "@/components/presentation/PresentationSlide";
+import { CanvaEmbed, CanvaPlaceholder } from "@/components/presentation/CanvaEmbed";
+import { AnimatedConnectionLine, AnimatedFlowDiagram } from "@/components/presentation/AnimatedConnectionLine";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
@@ -512,7 +515,121 @@ const Enterprise = () => {
       )
     },
 
-    // Slide 8: Case Studies
+    // Slide 8: Connection Flow Diagram
+    {
+      id: "flow-diagram",
+      content: (
+        <PresentationSlide>
+          <div className="text-center mb-8">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+              Enterprise Solution Flow
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              กระบวนการทำงานแบบ End-to-End
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              ตั้งแต่การรับ Requirement จนถึงการส่งมอบและดูแลระยะยาว
+            </p>
+          </div>
+
+          {/* Animated Connection Line - Horizontal Flow */}
+          <div className="mb-12">
+            <AnimatedConnectionLine
+              direction="horizontal"
+              nodes={[
+                { id: "req", label: "Requirement", description: "รับความต้องการ", icon: <MessageSquare className="w-6 h-6" />, color: "linear-gradient(135deg, #3b82f6, #1d4ed8)" },
+                { id: "design", label: "Solution Design", description: "ออกแบบระบบ", icon: <Cog className="w-6 h-6" />, color: "linear-gradient(135deg, #8b5cf6, #6d28d9)" },
+                { id: "pilot", label: "Pilot/Demo", description: "ทดสอบจริง", icon: <Rocket className="w-6 h-6" />, color: "linear-gradient(135deg, #10b981, #059669)" },
+                { id: "deploy", label: "Deployment", description: "ติดตั้งใช้งาน", icon: <Database className="w-6 h-6" />, color: "linear-gradient(135deg, #f59e0b, #d97706)" },
+                { id: "support", label: "MA & Support", description: "ดูแลระยะยาว", icon: <HeadphonesIcon className="w-6 h-6" />, color: "linear-gradient(135deg, #ef4444, #dc2626)" },
+              ]}
+              className="py-16"
+            />
+          </div>
+
+          {/* Flow Diagram - Tree Structure */}
+          <AnimatedFlowDiagram
+            title="Enterprise Ecosystem"
+            subtitle="โครงสร้างระบบนิเวศของ Enterprise Solution"
+            rootNode={{
+              id: "root",
+              label: "Enterprise",
+              icon: <Building className="w-8 h-8" />,
+              color: "linear-gradient(135deg, hsl(222 47% 15%), hsl(220 35% 25%))",
+              children: [
+                { id: "hardware", label: "Hardware", icon: <Layers className="w-6 h-6" />, color: "linear-gradient(135deg, #3b82f6, #1d4ed8)", description: "Drone & Sensors" },
+                { id: "software", label: "Software", icon: <Cpu className="w-6 h-6" />, color: "linear-gradient(135deg, #8b5cf6, #6d28d9)", description: "Platform & AI" },
+                { id: "service", label: "Service", icon: <Users className="w-6 h-6" />, color: "linear-gradient(135deg, #10b981, #059669)", description: "Operation & MA" },
+                { id: "training", label: "Training", icon: <GraduationCap className="w-6 h-6" />, color: "linear-gradient(135deg, #f59e0b, #d97706)", description: "อบรม & Certification" },
+              ],
+            }}
+          />
+        </PresentationSlide>
+      )
+    },
+
+    // Slide 9: Canva Presentation Embed
+    {
+      id: "canva-presentation",
+      content: (
+        <PresentationSlide variant="accent">
+          <div className="text-center mb-8">
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+              <Presentation className="w-4 h-4" />
+              Presentation Materials
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              เอกสารประกอบการนำเสนอ
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              ดูรายละเอียดเพิ่มเติมจาก Presentation ที่ออกแบบบน Canva
+            </p>
+          </div>
+
+          {/* Canva Embed - Replace with your actual Canva embed URL */}
+          <div className="max-w-5xl mx-auto">
+            <CanvaPlaceholder
+              title="Enterprise Presentation"
+              description="ใส่ URL จาก Canva (Share > Embed) เพื่อแสดง Presentation ของคุณที่นี่"
+              height="500px"
+            />
+            
+            {/* Uncomment and replace with your Canva embed URL:
+            <CanvaEmbed
+              embedUrl="https://www.canva.com/design/YOUR_DESIGN_ID/view?embed"
+              designUrl="https://www.canva.com/design/YOUR_DESIGN_ID/view"
+              title="13 STORE Enterprise Presentation"
+              height="500px"
+            />
+            */}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="text-center mt-8"
+          >
+            <p className="text-sm text-muted-foreground mb-4">
+              💡 วิธีเชื่อมต่อ: เปิด Canva → Share → More → Embed → คัดลอก URL มาใส่ใน embedUrl
+            </p>
+            <div className="inline-flex items-center gap-4">
+              <a
+                href="https://www.canva.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/80 transition-colors text-sm font-medium"
+              >
+                <Globe className="w-4 h-4" />
+                เปิด Canva
+              </a>
+            </div>
+          </motion.div>
+        </PresentationSlide>
+      )
+    },
+
+    // Slide 10: Case Studies
     {
       id: "case-study",
       content: (
