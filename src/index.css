@@ -107,15 +107,58 @@
 
   html {
     scroll-behavior: smooth;
+    font-size: 18px; /* เพิ่มขนาด base font */
   }
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
     font-family: 'IBM Plex Sans Thai', system-ui, sans-serif;
+    line-height: 1.7;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1 {
+    @apply font-bold tracking-tight;
+    font-size: 2.75rem;
+    line-height: 1.2;
+  }
+
+  h2 {
+    @apply font-bold tracking-tight;
+    font-size: 2rem;
+    line-height: 1.3;
+  }
+
+  h3 {
     @apply font-semibold tracking-tight;
+    font-size: 1.5rem;
+    line-height: 1.4;
+  }
+
+  h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
+  @media (min-width: 768px) {
+    html {
+      font-size: 18px;
+    }
+    
+    h1 {
+      font-size: 3.25rem;
+    }
+
+    h2 {
+      font-size: 2.25rem;
+    }
+
+    h3 {
+      font-size: 1.625rem;
+    }
   }
 }
 
