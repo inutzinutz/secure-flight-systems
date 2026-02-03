@@ -589,8 +589,8 @@ const Enterprise = () => {
           {/* Canva Embed */}
           <div className="max-w-5xl mx-auto">
             <CanvaEmbed
-              embedUrl="https://www.canva.com/design/DAG37iRiPbM/Suy7G89V2i1O2G9FoJl1PA/view?embed"
-              designUrl="https://www.canva.com/design/DAG37iRiPbM/Suy7G89V2i1O2G9FoJl1PA/view"
+              embedUrl="https://www.canva.com/design/DAGVZYZg3aA/R40lzSE8XJ1Yy__qTG-O1Q/view?embed"
+              designUrl="https://www.canva.com/design/DAGVZYZg3aA/R40lzSE8XJ1Yy__qTG-O1Q/view"
               title="13 STORE Enterprise Presentation"
               height="500px"
             />
