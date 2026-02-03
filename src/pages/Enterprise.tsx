@@ -586,22 +586,14 @@ const Enterprise = () => {
             </p>
           </div>
 
-          {/* Canva Embed - Replace with your actual Canva embed URL */}
+          {/* Canva Embed */}
           <div className="max-w-5xl mx-auto">
-            <CanvaPlaceholder
-              title="Enterprise Presentation"
-              description="ใส่ URL จาก Canva (Share > Embed) เพื่อแสดง Presentation ของคุณที่นี่"
-              height="500px"
-            />
-            
-            {/* Uncomment and replace with your Canva embed URL:
             <CanvaEmbed
-              embedUrl="https://www.canva.com/design/YOUR_DESIGN_ID/view?embed"
-              designUrl="https://www.canva.com/design/YOUR_DESIGN_ID/view"
+              embedUrl="https://www.canva.com/design/DAG37iRiPbM/Suy7G89V2i1O2G9FoJl1PA/view?embed"
+              designUrl="https://www.canva.com/design/DAG37iRiPbM/Suy7G89V2i1O2G9FoJl1PA/view"
               title="13 STORE Enterprise Presentation"
               height="500px"
             />
-            */}
           </div>
 
           <motion.div
