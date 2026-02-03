@@ -10,6 +10,8 @@ import Altura from "./pages/Altura";
 import Solutions from "./pages/Solutions";
 import Resources from "./pages/Resources";
 import Contact from "./pages/Contact";
+import CaseStudies from "./pages/CaseStudies";
+import ROICalculator from "./pages/ROICalculator";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,6 +30,8 @@ const App = () => (
           <Route path="/solutions" element={<Solutions />} />
           <Route path="/resources" element={<Resources />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/case-studies" element={<CaseStudies />} />
+          <Route path="/roi-calculator" element={<ROICalculator />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

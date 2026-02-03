@@ -114,6 +114,19 @@
     @apply bg-background text-foreground font-sans antialiased;
     font-family: 'IBM Plex Sans Thai', system-ui, sans-serif;
     line-height: 1.7;
+    transition: background-color var(--theme-transition, 0s) ease-in-out,
+                color var(--theme-transition, 0s) ease-in-out;
+  }
+
+  /* Smooth theme transition for all elements */
+  body.theme-transitioning,
+  body.theme-transitioning * {
+    transition: background-color 0.5s ease-in-out,
+                color 0.5s ease-in-out,
+                border-color 0.5s ease-in-out,
+                box-shadow 0.5s ease-in-out,
+                fill 0.5s ease-in-out,
+                stroke 0.5s ease-in-out !important;
   }
 
   h1 {

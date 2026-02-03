@@ -11,7 +11,8 @@ const navLinks = [
   { label: "Platform", href: "/platform" },
   { label: "Altura VTOL", href: "/altura" },
   { label: "Solutions", href: "/solutions" },
-  { label: "Resources", href: "/resources" },
+  { label: "Case Studies", href: "/case-studies" },
+  { label: "ROI Calculator", href: "/roi-calculator" },
 ];
 
 export function Navbar() {
