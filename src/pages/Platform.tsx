@@ -10,7 +10,6 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { PlatformStrategicDiagram } from "@/components/platform/PlatformStrategicDiagram";
-import { PlatformRoadmapDiagram } from "@/components/platform/PlatformRoadmapDiagram";
 import { AIFunctionsDiagram } from "@/components/platform/AIFunctionsDiagram";
 import { UseCasesDiagram } from "@/components/platform/UseCasesDiagram";
 
@@ -19,27 +18,6 @@ const keyFeatures = [
   { icon: Database, title: "Data Sovereignty", desc: "ข้อมูลอยู่ในประเทศไทย 100%" },
   { icon: Shield, title: "Security First", desc: "ระดับความปลอดภัยสำหรับงานรัฐ" },
   { icon: GitBranch, title: "Anti-Vendor Lock", desc: "ไม่ผูกขาดกับเจ้าใดเจ้าหนึ่ง" },
-];
-
-const targetCustomers = {
-  tier1: {
-    title: "Tier 1: ต้องได้",
-    desc: "กองทัพ / ตำรวจ / ปก. / ความมั่นคง / หน่วยชายแดน / ชายฝั่ง",
-    icon: Shield
-  },
-  tier2: {
-    title: "Tier 2: เงินดี ใช้ซ้ำ",
-    desc: "นิคมอุตสาหกรรม / พลังงาน / โครงสร้างพื้นฐาน / ท่าเรือ / สนามบิน",
-    icon: Users
-  }
-};
-
-const revenueModels = [
-  "Platform License (On-Prem)",
-  "MA / Support รายปี",
-  "AI Module Add-on",
-  "Dock + UAV + Integration",
-  "Training + SOP"
 ];
 
 const Platform = () => {
@@ -137,101 +115,7 @@ const Platform = () => {
       )
     },
 
-    // Slide 6: Roadmap
-    {
-      id: "roadmap",
-      content: (
-        <PresentationSlide centered={false}>
-          <div className="text-center mb-8">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-              2) เป้าหมายเชิงกลยุทธ์ + 3) Roadmap
-            </span>
-          </div>
-          <PlatformRoadmapDiagram />
-        </PresentationSlide>
-      )
-    },
-
-    // Slide 7: Target Customers & Revenue
-    {
-      id: "business",
-      content: (
-        <PresentationSlide>
-          <div className="grid lg:grid-cols-2 gap-8 w-full max-w-5xl mx-auto">
-            {/* Target Customers */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="p-8 rounded-2xl bg-card border border-border"
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                  <Users className="w-6 h-6 text-primary" />
-                </div>
-                <div>
-                  <span className="text-xs text-primary font-medium">4) กลุ่มลูกค้าเป้าหมาย</span>
-                  <h3 className="text-xl font-bold text-foreground">(โฟกัส ไม่กระจาย)</h3>
-                </div>
-              </div>
-              <div className="space-y-4">
-                <div className="p-4 rounded-xl bg-primary/5 border border-primary/20">
-                  <div className="flex items-center gap-3 mb-2">
-                    <Shield className="w-5 h-5 text-primary" />
-                    <span className="font-bold text-foreground">{targetCustomers.tier1.title}</span>
-                  </div>
-                  <p className="text-sm text-muted-foreground">{targetCustomers.tier1.desc}</p>
-                </div>
-                <div className="p-4 rounded-xl bg-secondary/50 border border-border">
-                  <div className="flex items-center gap-3 mb-2">
-                    <Users className="w-5 h-5 text-primary" />
-                    <span className="font-bold text-foreground">{targetCustomers.tier2.title}</span>
-                  </div>
-                  <p className="text-sm text-muted-foreground">{targetCustomers.tier2.desc}</p>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Revenue Model */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="p-8 rounded-2xl card-navy"
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center">
-                  <DollarSign className="w-6 h-6 text-primary" />
-                </div>
-                <div>
-                  <span className="text-xs text-primary font-medium">5) โมเดลรายได้</span>
-                  <h3 className="text-xl font-bold text-white">(สำคัญมาก)</h3>
-                </div>
-              </div>
-              <ul className="space-y-3 mb-6">
-                {revenueModels.map((model, i) => (
-                  <motion.li 
-                    key={i}
-                    initial={{ opacity: 0, x: 10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.1 }}
-                    className="flex items-center gap-3"
-                  >
-                    <CheckCircle className="w-5 h-5 text-primary" />
-                    <span className="text-white">{model}</span>
-                  </motion.li>
-                ))}
-              </ul>
-              <div className="p-4 rounded-xl bg-primary/20 border border-primary/30">
-                <p className="text-center font-bold text-primary">
-                  ต้องมี recurring income
-                </p>
-              </div>
-            </motion.div>
-          </div>
-        </PresentationSlide>
-      )
-    },
-
-    // Slide 8: Key Message
+    // Slide 6: Key Message
     {
       id: "key-message",
       content: (
@@ -243,7 +127,7 @@ const Platform = () => {
               className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-primary/10 mb-8"
             >
               <Megaphone className="w-5 h-5 text-primary" />
-              <span className="text-sm font-medium text-primary">7) ประโยค Key Message</span>
+              <span className="text-sm font-medium text-primary">Key Message</span>
             </motion.div>
             <motion.blockquote
               initial={{ opacity: 0, y: 30 }}
