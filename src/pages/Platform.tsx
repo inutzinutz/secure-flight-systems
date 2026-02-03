@@ -8,6 +8,8 @@ import {
 import { Link } from "react-router-dom";
 import { PlatformStrategicDiagram } from "@/components/platform/PlatformStrategicDiagram";
 import { PlatformRoadmapDiagram } from "@/components/platform/PlatformRoadmapDiagram";
+import { AIFunctionsDiagram } from "@/components/platform/AIFunctionsDiagram";
+import { UseCasesDiagram } from "@/components/platform/UseCasesDiagram";
 
 const keyFeatures = [
   { icon: Cloud, title: "On-Prem / Private Cloud", desc: "ติดตั้งในศูนย์ข้อมูลของคุณเอง" },
@@ -132,6 +134,20 @@ const Platform = () => {
         <section className="section-padding bg-background">
           <div className="section-container">
             <PlatformStrategicDiagram />
+          </div>
+        </section>
+
+        {/* AI Functions Diagram */}
+        <section className="section-padding bg-card">
+          <div className="section-container">
+            <AIFunctionsDiagram />
+          </div>
+        </section>
+
+        {/* Use Cases Diagram */}
+        <section className="section-padding bg-background">
+          <div className="section-container">
+            <UseCasesDiagram />
           </div>
         </section>
 
