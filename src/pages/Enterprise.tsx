@@ -5,8 +5,14 @@ import {
   Users, Cog, Briefcase, HeadphonesIcon, ArrowRight, CheckCircle,
   Building, Target, DollarSign, Calendar, Shield, Factory, Building2,
   Cpu, ChevronRight, MapPin, Layers, Brain, Wrench, GraduationCap,
-  FileText, Clock, TrendingUp, Award, MessageSquare, Send
+  FileText, Clock, TrendingUp, Award, MessageSquare, Send, Camera
 } from "lucide-react";
+
+// Import team and case study images
+import enterpriseTeam1 from "@/assets/enterprise-team-1.jpg";
+import enterpriseTeam2 from "@/assets/enterprise-team-2.jpg";
+import enterpriseCase1 from "@/assets/enterprise-case-1.jpg";
+import enterpriseCase2 from "@/assets/enterprise-case-2.jpg";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
@@ -398,6 +404,44 @@ const Enterprise = () => {
               <p className="text-muted-foreground">ขายแบบ Enterprise ใช้คนหลายบทบาท ไม่ใช่เซลส์คนเดียว</p>
             </motion.div>
 
+            {/* Team Photos Grid */}
+            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-12">
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="relative overflow-hidden rounded-2xl"
+              >
+                <img 
+                  src={enterpriseTeam1} 
+                  alt="ทีม Enterprise หน้างาน" 
+                  className="w-full h-64 object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4">
+                  <p className="text-white font-bold">ทีมปฏิบัติการหน้างาน</p>
+                  <p className="text-white/80 text-sm">พร้อมให้บริการทั่วประเทศ</p>
+                </div>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="relative overflow-hidden rounded-2xl"
+              >
+                <img 
+                  src={enterpriseTeam2} 
+                  alt="ทีม Support และ Training" 
+                  className="w-full h-64 object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4">
+                  <p className="text-white font-bold">ทีม Training & Support</p>
+                  <p className="text-white/80 text-sm">ดูแลหลังขายตลอดสัญญา</p>
+                </div>
+              </motion.div>
+            </div>
+
             <div className="grid grid-cols-2 md:grid-cols-5 gap-4 max-w-4xl mx-auto">
               {teamStructure.map((member, i) => (
                 <motion.div
@@ -587,6 +631,157 @@ const Enterprise = () => {
                 </motion.div>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* Case Studies Section */}
+        <section className="py-20 bg-secondary/30">
+          <div className="section-container">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+                Case Studies
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                ผลงานจริง ใช้งานจริง
+              </h2>
+              <p className="text-muted-foreground">ตัวอย่างโครงการที่เราดำเนินการสำเร็จ</p>
+            </motion.div>
+
+            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+              {/* Case Study 1 */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -5 }}
+                className="rounded-2xl overflow-hidden bg-card border border-border"
+              >
+                <div className="relative h-56 overflow-hidden">
+                  <img 
+                    src={enterpriseCase1} 
+                    alt="Case Study - ภาครัฐ" 
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                  <div className="absolute top-4 left-4">
+                    <span className="px-3 py-1 rounded-full bg-primary text-primary-foreground text-xs font-bold">
+                      ภาครัฐ / หน่วยงานความมั่นคง
+                    </span>
+                  </div>
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <h3 className="text-xl font-bold text-white mb-1">โครงการเฝ้าระวังพื้นที่ชายแดน</h3>
+                    <p className="text-white/80 text-sm">ระบบโดรนเฝ้าระวังแบบ 24/7 พร้อม AI Detection</p>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <div className="grid grid-cols-3 gap-4 mb-4">
+                    <div className="text-center">
+                      <p className="text-2xl font-bold text-primary">95%</p>
+                      <p className="text-xs text-muted-foreground">Accuracy</p>
+                    </div>
+                    <div className="text-center">
+                      <p className="text-2xl font-bold text-primary">24/7</p>
+                      <p className="text-xs text-muted-foreground">Operation</p>
+                    </div>
+                    <div className="text-center">
+                      <p className="text-2xl font-bold text-primary">-50%</p>
+                      <p className="text-xs text-muted-foreground">OPEX</p>
+                    </div>
+                  </div>
+                  <ul className="space-y-2 text-sm text-muted-foreground">
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                      ติดตั้ง Dock Station + VTOL Drone
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                      เชื่อมต่อ LM Platform แบบ On-Premise
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                      MA สัญญา 3 ปี พร้อมทีม Support
+                    </li>
+                  </ul>
+                </div>
+              </motion.div>
+
+              {/* Case Study 2 */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                whileHover={{ y: -5 }}
+                className="rounded-2xl overflow-hidden bg-card border border-border"
+              >
+                <div className="relative h-56 overflow-hidden">
+                  <img 
+                    src={enterpriseCase2} 
+                    alt="Case Study - นิคมอุตสาหกรรม" 
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                  <div className="absolute top-4 left-4">
+                    <span className="px-3 py-1 rounded-full bg-emerald-500 text-white text-xs font-bold">
+                      นิคมอุตสาหกรรม / พลังงาน
+                    </span>
+                  </div>
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <h3 className="text-xl font-bold text-white mb-1">โครงการ Inspection โรงไฟฟ้า</h3>
+                    <p className="text-white/80 text-sm">ตรวจสอบโครงสร้างและอุปกรณ์ด้วย Thermal + LiDAR</p>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <div className="grid grid-cols-3 gap-4 mb-4">
+                    <div className="text-center">
+                      <p className="text-2xl font-bold text-primary">80%</p>
+                      <p className="text-xs text-muted-foreground">เวลาลดลง</p>
+                    </div>
+                    <div className="text-center">
+                      <p className="text-2xl font-bold text-primary">0</p>
+                      <p className="text-xs text-muted-foreground">อุบัติเหตุ</p>
+                    </div>
+                    <div className="text-center">
+                      <p className="text-2xl font-bold text-primary">DaaS</p>
+                      <p className="text-xs text-muted-foreground">Model</p>
+                    </div>
+                  </div>
+                  <ul className="space-y-2 text-sm text-muted-foreground">
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                      DaaS Model — เช่ารายเดือน ไม่ต้องลงทุน CAPEX
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                      รายงานอัตโนมัติ + 3D Model ทุกเดือน
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                      ทีม Pilot ประจำหน้างาน
+                    </li>
+                  </ul>
+                </div>
+              </motion.div>
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mt-10"
+            >
+              <Link to="/case-studies">
+                <button className="btn-hero-secondary">
+                  <Camera size={20} />
+                  ดู Case Study เพิ่มเติม
+                </button>
+              </Link>
+            </motion.div>
           </div>
         </section>
 
