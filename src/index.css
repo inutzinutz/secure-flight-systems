@@ -1,96 +1,102 @@
+@import "@fontsource/ibm-plex-sans-thai";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
+/* DJI 13 Store Enterprise Design System
+   - GovTech / Defense Contractor aesthetic
+   - Navy + Slate for trust & authority
+   - Orange/Amber for CTAs and energy
 */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
+    /* Core Brand Colors */
+    --navy: 222 47% 11%;
+    --navy-light: 220 30% 20%;
+    --slate: 215 20% 65%;
+    --slate-light: 214 32% 91%;
+    
+    /* Accent Colors */
+    --amber: 38 92% 50%;
+    --amber-glow: 32 95% 55%;
+    --amber-soft: 40 90% 60%;
+    
+    /* Semantic Tokens */
+    --background: 220 30% 6%;
     --foreground: 210 40% 98%;
 
-    --card: 222.2 84% 4.9%;
+    --card: 222 35% 10%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 222.2 84% 4.9%;
+    --popover: 222 35% 10%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 38 92% 50%;
+    --primary-foreground: 222 47% 11%;
 
-    --secondary: 217.2 32.6% 17.5%;
+    --secondary: 215 25% 18%;
     --secondary-foreground: 210 40% 98%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 217 20% 15%;
+    --muted-foreground: 215 20% 60%;
 
-    --accent: 217.2 32.6% 17.5%;
+    --accent: 220 30% 15%;
     --accent-foreground: 210 40% 98%;
 
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --border: 217 25% 20%;
+    --input: 217 25% 20%;
+    --ring: 38 92% 50%;
+
+    --radius: 0.75rem;
+
+    /* Enterprise Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(222 47% 11%) 0%, hsl(220 30% 6%) 50%, hsl(217 30% 8%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(222 35% 12%) 0%, hsl(222 35% 8%) 100%);
+    --gradient-cta: linear-gradient(135deg, hsl(38 92% 50%) 0%, hsl(32 95% 55%) 100%);
+    --gradient-pillar-enterprise: linear-gradient(135deg, hsl(220 50% 25%) 0%, hsl(222 47% 15%) 100%);
+    --gradient-pillar-platform: linear-gradient(135deg, hsl(200 60% 25%) 0%, hsl(210 50% 15%) 100%);
+    --gradient-pillar-altura: linear-gradient(135deg, hsl(30 80% 30%) 0%, hsl(25 60% 20%) 100%);
+    
+    /* Shadows */
+    --shadow-card: 0 4px 30px -10px hsl(222 47% 5% / 0.5);
+    --shadow-glow: 0 0 40px hsl(38 92% 50% / 0.15);
+    --shadow-elevated: 0 20px 60px -15px hsl(222 47% 5% / 0.7);
+    
+    /* Sidebar (dark theme) */
+    --sidebar-background: 222 35% 8%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 38 92% 50%;
+    --sidebar-primary-foreground: 222 47% 11%;
+    --sidebar-accent: 217 25% 15%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217 25% 18%;
+    --sidebar-ring: 38 92% 50%;
+  }
+
+  /* Light mode override - keeping dark as default for enterprise/gov feel */
+  .light {
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 38 92% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 214 32% 91%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 214 32% 91%;
+    --muted-foreground: 215 20% 40%;
+    --accent: 214 32% 95%;
+    --accent-foreground: 222 47% 11%;
+    --border: 214 32% 85%;
+    --input: 214 32% 85%;
+    --ring: 38 92% 50%;
   }
 }
 
@@ -99,7 +105,123 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'IBM Plex Sans Thai', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+}
+
+@layer components {
+  /* Hero Button Variants */
+  .btn-hero-primary {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg;
+    @apply bg-primary text-primary-foreground;
+    @apply hover:brightness-110 transition-all duration-300;
+    @apply shadow-lg hover:shadow-xl;
+    background: var(--gradient-cta);
+  }
+
+  .btn-hero-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg;
+    @apply bg-secondary text-secondary-foreground border border-border;
+    @apply hover:bg-accent hover:border-primary/30 transition-all duration-300;
+  }
+
+  /* Pillar Cards */
+  .pillar-card {
+    @apply relative p-8 rounded-2xl overflow-hidden;
+    @apply border border-border/50;
+    @apply transition-all duration-500;
+    background: var(--gradient-card);
+  }
+
+  .pillar-card:hover {
+    @apply border-primary/50;
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-4px);
+  }
+
+  .pillar-card-enterprise {
+    background: var(--gradient-pillar-enterprise);
+  }
+
+  .pillar-card-platform {
+    background: var(--gradient-pillar-platform);
+  }
+
+  .pillar-card-altura {
+    background: var(--gradient-pillar-altura);
+  }
+
+  /* Section Styling */
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-20 md:py-32;
+  }
+
+  /* Text Gradients */
+  .text-gradient-brand {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(38 92% 50%) 0%, hsl(40 90% 60%) 100%);
+  }
+
+  /* Grid overlay effect */
+  .grid-overlay {
+    background-image: 
+      linear-gradient(to right, hsl(217 25% 20% / 0.3) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(217 25% 20% / 0.3) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  /* Glow effects */
+  .glow-amber {
+    box-shadow: 0 0 60px hsl(38 92% 50% / 0.2);
+  }
+
+  .glow-blue {
+    box-shadow: 0 0 60px hsl(220 60% 50% / 0.2);
+  }
+}
+
+@layer utilities {
+  /* Animation utilities */
+  .animate-fade-up {
+    animation: fadeUp 0.6s ease-out forwards;
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  /* Backdrop blur */
+  .backdrop-blur-nav {
+    backdrop-filter: blur(12px) saturate(180%);
   }
 }
