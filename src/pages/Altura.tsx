@@ -2,117 +2,107 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { motion } from "framer-motion";
 import { 
-  Radar, Clock, Users, Map, ArrowRight, CheckCircle, Eye, Brain, 
-  Compass, Cog, Shield, Anchor, Building, AlertTriangle, Target,
-  Globe, DollarSign, Flag, Wrench, Calendar, Network, Zap
+  ArrowRight, CheckCircle, Eye, Brain, Shield, Anchor, Building, 
+  AlertTriangle, Target, Globe, DollarSign, Flag, Calendar, Network, Zap,
+  Compass, Cog, Wrench, MapPin
 } from "lucide-react";
 import { Link } from "react-router-dom";
-import strategicFrameworkImage from "@/assets/altura-strategic-framework.jpg";
-import alturaImage from "@/assets/altura-deployment-grid.jpg";
+import { StrategicDiagram } from "@/components/altura/StrategicDiagram";
+import { DeploymentDiagram } from "@/components/altura/DeploymentDiagram";
 
 const executiveNarrative = [
-  { icon: Eye, title: "Eyes", subtitle: "Surveillance", desc: "ดวงตาเฝ้าระวังทุกพื้นที่" },
-  { icon: Brain, title: "Brain", subtitle: "Intelligence", desc: "สมองวิเคราะห์และประมวลผล" },
-  { icon: Compass, title: "Long Reach", subtitle: "Extended Range", desc: "แขนยาวเข้าถึงทุกจุด" },
-  { icon: Cog, title: "Autonomous", subtitle: "24/7 Operation", desc: "ระบบอัตโนมัติตลอด 24 ชม." },
+  { icon: Eye, title: "ดวงตา", subtitle: "เฝ้าระวัง", desc: "ดวงตาเฝ้าระวังทุกพื้นที่" },
+  { icon: Brain, title: "สมอง", subtitle: "วิเคราะห์", desc: "สมองวิเคราะห์และประมวลผล" },
+  { icon: Compass, title: "แขนยาว", subtitle: "เข้าถึง", desc: "แขนยาวเข้าถึงทุกจุด" },
+  { icon: Cog, title: "อัตโนมัติ", subtitle: "24/7", desc: "ระบบอัตโนมัติตลอด 24 ชม." },
 ];
 
 const threatGaps = [
-  "Long borders + complex terrain",
-  "New threats: Drones, smuggling, cross-border, IUU, disasters",
-  "Personnel shortages / Budget constraints",
-  "Slow response times",
+  "ชายแดนยาว + ภูมิประเทศซับซ้อน",
+  "ภัยคุกคามรูปแบบใหม่: โดรน, ลักลอบ, ข้ามแดน, IUU, ภัยพิบัติ",
+  "คนไม่พอ / งบไม่พอ",
+  "ตอบสนองไม่ทัน",
 ];
 
 const solutionComponents = [
-  { title: "Long-Range VTOL UAV", desc: "50–150 km range", icon: Radar },
-  { title: "Automated Dock Station", desc: "Takeoff / Landing / Charging", icon: Building },
-  { title: "Integrated Sensors", desc: "EO/IR, Thermal, LiDAR, AIS, Radar", icon: Eye },
-  { title: "C2 + GIS + AI Hub", desc: "Private / On-Premise Analytics", icon: Brain },
+  { title: "VTOL UAV ระยะไกล", desc: "50–150 กม.", icon: MapPin },
+  { title: "Dock Station อัตโนมัติ", desc: "Takeoff / Landing / Charging", icon: Building },
+  { title: "เซ็นเซอร์บูรณาการ", desc: "EO/IR, Thermal, LiDAR, AIS, Radar", icon: Eye },
+  { title: "C2 + GIS + AI Hub", desc: "Private / On-Prem Analytics", icon: Brain },
 ];
 
 const keyCapabilities = [
-  "24/7 Autonomous Flight",
-  "Real-time Alerts",
-  "Dangerous Area Operations",
-  "60–80% Manpower Reduction",
+  "บินอัตโนมัติ 24/7",
+  "แจ้งเตือนแบบ Real-time",
+  "ปฏิบัติการพื้นที่อันตราย",
+  "ลดกำลังพล 60–80%",
 ];
 
 const useCases = [
   {
     id: "border",
     icon: Shield,
-    title: "Border Security",
-    titleTH: "ความมั่นคงชายแดน",
-    items: ["Border patrol surveillance", "Smuggling & cross-border detection", "Ground radar integration"],
+    title: "ความมั่นคงชายแดน",
+    items: ["ลาดตระเวนแนวชายแดน", "ตรวจจับการลักลอบ/ข้ามแดน", "ทำงานร่วมเรดาร์ภาคพื้น"],
   },
   {
     id: "maritime",
     icon: Anchor,
-    title: "Maritime Security",
-    titleTH: "ความมั่นคงทางทะเล",
-    items: ["Territorial waters protection", "IUU fishing enforcement", "Navy & Marine Police support"],
+    title: "ความมั่นคงทางทะเล",
+    items: ["คุ้มครองน่านน้ำ/ทรัพยากร", "ปราบ IUU/ลักลอบขนของ", "สนับสนุนกองทัพเรือ/ตำรวจน้ำ"],
   },
   {
     id: "infrastructure",
     icon: Building,
-    title: "Critical Infrastructure",
-    titleTH: "โครงสร้างพื้นฐานสำคัญ",
-    items: ["Power plants & dams", "Gas pipelines & airports", "Pre-incident intrusion detection"],
+    title: "โครงสร้างพื้นฐานสำคัญ",
+    items: ["โรงไฟฟ้า / เขื่อน / ท่อก๊าซ", "สนามบิน / ท่าเรือ", "ตรวจจับการบุกรุกก่อนเกิดเหตุ"],
   },
   {
     id: "disaster",
     icon: AlertTriangle,
-    title: "Disaster & Civil Security",
-    titleTH: "ภัยพิบัติและความปลอดภัยสาธารณะ",
-    items: ["Flood, fire, earthquake response", "Search & rescue without risk", "Civil emergency support"],
+    title: "ภัยพิบัติและความปลอดภัยสาธารณะ",
+    items: ["น้ำท่วม / ไฟป่า / แผ่นดินไหว", "ค้นหา-กู้ภัยไม่เสี่ยงชีวิต", "สนับสนุนเหตุฉุกเฉิน"],
   },
 ];
 
-const deploymentFeatures = [
-  { title: "Dock every 50–80 km", desc: "Forming a Drone Security Grid" },
-  { title: "Multi-level Control", desc: "Central / Provincial / Regional Hubs" },
-  { title: "Agency Integration", desc: "Army, Police, DDPM, Natural Resources" },
-];
-
 const strategicValues = [
-  { icon: Flag, title: "100% Reduced Reliance", desc: "on foreign technology" },
-  { icon: Shield, title: "Sovereign Capability", desc: "Full national control" },
-  { icon: Zap, title: "Faster Decision Making", desc: "Real-time intelligence" },
-  { icon: Globe, title: "Regional Security Hub", desc: "Position Thailand as leader" },
+  { icon: Flag, title: "ลดพึ่งพาต่างชาติ 100%", desc: "ไม่พึ่งพาเทคโนโลยีต่างประเทศ" },
+  { icon: Shield, title: "Sovereign Capability", desc: "ควบคุมระดับชาติได้เต็มที่" },
+  { icon: Zap, title: "ตัดสินใจเร็วขึ้น", desc: "ข้อมูล Real-time Intelligence" },
+  { icon: Globe, title: "Regional Security Hub", desc: "ยกระดับไทยเป็นศูนย์กลางภูมิภาค" },
 ];
 
 const costEffectiveness = [
-  { metric: "10–15x", desc: "Lower OPEX vs. Helicopter" },
-  { metric: "80%", desc: "Manpower reduction" },
-  { metric: "Multi-agency", desc: "Shared infrastructure" },
+  { metric: "10–15x", desc: "OPEX ต่ำกว่าเฮลิคอปเตอร์" },
+  { metric: "80%", desc: "ลดกำลังพลได้" },
+  { metric: "หลายหน่วยงาน", desc: "ใช้โครงสร้างพื้นฐานร่วมกัน" },
 ];
 
 const localContent = [
-  "Local assembly, repair & maintenance",
-  "Data sovereignty (stays in Thailand)",
-  "Knowledge transfer programs",
-  "Thai engineer, pilot & analyst jobs",
+  "ประกอบ / ซ่อม / MA ในประเทศ",
+  "Data อยู่ในไทย (Data Sovereignty)",
+  "ถ่ายโอนองค์ความรู้",
+  "สร้างงานวิศวกร / นักบิน / Analyst ไทย",
 ];
 
 const roadmapPhases = [
   {
     phase: "A",
     title: "Pilot Project",
-    duration: "6 Months",
-    items: ["1–2 provinces / 1 mission", "Proof of Capability"],
+    duration: "6 เดือน",
+    items: ["1–2 จังหวัด / 1 ภารกิจ", "พิสูจน์ขีดความสามารถ"],
   },
   {
     phase: "B",
-    title: "Regional Expansion",
-    duration: "12–24 Months",
-    items: ["Multi-agency connection", "Regional control centers"],
+    title: "ขยายภูมิภาค",
+    duration: "12–24 เดือน",
+    items: ["เชื่อมหลายหน่วยงาน", "ตั้งศูนย์ควบคุมภูมิภาค"],
   },
   {
     phase: "C",
-    title: "National Security Grid",
-    duration: "3–5 Years",
-    items: ["Nationwide network", "Integrated security dimensions"],
+    title: "โครงข่ายระดับชาติ",
+    duration: "3–5 ปี",
+    items: ["โครงข่ายทั่วประเทศ", "บูรณาการทุกมิติความมั่นคง"],
   },
 ];
 
@@ -131,7 +121,7 @@ const Altura = () => {
               className="max-w-4xl mx-auto text-center"
             >
               <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
-                National Strategic Framework
+                แผนการนำเสนอเชิงยุทธศาสตร์ระดับชาติ
               </span>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
                 Altura VTOL Dock
@@ -148,13 +138,13 @@ const Altura = () => {
                 <Link to="/contact">
                   <button className="btn-navy">
                     <Calendar size={20} />
-                    Request Briefing
+                    นัดรับฟังบรรยายสรุป
                   </button>
                 </Link>
                 <Link to="/contact">
                   <button className="btn-hero-secondary">
                     <Target size={20} />
-                    Schedule Site Survey
+                    นัด Site Survey
                   </button>
                 </Link>
               </div>
@@ -172,10 +162,10 @@ const Altura = () => {
               className="text-center mb-10"
             >
               <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
-                Executive Narrative
+                ภาพรวมแนวคิด (Executive Narrative)
               </h2>
               <p className="text-muted-foreground">
-                Altura VTOL Dock serves as Thailand's aerial security foundation
+                Altura VTOL Dock ทำหน้าที่เป็นโครงสร้างพื้นฐานความมั่นคงทางอากาศของไทย
               </p>
             </motion.div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -200,37 +190,10 @@ const Altura = () => {
           </div>
         </section>
 
-        {/* Strategic Framework Diagram */}
+        {/* Animated Strategic Diagram */}
         <section className="section-padding bg-background">
           <div className="section-container">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center mb-10"
-            >
-              <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-                Strategic Framework
-              </span>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                National Strategic Presentation Plan
-              </h2>
-              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                Comprehensive 7-phase framework for Thailand's national security transformation
-              </p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="rounded-2xl overflow-hidden border border-border shadow-lg"
-            >
-              <img 
-                src={strategicFrameworkImage} 
-                alt="National Strategic Presentation Plan: Altura VTOL Dock for Thailand's National Security" 
-                className="w-full h-auto"
-              />
-            </motion.div>
+            <StrategicDiagram />
           </div>
         </section>
 
@@ -244,23 +207,30 @@ const Altura = () => {
                 viewport={{ once: true }}
               >
                 <span className="inline-block px-3 py-1 rounded-full bg-destructive/10 text-destructive text-sm font-medium mb-4">
-                  Phase 1: Threat → Gap → Opportunity
+                  เฟส 1: โจทย์ → ช่องว่าง → โอกาส
                 </span>
                 <h2 className="text-3xl font-bold text-foreground mb-6">
-                  Thai Security Context Today
+                  บริบทความมั่นคงของไทยวันนี้
                 </h2>
                 <div className="space-y-4 mb-8">
                   {threatGaps.map((gap, i) => (
-                    <div key={i} className="flex items-start gap-3 p-4 rounded-xl bg-background border border-border">
+                    <motion.div 
+                      key={i} 
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.1 }}
+                      className="flex items-start gap-3 p-4 rounded-xl bg-background border border-border"
+                    >
                       <AlertTriangle className="w-5 h-5 text-destructive mt-0.5 flex-shrink-0" />
                       <span className="text-foreground">{gap}</span>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
                 <div className="p-6 rounded-2xl bg-destructive/5 border border-destructive/20">
-                  <p className="text-lg font-semibold text-destructive mb-2">🔴 Main Problem (Gap):</p>
+                  <p className="text-lg font-semibold text-destructive mb-2">🔴 ปัญหาหลัก (Gap):</p>
                   <p className="text-foreground">
-                    "Humans can't watch 24/7, but threats are constant."
+                    "มนุษย์เฝ้าไม่ได้ 24/7 แต่ภัยมาได้ตลอดเวลา"
                   </p>
                 </div>
               </motion.div>
@@ -270,22 +240,22 @@ const Altura = () => {
                 viewport={{ once: true }}
                 className="p-8 rounded-2xl card-navy"
               >
-                <h3 className="text-2xl font-bold mb-6">The Opportunity</h3>
+                <h3 className="text-2xl font-bold mb-6">โอกาส (Opportunity)</h3>
                 <p className="text-white/80 mb-6">
-                  Autonomous Systems for continuous monitoring — 24/7 aerial security without risking personnel
+                  ระบบอัตโนมัติสำหรับการตรวจตราต่อเนื่อง — ความมั่นคงทางอากาศ 24/7 โดยไม่เสี่ยงกำลังพล
                 </p>
                 <ul className="space-y-3">
                   <li className="flex items-center gap-3">
                     <CheckCircle className="w-5 h-5 text-primary" />
-                    <span>Eliminate blind spots</span>
+                    <span>ไม่มีจุดบอด</span>
                   </li>
                   <li className="flex items-center gap-3">
                     <CheckCircle className="w-5 h-5 text-primary" />
-                    <span>Reduce response time to minutes</span>
+                    <span>ลดเวลาตอบสนองเหลือนาที</span>
                   </li>
                   <li className="flex items-center gap-3">
                     <CheckCircle className="w-5 h-5 text-primary" />
-                    <span>Scale coverage nationally</span>
+                    <span>ขยายพื้นที่ครอบคลุมทั่วประเทศ</span>
                   </li>
                 </ul>
               </motion.div>
@@ -303,13 +273,13 @@ const Altura = () => {
               className="text-center mb-12"
             >
               <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-                Phase 2: Solution Architecture
+                เฟส 2: สถาปัตยกรรมโซลูชัน
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                Autonomous Aerial Security Infrastructure
+                โครงสร้างพื้นฐานความมั่นคงทางอากาศอัตโนมัติ
               </h2>
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                Altura VTOL Dock = Complete autonomous surveillance & response system
+                Altura VTOL Dock = ระบบเฝ้าระวังและตอบสนองอัตโนมัติครบวงจร
               </p>
             </motion.div>
 
@@ -321,7 +291,8 @@ const Altura = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="p-6 rounded-2xl bg-card border border-border text-center"
+                  whileHover={{ y: -5 }}
+                  className="p-6 rounded-2xl bg-card border border-border text-center hover:border-primary/50 transition-all"
                 >
                   <div className="w-12 h-12 mx-auto rounded-xl bg-primary/10 flex items-center justify-center mb-4">
                     <item.icon className="w-6 h-6 text-primary" />
@@ -338,13 +309,20 @@ const Altura = () => {
               viewport={{ once: true }}
               className="p-8 rounded-2xl bg-secondary border border-border"
             >
-              <h3 className="text-xl font-bold text-foreground mb-6 text-center">Key Capabilities</h3>
+              <h3 className="text-xl font-bold text-foreground mb-6 text-center">ขีดความสามารถหลัก</h3>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {keyCapabilities.map((cap, i) => (
-                  <div key={i} className="flex items-center gap-2 p-3 rounded-xl bg-background">
+                  <motion.div 
+                    key={i} 
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1 }}
+                    className="flex items-center gap-2 p-3 rounded-xl bg-background"
+                  >
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
                     <span className="text-sm text-foreground">{cap}</span>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </motion.div>
@@ -361,10 +339,10 @@ const Altura = () => {
               className="text-center mb-12"
             >
               <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-                Phase 3: Use Cases
+                เฟส 3: Use Cases ความมั่นคง
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                National Security Applications
+                การประยุกต์ใช้ด้านความมั่นคงแห่งชาติ
               </h2>
             </motion.div>
 
@@ -376,6 +354,7 @@ const Altura = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
+                  whileHover={{ scale: 1.02 }}
                   className="use-case-card"
                 >
                   <div className="flex items-start gap-4">
@@ -383,8 +362,7 @@ const Altura = () => {
                       <useCase.icon className="w-7 h-7 text-primary" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-foreground">{useCase.title}</h3>
-                      <p className="text-sm text-muted-foreground mb-4">{useCase.titleTH}</p>
+                      <h3 className="text-xl font-bold text-foreground mb-4">{useCase.title}</h3>
                       <ul className="space-y-2">
                         {useCase.items.map((item, j) => (
                           <li key={j} className="flex items-center gap-2 text-sm text-foreground">
@@ -401,49 +379,20 @@ const Altura = () => {
           </div>
         </section>
 
-        {/* Phase 4: National Deployment Model */}
+        {/* Phase 4: National Deployment Model - Animated Diagram */}
         <section className="section-padding bg-background">
           <div className="section-container">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-              >
-                <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-                  Phase 4: Deployment Model
-                </span>
-                <h2 className="text-3xl font-bold text-foreground mb-6">
-                  National VTOL Network
-                </h2>
-                <div className="space-y-4 mb-8">
-                  {deploymentFeatures.map((feature, i) => (
-                    <div key={i} className="flex items-start gap-4 p-4 rounded-xl bg-card border border-border">
-                      <Network className="w-6 h-6 text-primary mt-0.5 flex-shrink-0" />
-                      <div>
-                        <h4 className="font-semibold text-foreground">{feature.title}</h4>
-                        <p className="text-sm text-muted-foreground">{feature.desc}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <p className="text-muted-foreground">
-                  Connects to: Army, Police, DDPM, Natural Resources, Government GIS Data Center
-                </p>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="rounded-2xl overflow-hidden border border-border shadow-lg"
-              >
-                <img 
-                  src={alturaImage} 
-                  alt="Altura VTOL Dock Deployment Grid - National Network" 
-                  className="w-full h-auto"
-                />
-              </motion.div>
-            </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-8"
+            >
+              <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+                เฟส 4: โมเดลการติดตั้ง
+              </span>
+            </motion.div>
+            <DeploymentDiagram />
           </div>
         </section>
 
@@ -457,10 +406,10 @@ const Altura = () => {
               className="text-center mb-12"
             >
               <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-                Phase 5: Strategic Value
+                เฟส 5: คุณค่าเชิงยุทธศาสตร์
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                🇹🇭 Value for Thailand
+                🇹🇭 คุณค่าต่อประเทศไทย
               </h2>
             </motion.div>
 
@@ -472,14 +421,22 @@ const Altura = () => {
                 viewport={{ once: true }}
                 className="p-8 rounded-2xl card-navy"
               >
-                <h3 className="text-xl font-bold mb-6">National Results</h3>
+                <h3 className="text-xl font-bold mb-6">ผลลัพธ์เชิงชาติ</h3>
                 <div className="grid grid-cols-2 gap-4">
                   {strategicValues.map((value, i) => (
-                    <div key={i} className="p-4 rounded-xl bg-white/10">
+                    <motion.div 
+                      key={i} 
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.1 }}
+                      whileHover={{ scale: 1.05 }}
+                      className="p-4 rounded-xl bg-white/10"
+                    >
                       <value.icon className="w-6 h-6 text-primary mb-2" />
                       <h4 className="font-semibold text-white text-sm">{value.title}</h4>
                       <p className="text-xs text-white/70">{value.desc}</p>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </motion.div>
@@ -493,14 +450,21 @@ const Altura = () => {
               >
                 <h3 className="text-xl font-bold text-foreground mb-6 flex items-center gap-2">
                   <DollarSign className="w-6 h-6 text-primary" />
-                  Cost Effectiveness
+                  ความคุ้มค่า
                 </h3>
                 <div className="space-y-4">
                   {costEffectiveness.map((item, i) => (
-                    <div key={i} className="flex items-center gap-4 p-4 rounded-xl bg-secondary">
+                    <motion.div 
+                      key={i} 
+                      initial={{ opacity: 0, x: 20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.1 }}
+                      className="flex items-center gap-4 p-4 rounded-xl bg-secondary"
+                    >
                       <span className="text-3xl font-bold text-primary">{item.metric}</span>
                       <span className="text-foreground">{item.desc}</span>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </motion.div>
@@ -518,7 +482,7 @@ const Altura = () => {
               className="max-w-3xl mx-auto text-center"
             >
               <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-                Phase 6: Local Content
+                เฟส 6: Local Content
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8">
                 Altura × Thailand
@@ -531,6 +495,7 @@ const Altura = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1 }}
+                    whileHover={{ scale: 1.02 }}
                     className="flex items-center gap-3 p-4 rounded-xl bg-card border border-border"
                   >
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
@@ -552,10 +517,10 @@ const Altura = () => {
               className="text-center mb-12"
             >
               <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-                Phase 7: Roadmap
+                เฟส 7: Roadmap
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                Implementation Roadmap
+                แผนการดำเนินงาน
               </h2>
             </motion.div>
 
@@ -567,12 +532,16 @@ const Altura = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.15 }}
-                  className="relative p-6 rounded-2xl bg-background border border-border"
+                  whileHover={{ y: -5 }}
+                  className="relative p-6 rounded-2xl bg-background border border-border hover:border-primary/50 transition-all"
                 >
                   <div className="flex items-center gap-3 mb-4">
-                    <span className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold">
+                    <motion.span 
+                      className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold"
+                      whileHover={{ scale: 1.1 }}
+                    >
                       {phase.phase}
-                    </span>
+                    </motion.span>
                     <div>
                       <h3 className="font-bold text-foreground">{phase.title}</h3>
                       <p className="text-sm text-primary font-medium">{phase.duration}</p>
@@ -602,27 +571,30 @@ const Altura = () => {
               viewport={{ once: true }}
               className="max-w-4xl mx-auto text-center"
             >
-              <div className="p-8 md:p-12 rounded-2xl bg-card border border-border shadow-lg mb-8">
+              <motion.div 
+                className="p-8 md:p-12 rounded-2xl bg-card border border-border shadow-lg mb-8"
+                whileHover={{ scale: 1.02 }}
+              >
                 <p className="text-2xl md:text-3xl font-bold text-foreground leading-relaxed">
-                  "Altura VTOL Dock does not replace people,
+                  "Altura VTOL Dock ไม่ได้มาแทนคน
                   <br />
-                  <span className="text-primary">but makes Thai people safer without risking lives.</span>"
+                  <span className="text-primary">แต่ทำให้คนไทยปลอดภัยขึ้น โดยไม่ต้องเอาชีวิตไปเสี่ยง"</span>
                 </p>
-              </div>
+              </motion.div>
               <p className="text-lg text-muted-foreground mb-8">
-                Ready to transform Thailand's national security infrastructure?
+                พร้อมเปลี่ยนแปลงโครงสร้างพื้นฐานความมั่นคงของประเทศไทย?
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Link to="/contact">
                   <button className="btn-navy">
                     <Calendar size={20} />
-                    Request Executive Briefing
+                    นัดรับฟังบรรยายสรุป
                   </button>
                 </Link>
                 <Link to="/contact">
                   <button className="btn-hero-secondary">
                     <Target size={20} />
-                    Schedule Pilot Project Discussion
+                    นัดหารือ Pilot Project
                   </button>
                 </Link>
               </div>
