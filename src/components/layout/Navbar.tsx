@@ -18,7 +18,7 @@ export function Navbar() {
   const location = useLocation();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-nav bg-background/80 border-b border-border/50">
+    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-nav bg-background/95 border-b border-border shadow-sm">
       <div className="section-container">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
@@ -26,7 +26,7 @@ export function Navbar() {
             <div className="flex items-center gap-2">
               <span className="text-xl font-bold text-foreground">DJI</span>
               <span className="text-muted-foreground">|</span>
-              <span className="text-xl font-bold text-gradient-brand">13 STORE</span>
+              <span className="text-xl font-bold text-gradient-navy">13 STORE</span>
             </div>
           </Link>
 
