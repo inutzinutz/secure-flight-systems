@@ -137,12 +137,12 @@ const Altura = () => {
                 Altura VTOL Dock
               </h1>
               <p className="text-xl md:text-2xl text-primary font-medium mb-4">
-                National Autonomous Aerial Security Infrastructure
+                โครงสร้างพื้นฐานความมั่นคงทางอากาศอัตโนมัติระดับชาติ
               </p>
               <p className="text-lg text-muted-foreground mb-8 max-w-3xl mx-auto">
-                For Army / Police / Ministries / Budget Bureau / NSC / Policymakers
+                สำหรับกองทัพ / ตำรวจ / กระทรวง / สำนักงบประมาณ / สมช. / ผู้กำหนดนโยบาย
                 <br />
-                <span className="text-foreground font-medium">Protecting Sovereignty, Lives, and Resources of Thailand</span>
+                <span className="text-foreground font-medium">ปกป้องอธิปไตย ชีวิต และทรัพยากรของประเทศไทย</span>
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Link to="/contact">
