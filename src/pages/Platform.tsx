@@ -1,12 +1,10 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { PresentationLayout } from "@/components/presentation/PresentationLayout";
-import { PresentationSlide, SlideTitle, SlideGrid, SlideCard } from "@/components/presentation/PresentationSlide";
+import { ScrollSection } from "@/components/presentation/ScrollSection";
+import { SlideTitle, SlideGrid, SlideCard } from "@/components/presentation/PresentationSlide";
 import { motion } from "framer-motion";
 import { 
-  Cloud, Database, Shield, GitBranch, ArrowRight, CheckCircle, 
-  Target, DollarSign, Users, Megaphone, AlertTriangle, Calendar,
-  Brain, Building, Eye, Monitor, Smartphone, Radio, Radar, MapPin, Cog
+  Cloud, Database, Shield, GitBranch, Calendar, Megaphone
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { PlatformStrategicDiagram } from "@/components/platform/PlatformStrategicDiagram";
@@ -21,12 +19,12 @@ const keyFeatures = [
 ];
 
 const Platform = () => {
-  const sections = [
-    // Slide 1: Hero
-    {
-      id: "hero",
-      content: (
-        <PresentationSlide variant="hero">
+  return (
+    <div className="min-h-screen bg-background">
+      <Navbar />
+      <main className="pt-16">
+        {/* Hero Section */}
+        <ScrollSection variant="hero" id="hero">
           <SlideTitle
             badge="แผนงานแพลตฟอร์มโดรน LM — เชิงยุทธศาสตร์ + ใช้งานจริง + ขายได้"
             title="LM Platform"
@@ -35,7 +33,8 @@ const Platform = () => {
           />
           <motion.p 
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
             transition={{ delay: 0.5 }}
             className="text-center text-muted-foreground mt-6 max-w-3xl mx-auto"
           >
@@ -44,7 +43,8 @@ const Platform = () => {
           </motion.p>
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ delay: 0.6 }}
             className="flex flex-wrap justify-center gap-4 mt-8"
           >
@@ -55,15 +55,10 @@ const Platform = () => {
               </button>
             </Link>
           </motion.div>
-        </PresentationSlide>
-      )
-    },
+        </ScrollSection>
 
-    // Slide 2: Positioning
-    {
-      id: "positioning",
-      content: (
-        <PresentationSlide>
+        {/* Positioning Section */}
+        <ScrollSection id="positioning">
           <div className="text-center mb-12">
             <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
               1) Positioning ระดับประเทศ
@@ -81,49 +76,30 @@ const Platform = () => {
               />
             ))}
           </SlideGrid>
-        </PresentationSlide>
-      )
-    },
+        </ScrollSection>
 
-    // Slide 3: Core System Engine
-    {
-      id: "core-engine",
-      content: (
-        <PresentationSlide centered={false}>
+        {/* Core System Engine Section */}
+        <ScrollSection id="core-engine">
           <PlatformStrategicDiagram />
-        </PresentationSlide>
-      )
-    },
+        </ScrollSection>
 
-    // Slide 4: AI Functions
-    {
-      id: "ai-functions",
-      content: (
-        <PresentationSlide centered={false}>
+        {/* AI Functions Section */}
+        <ScrollSection id="ai-functions">
           <AIFunctionsDiagram />
-        </PresentationSlide>
-      )
-    },
+        </ScrollSection>
 
-    // Slide 5: Use Cases
-    {
-      id: "use-cases",
-      content: (
-        <PresentationSlide centered={false}>
+        {/* Use Cases Section */}
+        <ScrollSection id="use-cases">
           <UseCasesDiagram />
-        </PresentationSlide>
-      )
-    },
+        </ScrollSection>
 
-    // Slide 6: Key Message
-    {
-      id: "key-message",
-      content: (
-        <PresentationSlide variant="accent">
+        {/* Key Message Section */}
+        <ScrollSection variant="accent" id="key-message">
           <div className="text-center max-w-4xl mx-auto">
             <motion.div 
               initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
               className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-primary/10 mb-8"
             >
               <Megaphone className="w-5 h-5 text-primary" />
@@ -131,7 +107,8 @@ const Platform = () => {
             </motion.div>
             <motion.blockquote
               initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ delay: 0.2 }}
               className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight"
             >
@@ -143,7 +120,8 @@ const Platform = () => {
             </motion.blockquote>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ delay: 0.5 }}
               className="mt-12"
             >
@@ -155,16 +133,9 @@ const Platform = () => {
               </Link>
             </motion.div>
           </div>
-        </PresentationSlide>
-      )
-    },
-  ];
+        </ScrollSection>
 
-  return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-      <main className="pt-16">
-        <PresentationLayout sections={sections} />
+        <Footer />
       </main>
     </div>
   );
