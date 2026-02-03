@@ -9,7 +9,6 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { EnterpriseStrategicDiagram } from "@/components/enterprise/EnterpriseStrategicDiagram";
-import { CustomerPyramidDiagram } from "@/components/enterprise/CustomerPyramidDiagram";
 
 const objectives = [
   { icon: Building, title: "ด้านตลาด", desc: "สร้างรายได้จาก Project + MA + Service ลูกค้า 1 ราย ใช้ยาวหลายปี", color: "blue" as const },
@@ -183,24 +182,14 @@ const Enterprise = () => {
       )
     },
 
-    // Slide 4: Customer Pyramid
-    {
-      id: "customers",
-      content: (
-        <PresentationSlide centered={false}>
-          <CustomerPyramidDiagram />
-        </PresentationSlide>
-      )
-    },
-
-    // Slide 5: Solution Stack
+    // Slide 4: Solution Stack
     {
       id: "solution-stack",
       content: (
         <PresentationSlide>
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center gap-3 mb-8 justify-center">
-              <span className="px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-bold">4</span>
+              <span className="px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-bold">3</span>
               <h2 className="text-2xl md:text-3xl font-bold text-foreground">Enterprise Solution Stack</h2>
             </div>
             <div className="space-y-4">
@@ -235,14 +224,14 @@ const Enterprise = () => {
       )
     },
 
-    // Slide 6: Use Cases
+    // Slide 5: Use Cases
     {
       id: "use-cases",
       content: (
         <PresentationSlide>
           <div className="text-center mb-10">
             <div className="flex items-center gap-3 mb-4 justify-center">
-              <span className="px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-bold">5</span>
+              <span className="px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-bold">4</span>
               <h2 className="text-2xl md:text-3xl font-bold text-foreground">Enterprise Use Case หลัก</h2>
             </div>
             <p className="text-muted-foreground">ต้องขายให้เป็นแพ็ก</p>
@@ -273,95 +262,45 @@ const Enterprise = () => {
       )
     },
 
-    // Slide 7: Revenue Model & Team
+    // Slide 6: Team Structure
     {
-      id: "revenue-team",
+      id: "team",
       content: (
         <PresentationSlide>
-          <div className="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {/* Revenue Model */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="p-6 rounded-2xl bg-card border border-border"
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-bold">6</span>
-                <h3 className="text-xl font-bold text-foreground">โมเดลรายได้ Enterprise</h3>
-              </div>
-              <div className="space-y-4">
-                <div>
-                  <p className="text-sm font-medium text-primary mb-2">6.1 รายได้หลัก</p>
-                  <ul className="space-y-2">
-                    {["Project-based (SI)", "Platform License", "MA / Support รายปี"].map((item, i) => (
-                      <li key={i} className="flex items-center gap-2 text-sm text-foreground">
-                        <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-primary mb-2">6.2 รายได้ต่อเนื่อง</p>
-                  <ul className="space-y-2">
-                    {["Monitoring Contract", "DaaS", "Training"].map((item, i) => (
-                      <li key={i} className="flex items-center gap-2 text-sm text-foreground">
-                        <CheckCircle className="w-4 h-4 text-emerald-500 flex-shrink-0" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-              <motion.div 
-                className="mt-4 p-3 rounded-xl bg-primary/10 border border-primary/20"
-                animate={{ scale: [1, 1.02, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                <p className="text-center text-sm font-bold text-primary">เป้าหมาย: MA 30-40% ของ Revenue</p>
-              </motion.div>
-            </motion.div>
-
-            {/* Team Structure */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="p-6 rounded-2xl bg-card border border-border"
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-bold">7</span>
-                <h3 className="text-xl font-bold text-foreground">โครงสร้างทีม Enterprise</h3>
-              </div>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                {teamStructure.map((member, i) => (
-                  <motion.div
-                    key={member.role}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: i * 0.1 }}
-                    whileHover={{ scale: 1.05 }}
-                    className="p-3 rounded-xl bg-secondary/50 border border-border text-center"
-                  >
-                    <member.icon className="w-6 h-6 mx-auto text-primary mb-2" />
-                    <p className="font-medium text-foreground text-xs">{member.role}</p>
-                    <p className="text-[10px] text-muted-foreground">{member.desc}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
+          <div className="max-w-4xl mx-auto">
+            <div className="flex items-center gap-3 mb-8 justify-center">
+              <span className="px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-bold">5</span>
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground">โครงสร้างทีม Enterprise</h2>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+              {teamStructure.map((member, i) => (
+                <motion.div
+                  key={member.role}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: i * 0.1 }}
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  className="p-5 rounded-xl bg-card border border-border text-center"
+                >
+                  <member.icon className="w-8 h-8 mx-auto text-primary mb-3" />
+                  <p className="font-medium text-foreground text-sm">{member.role}</p>
+                  <p className="text-xs text-muted-foreground">{member.desc}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </PresentationSlide>
       )
     },
 
-    // Slide 8: Sales Process
+    // Slide 7: Sales Process
     {
       id: "sales-process",
       content: (
         <PresentationSlide>
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center gap-3 mb-10 justify-center">
-              <span className="px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-bold">8</span>
+              <span className="px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-bold">6</span>
               <h2 className="text-2xl md:text-3xl font-bold text-foreground">Enterprise Sales Process</h2>
             </div>
             <div className="flex flex-wrap justify-center gap-3">
@@ -393,7 +332,7 @@ const Enterprise = () => {
       )
     },
 
-    // Slide 9: Advantages & KPIs
+    // Slide 8: Advantages & KPIs
     {
       id: "advantages-kpis",
       content: (
@@ -406,7 +345,7 @@ const Enterprise = () => {
               className="p-6 rounded-2xl bg-card border border-border"
             >
               <div className="flex items-center gap-3 mb-6">
-                <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-bold">9</span>
+                <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-bold">7</span>
                 <h3 className="text-xl font-bold text-foreground">จุดแข็งที่ต้องพูดทุกครั้ง</h3>
               </div>
               <div className="space-y-3">
@@ -432,7 +371,7 @@ const Enterprise = () => {
               className="p-6 rounded-2xl bg-card border border-border"
             >
               <div className="flex items-center gap-3 mb-6">
-                <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-bold">10</span>
+                <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-bold">8</span>
                 <h3 className="text-xl font-bold text-foreground">KPI ระดับ Enterprise (ปีถัดไป)</h3>
               </div>
               <div className="grid grid-cols-2 gap-4">
