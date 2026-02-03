@@ -5,8 +5,9 @@ import {
   Cpu, ChevronRight, MapPin, Layers, Brain, Wrench, GraduationCap,
   FileText, Clock, TrendingUp, Award, MessageSquare, Send, Camera
 } from "lucide-react";
-import { PresentationLayout } from "@/components/presentation/PresentationLayout";
-import { PresentationSlide } from "@/components/presentation/PresentationSlide";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
+import { ScrollSection } from "@/components/presentation/ScrollSection";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
@@ -140,14 +141,15 @@ const kpis = [
   { metric: "3+", label: "Case Study ใช้งานจริง", unit: "เคส" },
 ];
 
-// Slide Components
-function HeroSlide() {
+// Section Components
+function HeroSection() {
   return (
-    <PresentationSlide variant="hero">
+    <ScrollSection variant="hero" className="py-24 md:py-32">
       <div className="text-center max-w-4xl mx-auto">
         <motion.span 
           initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
           className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6"
         >
           เสาที่ 1 — 13 STORE Enterprise
@@ -155,7 +157,8 @@ function HeroSlide() {
         
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ delay: 0.1 }}
           className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6"
         >
@@ -164,7 +167,8 @@ function HeroSlide() {
         
         <motion.p 
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ delay: 0.2 }}
           className="text-xl md:text-2xl text-foreground font-medium mb-4"
         >
@@ -173,7 +177,8 @@ function HeroSlide() {
         
         <motion.p 
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ delay: 0.3 }}
           className="text-lg text-muted-foreground mb-4"
         >
@@ -182,7 +187,8 @@ function HeroSlide() {
         
         <motion.p 
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
           transition={{ delay: 0.4 }}
           className="text-muted-foreground italic mb-8"
         >
@@ -191,7 +197,8 @@ function HeroSlide() {
 
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ delay: 0.5 }}
           className="flex flex-wrap justify-center gap-4"
         >
@@ -212,35 +219,38 @@ function HeroSlide() {
         {/* Key Message */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ delay: 0.6 }}
-          className="mt-12 p-6 rounded-2xl bg-gradient-to-r from-blue-900/80 via-blue-800/80 to-blue-900/80 backdrop-blur"
+          className="mt-12 p-6 rounded-2xl bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 backdrop-blur border border-primary/20"
         >
-          <p className="text-lg md:text-xl text-white font-medium">
+          <p className="text-lg md:text-xl text-foreground font-medium">
             "13 STORE ไม่ได้ขายโดรน แต่ดูแลภารกิจสำคัญขององค์กรคุณ 
             <br className="hidden md:block" />
             ให้ปลอดภัย มีข้อมูล และ<span className="text-primary">ตัดสินใจได้เร็วขึ้น</span>"
           </p>
         </motion.div>
       </div>
-    </PresentationSlide>
+    </ScrollSection>
   );
 }
 
-function DefinitionSlide() {
+function DefinitionSection() {
   return (
-    <PresentationSlide variant="default">
+    <ScrollSection variant="default">
       <div className="text-center mb-10">
         <motion.span 
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
           className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4"
         >
           Enterprise คืออะไร
         </motion.span>
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           className="text-3xl md:text-4xl font-bold text-foreground"
         >
           Definition & Positioning
@@ -252,7 +262,8 @@ function DefinitionSlide() {
           <motion.div
             key={card.title}
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ delay: i * 0.15 }}
             whileHover={{ y: -5, scale: 1.02 }}
             className="p-8 rounded-2xl bg-card border border-border text-center"
@@ -265,31 +276,34 @@ function DefinitionSlide() {
           </motion.div>
         ))}
       </div>
-    </PresentationSlide>
+    </ScrollSection>
   );
 }
 
-function CapabilitySlide() {
+function CapabilitySection() {
   return (
-    <PresentationSlide variant="accent">
+    <ScrollSection variant="accent">
       <div className="text-center mb-10">
         <motion.span 
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
           className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4"
         >
           Capability Stack
         </motion.span>
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           className="text-3xl md:text-4xl font-bold text-foreground mb-4"
         >
           สแต็กความสามารถ 4 ชั้น
         </motion.h2>
         <motion.p 
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
           transition={{ delay: 0.2 }}
           className="text-muted-foreground text-lg"
         >
@@ -302,8 +316,9 @@ function CapabilitySlide() {
           <motion.div
             key={layer.layer}
             initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: i * 0.15 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.1 }}
             whileHover={{ x: 10 }}
             className="flex items-stretch gap-4"
           >
@@ -329,31 +344,34 @@ function CapabilitySlide() {
           </motion.div>
         ))}
       </div>
-    </PresentationSlide>
+    </ScrollSection>
   );
 }
 
-function DeliverySlide() {
+function DeliverySection() {
   return (
-    <PresentationSlide variant="default">
+    <ScrollSection variant="default">
       <div className="text-center mb-10">
         <motion.span 
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
           className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4"
         >
           How We Deliver
         </motion.span>
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           className="text-3xl md:text-4xl font-bold text-foreground mb-4"
         >
           กระบวนการส่งมอบ 6 ขั้นตอน
         </motion.h2>
         <motion.p 
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
           transition={{ delay: 0.2 }}
           className="text-muted-foreground text-lg"
         >
@@ -367,18 +385,15 @@ function DeliverySlide() {
             <motion.div
               key={step.step}
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
               whileHover={{ scale: 1.05 }}
               className="relative p-5 rounded-2xl bg-card border border-border text-center"
             >
-              <motion.div 
-                className="w-14 h-14 mx-auto rounded-full bg-primary text-primary-foreground font-bold text-xl flex items-center justify-center mb-4"
-                animate={{ scale: [1, 1.05, 1] }}
-                transition={{ duration: 2, repeat: Infinity, delay: i * 0.2 }}
-              >
+              <div className="w-14 h-14 mx-auto rounded-full bg-primary text-primary-foreground font-bold text-xl flex items-center justify-center mb-4">
                 {step.step}
-              </motion.div>
+              </div>
               <h4 className="font-bold text-foreground mb-1">{step.title}</h4>
               <p className="text-sm text-muted-foreground">{step.desc}</p>
               {i < deliverySteps.length - 1 && (
@@ -390,8 +405,9 @@ function DeliverySlide() {
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5 }}
           className="text-center mt-10"
         >
           <Link to="/contact">
@@ -402,31 +418,34 @@ function DeliverySlide() {
           </Link>
         </motion.div>
       </div>
-    </PresentationSlide>
+    </ScrollSection>
   );
 }
 
-function TeamSlide() {
+function TeamSection() {
   return (
-    <PresentationSlide variant="accent">
+    <ScrollSection variant="accent">
       <div className="text-center mb-10">
         <motion.span 
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
           className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4"
         >
           Team Structure
         </motion.span>
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           className="text-3xl md:text-4xl font-bold text-foreground mb-4"
         >
           ทีม Enterprise ที่ "ต้องมี"
         </motion.h2>
         <motion.p 
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
           transition={{ delay: 0.2 }}
           className="text-muted-foreground text-lg"
         >
@@ -438,7 +457,8 @@ function TeamSlide() {
       <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-10">
         <motion.div
           initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
           transition={{ delay: 0.3 }}
           className="relative overflow-hidden rounded-2xl"
         >
@@ -455,62 +475,62 @@ function TeamSlide() {
         </motion.div>
         <motion.div
           initial={{ opacity: 0, x: 30 }}
-          animate={{ opacity: 1, x: 0 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
           transition={{ delay: 0.4 }}
           className="relative overflow-hidden rounded-2xl"
         >
           <img 
             src={enterpriseTeam2} 
-            alt="ทีม Support และ Training" 
+            alt="ทีม Training & Support" 
             className="w-full h-56 object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
           <div className="absolute bottom-4 left-4 right-4">
             <p className="text-white font-bold">ทีม Training & Support</p>
-            <p className="text-white/80 text-sm">ดูแลหลังขายตลอดสัญญา</p>
+            <p className="text-white/80 text-sm">พร้อมอบรมและดูแลหลังการขาย</p>
           </div>
         </motion.div>
       </div>
 
+      {/* Team Roles */}
       <div className="grid grid-cols-2 md:grid-cols-5 gap-4 max-w-4xl mx-auto">
         {teamStructure.map((member, i) => (
           <motion.div
             key={member.role}
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ delay: 0.5 + i * 0.1 }}
-            whileHover={{ y: -5, scale: 1.05 }}
-            className="p-5 rounded-2xl bg-card border border-border text-center"
+            whileHover={{ scale: 1.05 }}
+            className="p-4 rounded-2xl bg-card border border-border text-center"
           >
-            <motion.div
-              animate={{ rotate: [0, 5, -5, 0] }}
-              transition={{ duration: 4, repeat: Infinity, delay: i * 0.3 }}
-            >
-              <member.icon className="w-10 h-10 mx-auto text-primary mb-3" />
-            </motion.div>
+            <member.icon className="w-8 h-8 mx-auto text-primary mb-2" />
             <p className="font-bold text-foreground text-sm">{member.role}</p>
             <p className="text-xs text-muted-foreground">{member.desc}</p>
           </motion.div>
         ))}
       </div>
-    </PresentationSlide>
+    </ScrollSection>
   );
 }
 
-function TrustSlide() {
+function TrustSection() {
   return (
-    <PresentationSlide variant="default">
+    <ScrollSection variant="default">
       <div className="text-center mb-12">
         <motion.span 
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
           className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4"
         >
           Why Trust Us
         </motion.span>
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           className="text-3xl md:text-4xl font-bold text-foreground"
         >
           สิ่งที่ทำให้ลูกค้าไว้ใจ
@@ -522,8 +542,9 @@ function TrustSlide() {
           <motion.div
             key={i}
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.1 }}
             whileHover={{ scale: 1.05 }}
             className="p-8 rounded-2xl bg-gradient-to-br from-primary/5 to-primary/10 border border-primary/20 text-center"
           >
@@ -532,24 +553,26 @@ function TrustSlide() {
           </motion.div>
         ))}
       </div>
-    </PresentationSlide>
+    </ScrollSection>
   );
 }
 
-function CommercialSlide() {
+function CommercialSection() {
   return (
-    <PresentationSlide variant="accent">
+    <ScrollSection variant="accent">
       <div className="text-center mb-10">
         <motion.span 
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
           className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4"
         >
           Commercial Models
         </motion.span>
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           className="text-3xl md:text-4xl font-bold text-foreground mb-4"
         >
           รูปแบบการซื้อ/สัญญา
@@ -561,7 +584,8 @@ function CommercialSlide() {
           <motion.div
             key={model.title}
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ delay: i * 0.15 }}
             whileHover={{ y: -5 }}
             className={`p-6 rounded-2xl bg-card border-2 ${model.color} ${model.highlight ? 'ring-2 ring-primary ring-offset-2 ring-offset-background' : ''}`}
@@ -589,7 +613,8 @@ function CommercialSlide() {
       {/* DaaS Details */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
         transition={{ delay: 0.5 }}
         className="max-w-4xl mx-auto p-6 rounded-2xl card-navy"
       >
@@ -621,24 +646,26 @@ function CommercialSlide() {
           </div>
         </div>
       </motion.div>
-    </PresentationSlide>
+    </ScrollSection>
   );
 }
 
-function CaseStudySlide() {
+function CaseStudySection() {
   return (
-    <PresentationSlide variant="default">
+    <ScrollSection variant="default">
       <div className="text-center mb-10">
         <motion.span 
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
           className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4"
         >
           Case Studies & KPIs
         </motion.span>
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           className="text-3xl md:text-4xl font-bold text-foreground"
         >
           ผลงานจริง ใช้งานจริง
@@ -651,18 +678,15 @@ function CaseStudySlide() {
           <motion.div
             key={i}
             initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
             transition={{ delay: i * 0.1 }}
             whileHover={{ scale: 1.05 }}
             className="p-5 rounded-2xl bg-card border border-border text-center"
           >
-            <motion.p 
-              className="text-3xl font-bold text-primary mb-1"
-              animate={{ scale: [1, 1.05, 1] }}
-              transition={{ duration: 2, repeat: Infinity, delay: i * 0.3 }}
-            >
+            <p className="text-3xl font-bold text-primary mb-1">
               ≥ {kpi.metric}
-            </motion.p>
+            </p>
             <p className="text-foreground font-medium text-sm">{kpi.label}</p>
             <p className="text-xs text-primary">{kpi.unit}</p>
           </motion.div>
@@ -673,7 +697,8 @@ function CaseStudySlide() {
       <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
           transition={{ delay: 0.4 }}
           className="rounded-2xl overflow-hidden bg-card border border-border"
         >
@@ -709,7 +734,8 @@ function CaseStudySlide() {
 
         <motion.div
           initial={{ opacity: 0, x: 30 }}
-          animate={{ opacity: 1, x: 0 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
           transition={{ delay: 0.5 }}
           className="rounded-2xl overflow-hidden bg-card border border-border"
         >
@@ -743,11 +769,11 @@ function CaseStudySlide() {
           </div>
         </motion.div>
       </div>
-    </PresentationSlide>
+    </ScrollSection>
   );
 }
 
-function ContactSlide() {
+function ContactSection() {
   const [formData, setFormData] = useState({
     organization: "",
     province: "",
@@ -758,141 +784,147 @@ function ContactSlide() {
   });
 
   return (
-    <PresentationSlide variant="accent" centered={false}>
-      <div className="py-10">
-        <div className="text-center mb-8">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-          >
-            <Award className="w-14 h-14 mx-auto text-primary mb-4" />
-          </motion.div>
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-3xl md:text-4xl font-bold text-foreground mb-3"
-          >
-            เริ่มจาก Workshop 1 ครั้ง
-          </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="text-lg text-muted-foreground"
-          >
-            ได้ภาพระบบ + งบ + แผนดำเนินงาน
-          </motion.p>
+    <ScrollSection variant="accent">
+      <div className="text-center mb-8">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+        >
+          <Award className="w-14 h-14 mx-auto text-primary mb-4" />
+        </motion.div>
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-3xl md:text-4xl font-bold text-foreground mb-3"
+        >
+          เริ่มจาก Workshop 1 ครั้ง
+        </motion.h2>
+        <motion.p 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="text-lg text-muted-foreground"
+        >
+          ได้ภาพระบบ + งบ + แผนดำเนินงาน
+        </motion.p>
+      </div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.3 }}
+        className="max-w-2xl mx-auto p-6 rounded-2xl bg-card border border-border"
+      >
+        <div className="grid md:grid-cols-2 gap-4">
+          <div className="space-y-2">
+            <Label htmlFor="organization">องค์กร/หน่วยงาน</Label>
+            <Input 
+              id="organization" 
+              placeholder="ชื่อองค์กร"
+              value={formData.organization}
+              onChange={(e) => setFormData({...formData, organization: e.target.value})}
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="province">จังหวัด/พื้นที่หน้างาน</Label>
+            <Input 
+              id="province" 
+              placeholder="จังหวัด"
+              value={formData.province}
+              onChange={(e) => setFormData({...formData, province: e.target.value})}
+            />
+          </div>
+          <div className="space-y-2">
+            <Label>ประเภทภารกิจ</Label>
+            <Select onValueChange={(value) => setFormData({...formData, missionType: value})}>
+              <SelectTrigger>
+                <SelectValue placeholder="เลือกประเภท" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="survey">Mapping & Survey</SelectItem>
+                <SelectItem value="security">Security & Surveillance</SelectItem>
+                <SelectItem value="inspection">Infrastructure Inspection</SelectItem>
+                <SelectItem value="disaster">Disaster & Emergency</SelectItem>
+                <SelectItem value="other">อื่นๆ</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="space-y-2">
+            <Label>ความเร่งด่วน</Label>
+            <Select onValueChange={(value) => setFormData({...formData, urgency: value})}>
+              <SelectTrigger>
+                <SelectValue placeholder="เลือกความเร่งด่วน" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="urgent">ด่วนมาก (1-2 สัปดาห์)</SelectItem>
+                <SelectItem value="normal">ปกติ (1-3 เดือน)</SelectItem>
+                <SelectItem value="planning">วางแผนล่วงหน้า (3+ เดือน)</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="space-y-2 md:col-span-2">
+            <Label>งบประมาณคร่าวๆ</Label>
+            <Select onValueChange={(value) => setFormData({...formData, budget: value})}>
+              <SelectTrigger>
+                <SelectValue placeholder="เลือกช่วงงบ" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="under1m">ต่ำกว่า 1 ล้านบาท</SelectItem>
+                <SelectItem value="1-5m">1-5 ล้านบาท</SelectItem>
+                <SelectItem value="5-10m">5-10 ล้านบาท</SelectItem>
+                <SelectItem value="over10m">มากกว่า 10 ล้านบาท</SelectItem>
+                <SelectItem value="unknown">ยังไม่กำหนด</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="space-y-2 md:col-span-2">
+            <Label htmlFor="pain">Pain / ปัญหาที่ต้องการแก้</Label>
+            <Textarea 
+              id="pain" 
+              placeholder="อธิบายปัญหาหรือความต้องการของคุณ..."
+              value={formData.pain}
+              onChange={(e) => setFormData({...formData, pain: e.target.value})}
+              rows={2}
+            />
+          </div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="max-w-2xl mx-auto p-6 rounded-2xl bg-card border border-border"
+        <motion.div 
+          className="mt-6 text-center"
+          whileHover={{ scale: 1.02 }}
         >
-          <div className="grid md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="organization">องค์กร/หน่วยงาน</Label>
-              <Input 
-                id="organization" 
-                placeholder="ชื่อองค์กร"
-                value={formData.organization}
-                onChange={(e) => setFormData({...formData, organization: e.target.value})}
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="province">จังหวัด/พื้นที่หน้างาน</Label>
-              <Input 
-                id="province" 
-                placeholder="จังหวัด"
-                value={formData.province}
-                onChange={(e) => setFormData({...formData, province: e.target.value})}
-              />
-            </div>
-            <div className="space-y-2">
-              <Label>ประเภทภารกิจ</Label>
-              <Select onValueChange={(value) => setFormData({...formData, missionType: value})}>
-                <SelectTrigger>
-                  <SelectValue placeholder="เลือกประเภท" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="survey">Mapping & Survey</SelectItem>
-                  <SelectItem value="security">Security & Surveillance</SelectItem>
-                  <SelectItem value="inspection">Infrastructure Inspection</SelectItem>
-                  <SelectItem value="disaster">Disaster & Emergency</SelectItem>
-                  <SelectItem value="other">อื่นๆ</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="space-y-2">
-              <Label>ความเร่งด่วน</Label>
-              <Select onValueChange={(value) => setFormData({...formData, urgency: value})}>
-                <SelectTrigger>
-                  <SelectValue placeholder="เลือกความเร่งด่วน" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="urgent">ด่วนมาก (1-2 สัปดาห์)</SelectItem>
-                  <SelectItem value="normal">ปกติ (1-3 เดือน)</SelectItem>
-                  <SelectItem value="planning">วางแผนล่วงหน้า (3+ เดือน)</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="space-y-2 md:col-span-2">
-              <Label>งบประมาณคร่าวๆ</Label>
-              <Select onValueChange={(value) => setFormData({...formData, budget: value})}>
-                <SelectTrigger>
-                  <SelectValue placeholder="เลือกช่วงงบ" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="under1m">ต่ำกว่า 1 ล้านบาท</SelectItem>
-                  <SelectItem value="1-5m">1-5 ล้านบาท</SelectItem>
-                  <SelectItem value="5-10m">5-10 ล้านบาท</SelectItem>
-                  <SelectItem value="over10m">มากกว่า 10 ล้านบาท</SelectItem>
-                  <SelectItem value="unknown">ยังไม่กำหนด</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="space-y-2 md:col-span-2">
-              <Label htmlFor="pain">Pain / ปัญหาที่ต้องการแก้</Label>
-              <Textarea 
-                id="pain" 
-                placeholder="อธิบายปัญหาหรือความต้องการของคุณ..."
-                value={formData.pain}
-                onChange={(e) => setFormData({...formData, pain: e.target.value})}
-                rows={2}
-              />
-            </div>
-          </div>
-
-          <motion.div 
-            className="mt-6 text-center"
-            whileHover={{ scale: 1.02 }}
-          >
-            <button className="btn-navy w-full md:w-auto">
-              <Send size={20} />
-              ส่งข้อมูลเพื่อนัด Workshop
-            </button>
-          </motion.div>
+          <button className="btn-navy w-full md:w-auto">
+            <Send size={20} />
+            ส่งข้อมูลเพื่อนัด Workshop
+          </button>
         </motion.div>
-      </div>
-    </PresentationSlide>
+      </motion.div>
+    </ScrollSection>
   );
 }
 
 const Enterprise = () => {
-  const sections = [
-    { id: "hero", content: <HeroSlide /> },
-    { id: "definition", content: <DefinitionSlide /> },
-    { id: "capability", content: <CapabilitySlide /> },
-    { id: "delivery", content: <DeliverySlide /> },
-    { id: "team", content: <TeamSlide /> },
-    { id: "trust", content: <TrustSlide /> },
-    { id: "commercial", content: <CommercialSlide /> },
-    { id: "case-study", content: <CaseStudySlide /> },
-    { id: "contact", content: <ContactSlide /> },
-  ];
-
-  return <PresentationLayout sections={sections} />;
+  return (
+    <div className="min-h-screen bg-background">
+      <Navbar />
+      <main className="pt-16">
+        <HeroSection />
+        <DefinitionSection />
+        <CapabilitySection />
+        <DeliverySection />
+        <TeamSection />
+        <TrustSection />
+        <CommercialSection />
+        <CaseStudySection />
+        <ContactSection />
+      </main>
+      <Footer />
+    </div>
+  );
 };
 
 export default Enterprise;
