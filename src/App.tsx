@@ -12,6 +12,7 @@ import Resources from "./pages/Resources";
 import Contact from "./pages/Contact";
 import CaseStudies from "./pages/CaseStudies";
 import ROICalculator from "./pages/ROICalculator";
+ import DroneRental from "./pages/DroneRental";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="/case-studies" element={<CaseStudies />} />
           <Route path="/roi-calculator" element={<ROICalculator />} />
+           <Route path="/drone-rental" element={<DroneRental />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
