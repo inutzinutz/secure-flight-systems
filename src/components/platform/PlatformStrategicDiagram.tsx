@@ -6,6 +6,55 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 
+// Custom Drone SVG Icon
+const DroneIcon = ({ className }: { className?: string }) => (
+  <svg 
+    viewBox="0 0 64 64" 
+    className={className}
+    fill="currentColor"
+  >
+    {/* Main body */}
+    <ellipse cx="32" cy="32" rx="8" ry="4" />
+    {/* Camera */}
+    <circle cx="32" cy="34" r="2" />
+    {/* Arms */}
+    <rect x="12" y="30" width="16" height="3" rx="1.5" />
+    <rect x="36" y="30" width="16" height="3" rx="1.5" />
+    <rect x="30" y="18" width="3" height="12" rx="1.5" />
+    <rect x="30" y="34" width="3" height="12" rx="1.5" />
+    {/* Propellers */}
+    <motion.ellipse 
+      cx="12" cy="20" rx="8" ry="2"
+      animate={{ rotate: 360 }}
+      transition={{ duration: 0.3, repeat: Infinity, ease: "linear" }}
+      style={{ originX: "12px", originY: "20px" }}
+    />
+    <motion.ellipse 
+      cx="52" cy="20" rx="8" ry="2"
+      animate={{ rotate: 360 }}
+      transition={{ duration: 0.3, repeat: Infinity, ease: "linear" }}
+      style={{ originX: "52px", originY: "20px" }}
+    />
+    <motion.ellipse 
+      cx="12" cy="44" rx="8" ry="2"
+      animate={{ rotate: 360 }}
+      transition={{ duration: 0.3, repeat: Infinity, ease: "linear" }}
+      style={{ originX: "12px", originY: "44px" }}
+    />
+    <motion.ellipse 
+      cx="52" cy="44" rx="8" ry="2"
+      animate={{ rotate: 360 }}
+      transition={{ duration: 0.3, repeat: Infinity, ease: "linear" }}
+      style={{ originX: "52px", originY: "44px" }}
+    />
+    {/* Prop centers */}
+    <circle cx="12" cy="20" r="3" />
+    <circle cx="52" cy="20" r="3" />
+    <circle cx="12" cy="44" r="3" />
+    <circle cx="52" cy="44" r="3" />
+  </svg>
+);
+
 const coreEngineComponents = [
   { 
     id: "ai",
@@ -67,19 +116,73 @@ export function PlatformStrategicDiagram() {
   const [isAnimating, setIsAnimating] = useState(true);
 
   return (
-    <div className="relative py-8">
+    <div className="relative py-8 overflow-hidden">
+      {/* Animated Drone SVGs flying around */}
+      <motion.div
+        className="absolute top-20 left-10 z-10"
+        animate={isAnimating ? {
+          x: [0, 200, 400, 300, 100, 0],
+          y: [0, 50, 20, 100, 60, 0],
+          rotate: [0, 10, -5, 15, -10, 0]
+        } : {}}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <DroneIcon className="w-10 h-10 md:w-14 md:h-14 text-primary drop-shadow-lg" />
+      </motion.div>
+
+      <motion.div
+        className="absolute top-40 right-20 z-10"
+        animate={isAnimating ? {
+          x: [0, -150, -300, -200, -50, 0],
+          y: [0, 80, 40, 120, 30, 0],
+          rotate: [0, -15, 10, -10, 5, 0]
+        } : {}}
+        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+      >
+        <DroneIcon className="w-8 h-8 md:w-12 md:h-12 text-blue-500 drop-shadow-lg" />
+      </motion.div>
+
+      <motion.div
+        className="absolute bottom-32 left-1/4 z-10"
+        animate={isAnimating ? {
+          x: [0, 100, 250, 180, 50, 0],
+          y: [0, -40, -20, -60, -30, 0],
+          rotate: [0, 5, -10, 8, -5, 0]
+        } : {}}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 4 }}
+      >
+        <DroneIcon className="w-6 h-6 md:w-10 md:h-10 text-emerald-500 drop-shadow-lg" />
+      </motion.div>
+
       {/* Title */}
       <motion.div 
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="text-center mb-12"
+        className="text-center mb-12 relative z-20"
       >
         <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
           Core System Engine
         </h3>
-        <p className="text-muted-foreground">
-          หัวใจระบบ: รองรับการทำงานแบบ (ไร้คนเฝ้า) และ (ตรวจที่)
+        <p className="text-muted-foreground flex items-center justify-center gap-2 flex-wrap">
+          หัวใจระบบ: รองรับการทำงานแบบ 
+          <motion.span 
+            className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-primary/10 text-primary font-medium"
+            animate={isAnimating ? { scale: [1, 1.05, 1] } : {}}
+            transition={{ duration: 2, repeat: Infinity }}
+          >
+            <Radar className="w-4 h-4" />
+            ไร้คนเฝ้า
+          </motion.span>
+          และ
+          <motion.span 
+            className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-blue-500/10 text-blue-500 font-medium"
+            animate={isAnimating ? { scale: [1, 1.05, 1] } : {}}
+            transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+          >
+            <Eye className="w-4 h-4" />
+            ตรวจที่
+          </motion.span>
         </p>
       </motion.div>
 
