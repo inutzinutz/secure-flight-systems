@@ -2,15 +2,15 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { ChevronLeft, ChevronRight, Clock, Weight, Ruler, Radio, Wind, Thermometer, ArrowRight } from "lucide-react";
 
-// Product images
-import atV12 from "@/assets/altura/at-v12.jpg";
-import atV15 from "@/assets/altura/at-v15.jpg";
-import atV30 from "@/assets/altura/at-v30.jpg";
-import atV50E from "@/assets/altura/at-v50e.jpg";
-import atV50H from "@/assets/altura/at-v50h.jpg";
-import atV105 from "@/assets/altura/at-v105.jpg";
-import atV150 from "@/assets/altura/at-v150.jpg";
-import atUA01 from "@/assets/altura/at-ua01.jpg";
+// Clean product images (no text overlays)
+import atV12 from "@/assets/altura/uav-v12-clean.jpg";
+import atV15 from "@/assets/altura/uav-v15-clean.jpg";
+import atV30 from "@/assets/altura/uav-v30-clean.jpg";
+import atV50E from "@/assets/altura/uav-v50e-clean.jpg";
+import atV50H from "@/assets/altura/uav-v50h-clean.jpg";
+import atV105 from "@/assets/altura/uav-v105-clean.jpg";
+import atV150 from "@/assets/altura/uav-v150-clean.jpg";
+import atUA01 from "@/assets/altura/uav-ua01-clean.jpg";
 
 interface Product {
   id: string;
