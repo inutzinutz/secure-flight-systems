@@ -4,7 +4,8 @@ import {
   Building, Target, DollarSign, Calendar, Shield, Factory, Building2,
   Cpu, ChevronRight, MapPin, Layers, Brain, Wrench, GraduationCap,
   FileText, Clock, TrendingUp, Award, MessageSquare, Send, Camera,
-  Presentation, Rocket, Database, Globe
+  Presentation, Rocket, Database, Globe, Play, Phone, Thermometer,
+  Map, Search, Eye
 } from "lucide-react";
 import { Navbar } from "@/components/layout/Navbar";
 import { PresentationLayout } from "@/components/presentation/PresentationLayout";
@@ -29,6 +30,120 @@ import enterpriseTeam1 from "@/assets/enterprise-team-1.jpg";
 import enterpriseTeam2 from "@/assets/enterprise-team-2.jpg";
 import enterpriseCase1 from "@/assets/enterprise-case-1.jpg";
 import enterpriseCase2 from "@/assets/enterprise-case-2.jpg";
+
+// Industries that use DJI Enterprise
+const industries = [
+  {
+    id: "public-safety",
+    icon: Shield,
+    title: "ความปลอดภัยสาธารณะ",
+    desc: "ให้บริการชุมชนของคุณได้ดีขึ้นด้วยข้อมูลทางอากาศที่แม่นยำและทันท่วงที",
+    color: "from-red-500 to-red-600"
+  },
+  {
+    id: "geospatial",
+    icon: Map,
+    title: "ภูมิสารสนเทศ",
+    desc: "แปลงสินทรัพย์ของคุณเป็นดิจิทัลและจัดการด้วยโซลูชันโดรน",
+    color: "from-blue-500 to-blue-600"
+  },
+  {
+    id: "inspection",
+    icon: Search,
+    title: "การตรวจสอบ",
+    desc: "ตรวจสอบและจัดการสินทรัพย์ อุปกรณ์ และโครงสร้างพื้นฐานอย่างปลอดภัย",
+    color: "from-amber-500 to-amber-600"
+  },
+];
+
+// Drone Comparison Table
+const droneComparison = [
+  {
+    name: "Matrice 4E",
+    highlight: "กล้องความละเอียดสูง\nเหมาะกับ Mapping",
+    weight: "~1.2 กก. (ไม่รวมแบต)",
+    camera: "Wide 20MP + Tele 48MP",
+    flightTime: "~45 นาที",
+    weather: "ทนลม ~12 m/s",
+    useCase: "สำรวจพื้นที่ / สร้างแผนที่ 2D–3D",
+  },
+  {
+    name: "Matrice 4T",
+    highlight: "กล้อง Thermal + Zoom\nสำหรับงานกลางคืน",
+    weight: "~1.2 กก. (ไม่รวมแบต)",
+    camera: "Wide 48MP + Thermal 640×512",
+    flightTime: "~45 นาที",
+    weather: "ทนลม ~12 m/s",
+    useCase: "ค้นหา / เฝ้าระวัง / กู้ภัย",
+  },
+  {
+    name: "DJI Dock",
+    highlight: "บิน-ชาร์จ-สั่งงานอัตโนมัติ\n24 ชม.",
+    weight: "~55 กก. (ตัว Dock)",
+    camera: "กล้องรักษาความปลอดภัย + Thermal",
+    flightTime: "~50 นาทีต่อรอบ",
+    weather: "IP56 (Dock) / IP55 (Drone)",
+    useCase: "เฝ้าระวังพื้นที่ต่อเนื่อง โรงงาน",
+  },
+  {
+    name: "Matrice 400",
+    highlight: "รองรับ Payload หลากหลาย",
+    weight: "~9–10 กก. (รวมแบต/กล้อง)",
+    camera: "เลือกติดตั้งได้ (Zoom / Night / LiDAR)",
+    flightTime: "สูงสุด ~59 นาที",
+    weather: "IP55",
+    useCase: "งานอุตสาหกรรม / ภารกิจเฉพาะทาง",
+  },
+];
+
+// Products - Drones
+const droneProducts = [
+  { name: "DJI Matrice 4 Series", tagline: "The Age of Intelligent Flight" },
+  { name: "DJI Matrice 4D Series", tagline: "High-Performance Drones" },
+  { name: "DJI Matrice 400", tagline: "Engineered for Excellence, Designed for Versatility" },
+];
+
+// Products - Payloads
+const payloadProducts = [
+  { name: "Zenmuse S1", desc: "กล้องสำรวจประสิทธิภาพสูง" },
+  { name: "Zenmuse V1", desc: "กล้องวิดีโอมืออาชีพ" },
+  { name: "Zenmuse H30 Series", desc: "กล้อง Hybrid Thermal + Zoom" },
+  { name: "Zenmuse L3", desc: "LiDAR สำหรับ Mapping" },
+  { name: "Zenmuse H20N", desc: "กล้อง Night Vision" },
+  { name: "Zenmuse P1", desc: "กล้อง Photogrammetry" },
+];
+
+// Products - Dock
+const dockProducts = [
+  { name: "DJI Dock 2", status: "Available" },
+  { name: "DJI Dock 3", status: "Latest" },
+];
+
+// YouTube Videos
+const youtubeVideos = [
+  { 
+    id: "eQlePvj0BOg", 
+    title: "DJI Dock 2 กับภารกิจลาดตะเวนสำรวจช้างป่า",
+    desc: "สวนพฤกษศาสตร์ วังน้ำเย็น จ.สระแก้ว"
+  },
+  { 
+    id: "3buc1DFcFgg", 
+    title: "Unboxing DJI Dock 3",
+    desc: "โซลูชันโดรนอัจฉริยะรุ่นใหม่จาก DJI Enterprise"
+  },
+  { 
+    id: "aAVrPIe91H0", 
+    title: "Unboxing DJI Matrice 4 Series",
+    desc: "โดรนอัจฉริยะ AI ล้ำยุค"
+  },
+];
+
+// Stats
+const stats = [
+  { value: "45+", label: "EMPLOYEES" },
+  { value: "4", label: "CORE TEAMS" },
+  { value: "9+", label: "YEARS EXPERIENCE" },
+];
 
 // Section B: Definition cards
 const definitionCards = [
@@ -144,6 +259,14 @@ const kpis = [
   { metric: "3+", label: "Case Study ใช้งานจริง", unit: "เคส" },
 ];
 
+// Contact info
+const contactInfo = {
+  lineId: "@dji13enterprise",
+  lineUrl: "https://line.me/R/ti/p/@357kaaxa",
+  phone: "061-417-6015",
+  formUrl: "https://intake.builk.com/public-form/93c35590-da22-45f6-9528-aca8647ead17",
+};
+
 const Enterprise = () => {
   const [formData, setFormData] = useState({
     organization: "",
@@ -161,47 +284,89 @@ const Enterprise = () => {
       content: (
         <PresentationSlide variant="hero">
           <SlideTitle
-            badge="เสาที่ 1 — 13 STORE Enterprise"
-            title="13 STORE Enterprise"
-            subtitle="Drone + AI + GIS + Operation ครบวงจร"
-            description="สำหรับองค์กรกลาง–ใหญ่ และภาครัฐ"
+            badge="DJI 13 Enterprise"
+            title="DJI 13 Enterprise"
+            subtitle="ภารกิจมืออาชีพ มาพร้อมเทคโนโลยีขั้นสูง"
+            description="ความทนทาน และความแม่นยำสูงสุด เหมาะสำหรับการปฏิบัติงานในทุกสภาพแวดล้อม"
           />
-          <motion.p 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="text-center text-muted-foreground italic mt-4"
-          >
-            เราขาย "ความมั่นใจ" ไม่ใช่ขายของอย่างเดียว
-          </motion.p>
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
+            transition={{ delay: 0.5 }}
             className="flex flex-wrap justify-center gap-4 mt-8"
           >
-            <Link to="/contact">
+            <a href={`tel:${contactInfo.phone}`}>
               <button className="btn-navy">
-                <MapPin size={20} />
-                นัด Site Survey / Workshop
+                <Phone size={20} />
+                ติดต่อทีมงาน
               </button>
-            </Link>
-            <Link to="/contact">
+            </a>
+            <a href={contactInfo.lineUrl} target="_blank" rel="noopener noreferrer">
               <button className="btn-hero-secondary">
-                <Calendar size={20} />
-                ขอ Demo / ใบเสนอราคา
+                <MessageSquare size={20} />
+                Line: {contactInfo.lineId}
               </button>
-            </Link>
+            </a>
+          </motion.div>
+
+          {/* Stats */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7 }}
+            className="grid grid-cols-3 gap-6 max-w-2xl mx-auto mt-12"
+          >
+            {stats.map((stat, i) => (
+              <div key={i} className="text-center">
+                <p className="text-4xl md:text-5xl font-bold text-primary">{stat.value}</p>
+                <p className="text-xs text-muted-foreground mt-1">{stat.label}</p>
+              </div>
+            ))}
           </motion.div>
         </PresentationSlide>
       )
     },
 
-    // Slide 2: Definition
+    // Slide 2: Industries
+    {
+      id: "industries",
+      content: (
+        <PresentationSlide>
+          <div className="text-center mb-12">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+              Industries
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+              อุตสาหกรรมต่างๆ ที่เลือกใช้
+            </h2>
+          </div>
+          <SlideGrid cols={3}>
+            {industries.map((industry, i) => (
+              <motion.div
+                key={industry.id}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.15 }}
+                whileHover={{ y: -5, scale: 1.02 }}
+                className="p-8 rounded-2xl bg-card border border-border text-center"
+              >
+                <div className={`w-20 h-20 mx-auto rounded-2xl bg-gradient-to-br ${industry.color} flex items-center justify-center mb-6`}>
+                  <industry.icon className="w-10 h-10 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-foreground mb-3">{industry.title}</h3>
+                <p className="text-muted-foreground">{industry.desc}</p>
+              </motion.div>
+            ))}
+          </SlideGrid>
+        </PresentationSlide>
+      )
+    },
+
+    // Slide 3: Definition
     {
       id: "definition",
       content: (
-        <PresentationSlide>
+        <PresentationSlide variant="accent">
           <div className="text-center mb-12">
             <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
               Enterprise คืออะไร
@@ -230,11 +395,228 @@ const Enterprise = () => {
       )
     },
 
-    // Slide 3: Capability Stack
+    // Slide 4: Drone Comparison Table
+    {
+      id: "drone-comparison",
+      content: (
+        <PresentationSlide>
+          <div className="text-center mb-10">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+              Drone Comparison
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              ตารางเปรียบเทียบโดรน DJI Enterprise
+            </h2>
+          </div>
+          <div className="max-w-6xl mx-auto overflow-x-auto">
+            <table className="w-full border-collapse">
+              <thead>
+                <tr className="border-b border-border">
+                  <th className="text-left p-4 text-muted-foreground font-medium">ข้อมูลสินค้า</th>
+                  {droneComparison.map((drone, i) => (
+                    <th key={i} className="p-4 text-center">
+                      <span className="text-foreground font-bold">{drone.name}</span>
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-border">
+                  <td className="p-4 text-muted-foreground font-medium">จุดเด่นหลัก</td>
+                  {droneComparison.map((drone, i) => (
+                    <td key={i} className="p-4 text-center text-sm text-foreground whitespace-pre-line">{drone.highlight}</td>
+                  ))}
+                </tr>
+                <tr className="border-b border-border bg-secondary/30">
+                  <td className="p-4 text-muted-foreground font-medium">น้ำหนัก</td>
+                  {droneComparison.map((drone, i) => (
+                    <td key={i} className="p-4 text-center text-sm text-foreground">{drone.weight}</td>
+                  ))}
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="p-4 text-muted-foreground font-medium">ระบบกล้อง</td>
+                  {droneComparison.map((drone, i) => (
+                    <td key={i} className="p-4 text-center text-sm text-foreground">{drone.camera}</td>
+                  ))}
+                </tr>
+                <tr className="border-b border-border bg-secondary/30">
+                  <td className="p-4 text-muted-foreground font-medium">เวลาบินสูงสุด</td>
+                  {droneComparison.map((drone, i) => (
+                    <td key={i} className="p-4 text-center text-sm text-foreground">{drone.flightTime}</td>
+                  ))}
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="p-4 text-muted-foreground font-medium">ทนทานสภาพอากาศ</td>
+                  {droneComparison.map((drone, i) => (
+                    <td key={i} className="p-4 text-center text-sm text-foreground">{drone.weather}</td>
+                  ))}
+                </tr>
+                <tr className="border-b border-border bg-secondary/30">
+                  <td className="p-4 text-muted-foreground font-medium">งานที่เหมาะสม</td>
+                  {droneComparison.map((drone, i) => (
+                    <td key={i} className="p-4 text-center text-sm text-foreground">{drone.useCase}</td>
+                  ))}
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="text-center mt-8"
+          >
+            <a href={contactInfo.formUrl} target="_blank" rel="noopener noreferrer">
+              <button className="btn-navy">
+                <FileText size={20} />
+                สอบถามข้อมูล / ขอใบเสนอราคา
+              </button>
+            </a>
+          </motion.div>
+        </PresentationSlide>
+      )
+    },
+
+    // Slide 5: Drones Products
+    {
+      id: "drones",
+      content: (
+        <PresentationSlide variant="accent">
+          <div className="text-center mb-10">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+              DRONES
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              เทคโนโลยีโดรนอัจฉริยะเพื่อภารกิจระดับองค์กร
+            </h2>
+            <p className="text-muted-foreground max-w-3xl mx-auto">
+              สำรวจ ตรวจวัด บันทึก และเฝ้าระวังได้อย่างแม่นยำด้วยโดรนจาก DJI Enterprise ออกแบบเพื่อรองรับการทำงานในทุกสภาพแวดล้อม
+            </p>
+          </div>
+          <SlideGrid cols={3}>
+            {droneProducts.map((drone, i) => (
+              <motion.div
+                key={drone.name}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.15 }}
+                whileHover={{ y: -5 }}
+                className="p-6 rounded-2xl bg-card border border-border text-center"
+              >
+                <Cpu className="w-16 h-16 mx-auto text-primary mb-4" />
+                <h3 className="text-xl font-bold text-foreground mb-2">{drone.name}</h3>
+                <p className="text-muted-foreground text-sm mb-4">{drone.tagline}</p>
+                <a href={contactInfo.formUrl} target="_blank" rel="noopener noreferrer">
+                  <button className="text-primary hover:text-primary/80 font-medium text-sm">
+                    สอบถามข้อมูล →
+                  </button>
+                </a>
+              </motion.div>
+            ))}
+          </SlideGrid>
+        </PresentationSlide>
+      )
+    },
+
+    // Slide 6: Payloads
+    {
+      id: "payloads",
+      content: (
+        <PresentationSlide>
+          <div className="text-center mb-10">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+              PAYLOADS
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              กล้องและอุปกรณ์เสริมเพื่อภารกิจระดับมืออาชีพ
+            </h2>
+            <p className="text-muted-foreground max-w-3xl mx-auto">
+              เสริมศักยภาพของโดรน DJI ด้วยกล้องและโมดูลตรวจจับที่ออกแบบเฉพาะทาง รองรับทั้งงานสำรวจ ตรวจวัดความร้อน บันทึกภาพความละเอียดสูง และภารกิจกู้ภัย
+            </p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+            {payloadProducts.map((payload, i) => (
+              <motion.div
+                key={payload.name}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: i * 0.1 }}
+                whileHover={{ scale: 1.05 }}
+                className="p-5 rounded-2xl bg-card border border-border text-center"
+              >
+                <Camera className="w-10 h-10 mx-auto text-primary mb-3" />
+                <h3 className="font-bold text-foreground mb-1">{payload.name}</h3>
+                <p className="text-xs text-muted-foreground">{payload.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="text-center mt-8"
+          >
+            <a href={contactInfo.formUrl} target="_blank" rel="noopener noreferrer">
+              <button className="btn-navy">
+                <FileText size={20} />
+                สอบถามข้อมูล Payloads
+              </button>
+            </a>
+          </motion.div>
+        </PresentationSlide>
+      )
+    },
+
+    // Slide 7: Remote Drone Operation (Dock)
+    {
+      id: "dock",
+      content: (
+        <PresentationSlide variant="accent">
+          <div className="text-center mb-10">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+              REMOTE DRONE OPERATION SOLUTIONS
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              โซลูชันศูนย์ควบคุมโดรนอัตโนมัติแบบครบวงจร
+            </h2>
+            <p className="text-muted-foreground max-w-3xl mx-auto">
+              ยกระดับการปฏิบัติงานด้วยระบบ DJI Dock สำหรับการบินโดรนระยะไกลโดยไม่ต้องมีผู้ควบคุม รองรับการปล่อย บิน เก็บข้อมูล และชาร์จอัตโนมัติ พร้อมการเชื่อมต่อกับ FlightHub 2
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+            {dockProducts.map((dock, i) => (
+              <motion.div
+                key={dock.name}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.15 }}
+                whileHover={{ y: -5 }}
+                className={`p-8 rounded-2xl bg-card border-2 text-center ${dock.status === 'Latest' ? 'border-primary ring-2 ring-primary/20' : 'border-border'}`}
+              >
+                {dock.status === 'Latest' && (
+                  <span className="inline-block px-3 py-1 rounded-full bg-primary text-primary-foreground text-xs font-bold mb-4">
+                    รุ่นใหม่ล่าสุด
+                  </span>
+                )}
+                <Database className="w-16 h-16 mx-auto text-primary mb-4" />
+                <h3 className="text-2xl font-bold text-foreground mb-4">{dock.name}</h3>
+                <a href={contactInfo.formUrl} target="_blank" rel="noopener noreferrer">
+                  <button className="btn-navy">
+                    สอบถามข้อมูล
+                  </button>
+                </a>
+              </motion.div>
+            ))}
+          </div>
+        </PresentationSlide>
+      )
+    },
+
+    // Slide 8: Capability Stack
     {
       id: "capability",
       content: (
-        <PresentationSlide variant="accent">
+        <PresentationSlide>
           <div className="text-center mb-10">
             <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
               Capability Stack
@@ -282,7 +664,62 @@ const Enterprise = () => {
       )
     },
 
-    // Slide 4: Delivery Process
+    // Slide 9: YouTube Videos
+    {
+      id: "videos",
+      content: (
+        <PresentationSlide variant="accent">
+          <div className="text-center mb-10">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+              ตัวอย่างผลงาน
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              วิดีโอสาธิตและรีวิวสินค้า
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {youtubeVideos.map((video, i) => (
+              <motion.div
+                key={video.id}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.15 }}
+                className="rounded-2xl overflow-hidden bg-card border border-border"
+              >
+                <div className="relative aspect-video bg-black">
+                  <iframe
+                    src={`https://www.youtube.com/embed/${video.id}`}
+                    title={video.title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="w-full h-full"
+                  />
+                </div>
+                <div className="p-4">
+                  <h3 className="font-bold text-foreground text-sm mb-1 line-clamp-2">{video.title}</h3>
+                  <p className="text-xs text-muted-foreground">{video.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="text-center mt-8"
+          >
+            <a href="https://www.youtube.com/@DJI13Storethailand" target="_blank" rel="noopener noreferrer">
+              <button className="btn-hero-secondary">
+                <Play size={20} />
+                ดูวิดีโอทั้งหมดบน YouTube
+              </button>
+            </a>
+          </motion.div>
+        </PresentationSlide>
+      )
+    },
+
+    // Slide 10: Delivery Process
     {
       id: "delivery",
       content: (
@@ -320,25 +757,12 @@ const Enterprise = () => {
                 </motion.div>
               ))}
             </div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
-              className="text-center mt-10"
-            >
-              <Link to="/contact">
-                <button className="btn-navy">
-                  <Calendar size={20} />
-                  ขอนัด Workshop (Step 2)
-                </button>
-              </Link>
-            </motion.div>
           </div>
         </PresentationSlide>
       )
     },
 
-    // Slide 5: Team Structure
+    // Slide 11: Team Structure
     {
       id: "team",
       content: (
@@ -406,38 +830,11 @@ const Enterprise = () => {
       )
     },
 
-    // Slide 6: Trust
-    {
-      id: "trust",
-      content: (
-        <PresentationSlide>
-          <div className="text-center mb-12">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-              Why Trust Us
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-              สิ่งที่ทำให้ลูกค้าไว้ใจ
-            </h2>
-          </div>
-          <SlideGrid cols={4}>
-            {trustPoints.map((point, i) => (
-              <SlideCard
-                key={i}
-                icon={point.icon}
-                title={point.text}
-                index={i}
-              />
-            ))}
-          </SlideGrid>
-        </PresentationSlide>
-      )
-    },
-
-    // Slide 7: Commercial Models
+    // Slide 12: Commercial Models
     {
       id: "commercial",
       content: (
-        <PresentationSlide variant="accent">
+        <PresentationSlide>
           <div className="text-center mb-10">
             <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
               Commercial Models
@@ -515,117 +912,11 @@ const Enterprise = () => {
       )
     },
 
-    // Slide 8: Connection Flow Diagram
-    {
-      id: "flow-diagram",
-      content: (
-        <PresentationSlide>
-          <div className="text-center mb-8">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-              Enterprise Solution Flow
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              กระบวนการทำงานแบบ End-to-End
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              ตั้งแต่การรับ Requirement จนถึงการส่งมอบและดูแลระยะยาว
-            </p>
-          </div>
-
-          {/* Animated Connection Line - Horizontal Flow */}
-          <div className="mb-12">
-            <AnimatedConnectionLine
-              direction="horizontal"
-              nodes={[
-                { id: "req", label: "Requirement", description: "รับความต้องการ", icon: <MessageSquare className="w-6 h-6" />, color: "linear-gradient(135deg, #3b82f6, #1d4ed8)" },
-                { id: "design", label: "Solution Design", description: "ออกแบบระบบ", icon: <Cog className="w-6 h-6" />, color: "linear-gradient(135deg, #8b5cf6, #6d28d9)" },
-                { id: "pilot", label: "Pilot/Demo", description: "ทดสอบจริง", icon: <Rocket className="w-6 h-6" />, color: "linear-gradient(135deg, #10b981, #059669)" },
-                { id: "deploy", label: "Deployment", description: "ติดตั้งใช้งาน", icon: <Database className="w-6 h-6" />, color: "linear-gradient(135deg, #f59e0b, #d97706)" },
-                { id: "support", label: "MA & Support", description: "ดูแลระยะยาว", icon: <HeadphonesIcon className="w-6 h-6" />, color: "linear-gradient(135deg, #ef4444, #dc2626)" },
-              ]}
-              className="py-16"
-            />
-          </div>
-
-          {/* Flow Diagram - Tree Structure */}
-          <AnimatedFlowDiagram
-            title="Enterprise Ecosystem"
-            subtitle="โครงสร้างระบบนิเวศของ Enterprise Solution"
-            rootNode={{
-              id: "root",
-              label: "Enterprise",
-              icon: <Building className="w-8 h-8" />,
-              color: "linear-gradient(135deg, hsl(222 47% 15%), hsl(220 35% 25%))",
-              children: [
-                { id: "hardware", label: "Hardware", icon: <Layers className="w-6 h-6" />, color: "linear-gradient(135deg, #3b82f6, #1d4ed8)", description: "Drone & Sensors" },
-                { id: "software", label: "Software", icon: <Cpu className="w-6 h-6" />, color: "linear-gradient(135deg, #8b5cf6, #6d28d9)", description: "Platform & AI" },
-                { id: "service", label: "Service", icon: <Users className="w-6 h-6" />, color: "linear-gradient(135deg, #10b981, #059669)", description: "Operation & MA" },
-                { id: "training", label: "Training", icon: <GraduationCap className="w-6 h-6" />, color: "linear-gradient(135deg, #f59e0b, #d97706)", description: "อบรม & Certification" },
-              ],
-            }}
-          />
-        </PresentationSlide>
-      )
-    },
-
-    // Slide 9: Canva Presentation Embed
-    {
-      id: "canva-presentation",
-      content: (
-        <PresentationSlide variant="accent">
-          <div className="text-center mb-8">
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-              <Presentation className="w-4 h-4" />
-              Presentation Materials
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              เอกสารประกอบการนำเสนอ
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              ดูรายละเอียดเพิ่มเติมจาก Presentation ที่ออกแบบบน Canva
-            </p>
-          </div>
-
-          {/* Canva Embed */}
-          <div className="max-w-5xl mx-auto">
-            <CanvaEmbed
-              embedUrl="https://www.canva.com/design/DAGVZYZg3aA/R40lzSE8XJ1Yy__qTG-O1Q/view?embed"
-              designUrl="https://www.canva.com/design/DAGVZYZg3aA/R40lzSE8XJ1Yy__qTG-O1Q/view"
-              title="13 STORE Enterprise Presentation"
-              height="500px"
-            />
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-            className="text-center mt-8"
-          >
-            <p className="text-sm text-muted-foreground mb-4">
-              💡 วิธีเชื่อมต่อ: เปิด Canva → Share → More → Embed → คัดลอก URL มาใส่ใน embedUrl
-            </p>
-            <div className="inline-flex items-center gap-4">
-              <a
-                href="https://www.canva.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/80 transition-colors text-sm font-medium"
-              >
-                <Globe className="w-4 h-4" />
-                เปิด Canva
-              </a>
-            </div>
-          </motion.div>
-        </PresentationSlide>
-      )
-    },
-
-    // Slide 10: Case Studies
+    // Slide 13: Case Studies
     {
       id: "case-study",
       content: (
-        <PresentationSlide>
+        <PresentationSlide variant="accent">
           <div className="text-center mb-10">
             <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
               Case Studies & KPIs
@@ -723,107 +1014,97 @@ const Enterprise = () => {
       )
     },
 
-    // Slide 9: Contact Form
+    // Slide 14: Contact
     {
       id: "contact",
       content: (
-        <PresentationSlide variant="accent">
+        <PresentationSlide>
           <div className="text-center mb-8">
-            <Award className="w-14 h-14 mx-auto text-primary mb-4" />
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
-              เริ่มจาก Workshop 1 ครั้ง
+              พร้อมที่จะเปลี่ยนแปลงธุรกิจของคุณหรือยัง?
             </h2>
             <p className="text-lg text-muted-foreground">
-              ได้ภาพระบบ + งบ + แผนดำเนินงาน
+              ติดต่อทีมขายของเราเพื่อหารือว่าโดรนอุตสาหกรรมจะสามารถช่วยให้การดำเนินงานของคุณได้รับประโยชน์ได้อย่างไร
             </p>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="max-w-2xl mx-auto p-6 rounded-2xl bg-card border border-border"
-          >
-            <div className="grid md:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="organization">องค์กร/หน่วยงาน</Label>
-                <Input 
-                  id="organization" 
-                  placeholder="ชื่อองค์กร"
-                  value={formData.organization}
-                  onChange={(e) => setFormData({...formData, organization: e.target.value})}
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="province">จังหวัด/พื้นที่หน้างาน</Label>
-                <Input 
-                  id="province" 
-                  placeholder="จังหวัด"
-                  value={formData.province}
-                  onChange={(e) => setFormData({...formData, province: e.target.value})}
-                />
-              </div>
-              <div className="space-y-2">
-                <Label>ประเภทภารกิจ</Label>
-                <Select onValueChange={(value) => setFormData({...formData, missionType: value})}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="เลือกประเภท" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="survey">Mapping & Survey</SelectItem>
-                    <SelectItem value="security">Security & Surveillance</SelectItem>
-                    <SelectItem value="inspection">Infrastructure Inspection</SelectItem>
-                    <SelectItem value="disaster">Disaster & Emergency</SelectItem>
-                    <SelectItem value="other">อื่นๆ</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="space-y-2">
-                <Label>ความเร่งด่วน</Label>
-                <Select onValueChange={(value) => setFormData({...formData, urgency: value})}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="เลือกความเร่งด่วน" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="urgent">ด่วนมาก (1-2 สัปดาห์)</SelectItem>
-                    <SelectItem value="normal">ปกติ (1-3 เดือน)</SelectItem>
-                    <SelectItem value="planning">วางแผนล่วงหน้า (3+ เดือน)</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="space-y-2 md:col-span-2">
-                <Label>งบประมาณคร่าวๆ</Label>
-                <Select onValueChange={(value) => setFormData({...formData, budget: value})}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="เลือกช่วงงบ" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="under1m">ต่ำกว่า 1 ล้านบาท</SelectItem>
-                    <SelectItem value="1-5m">1-5 ล้านบาท</SelectItem>
-                    <SelectItem value="5-10m">5-10 ล้านบาท</SelectItem>
-                    <SelectItem value="over10m">มากกว่า 10 ล้านบาท</SelectItem>
-                    <SelectItem value="unknown">ยังไม่กำหนด</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="space-y-2 md:col-span-2">
-                <Label htmlFor="pain">Pain / ปัญหาที่ต้องการแก้</Label>
-                <Textarea 
-                  id="pain" 
-                  placeholder="อธิบายปัญหาหรือความต้องการของคุณ..."
-                  value={formData.pain}
-                  onChange={(e) => setFormData({...formData, pain: e.target.value})}
-                  rows={2}
-                />
-              </div>
-            </div>
+          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-10">
+            {/* Line */}
+            <motion.a
+              href={contactInfo.lineUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              whileHover={{ y: -5 }}
+              className="p-6 rounded-2xl bg-card border border-border text-center block"
+            >
+              <MessageSquare className="w-12 h-12 mx-auto text-[#00B900] mb-4" />
+              <h3 className="font-bold text-foreground mb-1">ติดต่อทีมงาน</h3>
+              <p className="text-primary font-medium">Line ID: {contactInfo.lineId}</p>
+              <p className="text-sm text-muted-foreground mt-2">สำหรับพูดคุย สอบถามโซลูชัน หรือนัด Demo</p>
+            </motion.a>
 
-            <motion.div className="mt-6 text-center" whileHover={{ scale: 1.02 }}>
-              <button className="btn-navy w-full md:w-auto">
-                <Send size={20} />
-                ส่งข้อมูลเพื่อนัด Workshop
-              </button>
-            </motion.div>
+            {/* Phone */}
+            <motion.a
+              href={`tel:${contactInfo.phone}`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              whileHover={{ y: -5 }}
+              className="p-6 rounded-2xl bg-card border border-border text-center block"
+            >
+              <Phone className="w-12 h-12 mx-auto text-primary mb-4" />
+              <h3 className="font-bold text-foreground mb-1">สายด่วนฝ่ายขาย</h3>
+              <p className="text-primary font-medium text-xl">{contactInfo.phone}</p>
+              <p className="text-sm text-muted-foreground mt-2">ให้คำปรึกษาโดยผู้เชี่ยวชาญด้านอุตสาหกรรม</p>
+            </motion.a>
+
+            {/* Form */}
+            <motion.a
+              href={contactInfo.formUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              whileHover={{ y: -5 }}
+              className="p-6 rounded-2xl bg-card border border-border text-center block"
+            >
+              <FileText className="w-12 h-12 mx-auto text-amber-500 mb-4" />
+              <h3 className="font-bold text-foreground mb-1">ฟอร์มติดต่อ / ขอใบเสนอราคา</h3>
+              <p className="text-primary font-medium">กรอกแบบฟอร์ม</p>
+              <p className="text-sm text-muted-foreground mt-2">สำหรับองค์กรที่ต้องการข้อมูลเพิ่มเติมหรือขอใบเสนอราคาอย่างเป็นทางการ</p>
+            </motion.a>
+          </div>
+
+          {/* Social Media */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="text-center"
+          >
+            <p className="text-muted-foreground mb-4">ติดตามเราบนโซเชียลมีเดีย</p>
+            <div className="flex justify-center gap-4">
+              <a
+                href="https://www.facebook.com/enterprise13store"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-3 rounded-xl bg-[#1877F2] text-white font-medium hover:opacity-90 transition-opacity"
+              >
+                Facebook
+              </a>
+              <a
+                href="https://www.youtube.com/@DJI13Storethailand"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-3 rounded-xl bg-[#FF0000] text-white font-medium hover:opacity-90 transition-opacity"
+              >
+                YouTube
+              </a>
+            </div>
           </motion.div>
         </PresentationSlide>
       )
