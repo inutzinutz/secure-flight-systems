@@ -4,6 +4,7 @@ import {
   Globe, Network, ArrowRight, Zap
 } from "lucide-react";
 import { useState } from "react";
+import { FlyingDrone } from "@/components/icons/DroneIcon";
 
 const dockLocations = [
   { id: 1, x: 30, y: 25, label: "ภาคเหนือ" },
@@ -32,7 +33,27 @@ export function DeploymentDiagram() {
   const [isAnimating, setIsAnimating] = useState(true);
 
   return (
-    <div className="py-8">
+    <div className="py-8 relative overflow-hidden">
+      {/* Flying Drones over the map */}
+      <FlyingDrone
+        className="w-10 h-10"
+        pathX={[50, 200, 350, 250, 100, 50]}
+        pathY={[80, 120, 60, 100, 140, 80]}
+        rotation={[0, 10, -8, 12, -5, 0]}
+        duration={15}
+        isAnimating={isAnimating}
+        color="text-primary"
+      />
+      <FlyingDrone
+        className="w-8 h-8"
+        pathX={[300, 180, 50, 150, 280, 300]}
+        pathY={[150, 100, 130, 180, 120, 150]}
+        rotation={[0, -8, 10, -6, 8, 0]}
+        duration={18}
+        delay={4}
+        isAnimating={isAnimating}
+        color="text-amber-500"
+      />
       {/* Title */}
       <motion.div 
         initial={{ opacity: 0, y: -20 }}

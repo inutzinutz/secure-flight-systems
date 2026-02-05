@@ -5,7 +5,7 @@ import {
   ArrowRight, CheckCircle, Radio, Cpu, MapPin, Users
 } from "lucide-react";
 import { useState } from "react";
-
+import { FlyingDrone } from "@/components/icons/DroneIcon";
 const coreComponents = [
   { 
     id: "vtol",
@@ -61,7 +61,37 @@ export function StrategicDiagram() {
   const [isAnimating, setIsAnimating] = useState(true);
 
   return (
-    <div className="relative py-8">
+    <div className="relative py-8 overflow-hidden">
+      {/* Animated Flying Drones */}
+      <FlyingDrone
+        className="w-12 h-12"
+        pathX={[0, 150, 300, 200, 50, 0]}
+        pathY={[0, 40, 20, 60, 30, 0]}
+        rotation={[0, 8, -5, 10, -3, 0]}
+        duration={14}
+        isAnimating={isAnimating}
+        color="text-primary"
+      />
+      <FlyingDrone
+        className="w-10 h-10"
+        pathX={[300, 150, 0, 100, 250, 300]}
+        pathY={[50, 20, 40, 70, 30, 50]}
+        rotation={[0, -6, 8, -10, 5, 0]}
+        duration={16}
+        delay={3}
+        isAnimating={isAnimating}
+        color="text-blue-500"
+      />
+      <FlyingDrone
+        className="w-8 h-8"
+        pathX={[150, 250, 350, 200, 80, 150]}
+        pathY={[100, 60, 80, 120, 90, 100]}
+        rotation={[0, 5, -8, 6, -4, 0]}
+        duration={12}
+        delay={6}
+        isAnimating={isAnimating}
+        color="text-emerald-500"
+      />
       {/* Title */}
       <motion.div 
         initial={{ opacity: 0, y: -20 }}

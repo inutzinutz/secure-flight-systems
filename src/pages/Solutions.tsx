@@ -17,6 +17,7 @@ import {
   CheckCircle,
   Calendar
 } from "lucide-react";
+import { FlyingDrone } from "@/components/icons/DroneIcon";
 
 const solutionGroups = [
   {
@@ -310,7 +311,25 @@ const Solutions = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative overflow-hidden">
+      {/* Animated Drones */}
+      <FlyingDrone
+        className="w-12 h-12"
+        pathX={[50, 250, 450, 300, 100, 50]}
+        pathY={[150, 200, 120, 220, 180, 150]}
+        rotation={[0, 8, -6, 10, -4, 0]}
+        duration={18}
+        color="text-primary/25"
+      />
+      <FlyingDrone
+        className="w-10 h-10"
+        pathX={[400, 200, 50, 180, 350, 400]}
+        pathY={[300, 250, 280, 350, 270, 300]}
+        rotation={[0, -10, 8, -8, 6, 0]}
+        duration={16}
+        delay={5}
+        color="text-emerald-500/25"
+      />
       <Navbar />
       <main className="pt-16">
         <PresentationLayout sections={sections} />

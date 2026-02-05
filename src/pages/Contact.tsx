@@ -16,6 +16,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "sonner";
+import { FlyingDrone } from "@/components/icons/DroneIcon";
 
 const provinces = [
   "กรุงเทพมหานคร", "นนทบุรี", "ปทุมธานี", "สมุทรปราการ", "เชียงใหม่", "ขอนแก่น", 
@@ -56,7 +57,25 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative overflow-hidden">
+      {/* Animated Drones */}
+      <FlyingDrone
+        className="w-10 h-10"
+        pathX={[80, 250, 420, 300, 120, 80]}
+        pathY={[100, 140, 90, 160, 120, 100]}
+        rotation={[0, 8, -6, 10, -4, 0]}
+        duration={18}
+        color="text-primary/20"
+      />
+      <FlyingDrone
+        className="w-8 h-8"
+        pathX={[380, 200, 50, 180, 350, 380]}
+        pathY={[200, 160, 190, 240, 180, 200]}
+        rotation={[0, -8, 10, -8, 6, 0]}
+        duration={15}
+        delay={5}
+        color="text-blue-500/20"
+      />
       <Navbar />
       <main className="pt-20">
         {/* Hero */}

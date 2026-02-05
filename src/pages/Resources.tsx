@@ -3,6 +3,7 @@ import { Footer } from "@/components/layout/Footer";
 import { motion } from "framer-motion";
 import { FileText, Download, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { FlyingDrone } from "@/components/icons/DroneIcon";
 
 const resources = [
   {
@@ -33,7 +34,16 @@ const resources = [
 
 const Resources = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative overflow-hidden">
+      {/* Animated Drones */}
+      <FlyingDrone
+        className="w-10 h-10"
+        pathX={[100, 300, 500, 350, 150, 100]}
+        pathY={[120, 160, 100, 180, 140, 120]}
+        rotation={[0, 6, -8, 10, -4, 0]}
+        duration={16}
+        color="text-primary/20"
+      />
       <Navbar />
       <main className="pt-20">
         {/* Hero */}

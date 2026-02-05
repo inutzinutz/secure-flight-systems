@@ -7,6 +7,7 @@ import {
   Presentation, Rocket, Database, Globe, Play, Phone, Thermometer,
   Map, Search, Eye
 } from "lucide-react";
+import { FlyingDrone } from "@/components/icons/DroneIcon";
 import { Navbar } from "@/components/layout/Navbar";
 import { PresentationLayout } from "@/components/presentation/PresentationLayout";
 import { PresentationSlide, SlideTitle, SlideGrid, SlideCard } from "@/components/presentation/PresentationSlide";
@@ -1161,7 +1162,25 @@ const Enterprise = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative overflow-hidden">
+      {/* Animated Enterprise Drones */}
+      <FlyingDrone
+        className="w-12 h-12"
+        pathX={[60, 280, 500, 380, 140, 60]}
+        pathY={[180, 240, 160, 280, 200, 180]}
+        rotation={[0, 10, -8, 12, -5, 0]}
+        duration={22}
+        color="text-primary/20"
+      />
+      <FlyingDrone
+        className="w-10 h-10"
+        pathX={[480, 280, 80, 200, 420, 480]}
+        pathY={[400, 320, 380, 450, 350, 400]}
+        rotation={[0, -10, 8, -10, 6, 0]}
+        duration={18}
+        delay={7}
+        color="text-blue-500/20"
+      />
       <Navbar />
       <main className="pt-16">
         <PresentationLayout sections={sections} />

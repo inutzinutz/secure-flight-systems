@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Users, Cpu, Radar, ArrowRight, Shield, Cloud, Database, Zap } from "lucide-react";
+import { FlyingDrone } from "@/components/icons/DroneIcon";
 
 const pillars = [
   {
@@ -54,7 +55,25 @@ export function PillarsSection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="section-padding bg-background relative">
+    <section ref={ref} className="section-padding bg-background relative overflow-hidden">
+      {/* Flying Drones */}
+      <FlyingDrone
+        className="w-10 h-10"
+        pathX={[0, 150, 300, 200, 50, 0]}
+        pathY={[50, 80, 40, 100, 60, 50]}
+        rotation={[0, 6, -8, 10, -4, 0]}
+        duration={16}
+        color="text-primary/30"
+      />
+      <FlyingDrone
+        className="w-8 h-8"
+        pathX={[350, 200, 50, 150, 300, 350]}
+        pathY={[100, 60, 90, 130, 70, 100]}
+        rotation={[0, -8, 6, -10, 5, 0]}
+        duration={14}
+        delay={4}
+        color="text-blue-500/30"
+      />
       <div className="section-container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
