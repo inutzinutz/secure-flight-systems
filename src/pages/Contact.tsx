@@ -210,7 +210,7 @@ const Contact = () => {
                       <div className="flex flex-wrap gap-4 pt-2">
                         {[
                           { id: "enterprise", label: "Enterprise (ทีม+กระบวนการ)" },
-                          { id: "platform", label: "LM Platform (C2+AI+GIS)" },
+                          { id: "platform", label: "UAV AI Platform (C2+AI+GIS)" },
                           { id: "altura", label: "Altura VTOL Dock (24/7)" },
                         ].map((pillar) => (
                           <div key={pillar.id} className="flex items-center gap-2">

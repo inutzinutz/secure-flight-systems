@@ -24,7 +24,7 @@ export function Footer() {
             <h4 className="font-semibold text-foreground mb-4">Solutions</h4>
             <ul className="space-y-2">
               <li><Link to="/enterprise" className="text-muted-foreground hover:text-primary text-sm transition-colors">13 STORE Enterprise</Link></li>
-              <li><Link to="/platform" className="text-muted-foreground hover:text-primary text-sm transition-colors">LM Platform</Link></li>
+              <li><Link to="/platform" className="text-muted-foreground hover:text-primary text-sm transition-colors">UAV AI Platform</Link></li>
               <li><Link to="/altura" className="text-muted-foreground hover:text-primary text-sm transition-colors">Altura VTOL Dock</Link></li>
               <li><Link to="/solutions" className="text-muted-foreground hover:text-primary text-sm transition-colors">Use Cases</Link></li>
             </ul>

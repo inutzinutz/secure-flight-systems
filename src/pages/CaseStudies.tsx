@@ -20,7 +20,7 @@ const caseStudies = [
     client: "นิคมอุตสาหกรรมแห่งหนึ่งในภาคตะวันออก",
     title: "ระบบตรวจสอบโครงสร้างพื้นฐานอัตโนมัติ 24/7",
     challenge: "พื้นที่กว้าง 3,000 ไร่ ต้องตรวจสอบโครงสร้าง ท่อส่ง และระบบไฟฟ้าอย่างสม่ำเสมอ ใช้คนจำนวนมากและมีความเสี่ยงสูง",
-    solution: "ติดตั้ง Altura VTOL Dock 2 สถานี + LM Platform สำหรับวิเคราะห์ภาพ AI อัตโนมัติ",
+    solution: "ติดตั้ง Altura VTOL Dock 2 สถานี + UAV AI Platform สำหรับวิเคราะห์ภาพ AI อัตโนมัติ",
     results: [
       { metric: "80%", label: "ลดเวลาตรวจสอบ" },
       { metric: "50%", label: "ลดค่าใช้จ่าย" },
@@ -92,7 +92,7 @@ const caseStudies = [
     client: "กรมป้องกันและบรรเทาสาธารณภัย (ปภ.)",
     title: "ระบบตอบสนองภัยพิบัติด้วยโดรนพร้อมใช้งาน",
     challenge: "เหตุภัยพิบัติเกิดขึ้นบ่อย ต้องการข้อมูลสถานการณ์แบบ Real-time เพื่อวางแผนกู้ภัย",
-    solution: "Rapid Deployment Kit พร้อม Dock เคลื่อนที่ + LM Platform สำหรับ Situational Awareness",
+    solution: "Rapid Deployment Kit พร้อม Dock เคลื่อนที่ + UAV AI Platform สำหรับ Situational Awareness",
     results: [
       { metric: "15 นาที", label: "พร้อมบิน" },
       { metric: "Real-time", label: "ภาพสด" },

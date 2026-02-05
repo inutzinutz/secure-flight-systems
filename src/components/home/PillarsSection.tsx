@@ -23,7 +23,7 @@ const pillars = [
   {
     id: "platform",
     icon: Cpu,
-    title: "LM Platform",
+    title: "UAV AI Platform",
     subtitle: "Command & Intelligence Platform",
     description: "แพลตฟอร์มศูนย์บัญชาการ + AI + GIS สำหรับภาครัฐ/องค์กรใหญ่ รองรับ On-Prem / Private Cloud ข้อมูลอยู่ในไทย ไม่ผูกยี่ห้อเดียว",
     features: [

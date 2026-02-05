@@ -39,7 +39,7 @@ export function ArchitectureSection() {
         >
           <img
             src={architectureImage}
-            alt="Integrated System Architecture - Enterprise + LM Platform + Altura VTOL"
+            alt="Integrated System Architecture - Enterprise + UAV AI Platform + Altura VTOL"
             className="w-full h-auto"
           />
           {/* Overlay labels */}
@@ -49,7 +49,7 @@ export function ArchitectureSection() {
                 Enterprise Delivery (People + Process)
               </div>
               <div className="px-4 py-2 rounded-lg bg-secondary/80 text-foreground font-medium">
-                LM Platform (C2 + AI + GIS)
+                UAV AI Platform (C2 + AI + GIS)
               </div>
               <div className="px-4 py-2 rounded-lg bg-secondary/80 text-foreground font-medium">
                 Altura/Drone/Dock (Autonomous 24/7)

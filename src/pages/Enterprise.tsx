@@ -130,7 +130,7 @@ const payloadProducts = [
 
 // Products - Dock & Platform
 const dockProducts = [
-  { name: "LM Platform", desc: "Command & Intelligence Platform", status: "Command Center", image: lmPlatformImg, link: "/platform" },
+  { name: "UAV AI Platform", desc: "Command & Intelligence Platform", status: "Command Center", image: lmPlatformImg, link: "/platform" },
   { name: "DJI Dock 3", desc: "Autonomous Drone-in-a-Box", status: "Latest", image: djiDock3Img },
 ];
 
