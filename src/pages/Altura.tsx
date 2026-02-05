@@ -73,11 +73,6 @@ const costEffectiveness = [
   { metric: "หลายหน่วยงาน", desc: "ใช้โครงสร้างพื้นฐานร่วมกัน" },
 ];
 
-const roadmapPhases = [
-  { phase: "A", title: "Pilot Project", duration: "6 เดือน", items: ["1–2 จังหวัด / 1 ภารกิจ", "พิสูจน์ขีดความสามารถ"] },
-  { phase: "B", title: "ขยายภูมิภาค", duration: "12–24 เดือน", items: ["เชื่อมหลายหน่วยงาน", "ตั้งศูนย์ควบคุมภูมิภาค"] },
-  { phase: "C", title: "โครงข่ายระดับชาติ", duration: "3–5 ปี", items: ["โครงข่ายทั่วประเทศ", "บูรณาการทุกมิติความมั่นคง"] },
-];
 
 const Altura = () => {
   const sections = [
@@ -342,49 +337,7 @@ const Altura = () => {
       )
     },
 
-    // Slide 9: Roadmap
-    {
-      id: "roadmap",
-      content: (
-        <PresentationSlide>
-          <div className="text-center mb-10">
-            <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-              Roadmap
-            </span>
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground">
-              แผนการดำเนินงาน
-            </h2>
-          </div>
-          <div className="flex flex-col md:flex-row gap-6 max-w-4xl mx-auto">
-            {roadmapPhases.map((phase, i) => (
-              <motion.div
-                key={phase.phase}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.15 }}
-                className="flex-1 p-6 rounded-2xl bg-card border border-border relative"
-              >
-                <div className="absolute -top-3 left-6 px-3 py-1 rounded-full bg-primary text-primary-foreground text-sm font-bold">
-                  Phase {phase.phase}
-                </div>
-                <h3 className="font-bold text-foreground mt-4 mb-1">{phase.title}</h3>
-                <p className="text-sm text-primary mb-4">{phase.duration}</p>
-                <ul className="space-y-2">
-                  {phase.items.map((item, j) => (
-                    <li key={j} className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
-          </div>
-        </PresentationSlide>
-      )
-    },
-
-    // Slide 10: CTA
+    // Slide 9: CTA
     {
       id: "cta",
       content: (
