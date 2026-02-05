@@ -297,7 +297,7 @@
              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-foreground text-lg font-bold text-background">13</div>
              <div>
                <p className="text-sm font-bold leading-tight text-foreground">13 STORE — Drone Rental</p>
-               <p className="text-xs text-muted-foreground">เช่าระบบโดรนแบบครบวงจร (โหมดกำไรสูง)</p>
+               <p className="text-xs text-muted-foreground">เช่าระบบโดรนแบบครบวงจร</p>
              </div>
            </div>
            <div className="flex items-center gap-2">
@@ -346,9 +346,9 @@
              <div className="mb-4 flex items-center justify-between">
                <div>
                  <p className="text-sm font-semibold text-muted-foreground">ข้อเสนอแนะนำ (Realtime)</p>
-                 <p className="text-xs text-muted-foreground/70">ระบบเอนเอียงไป Pro/Managed เพื่อคุมงาน + กำไร + SLA</p>
+                 <p className="text-xs text-muted-foreground/70">ระบบแนะนำแพ็กเกจที่เหมาะสมตามความต้องการ</p>
                </div>
-               <span className="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-bold text-primary">High Profit Mode</span>
+               <span className="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-bold text-primary">Smart Recommend</span>
              </div>
              <Divider />
              <div className="space-y-3">
@@ -461,7 +461,7 @@
  
        {/* Calculator */}
        <div id="calculator" className="bg-secondary py-16">
-         <SectionTitle eyebrow="Calculator" title="คำนวณแผนเช่าของคุณ" desc="ปรับตัวแปรเพื่อดูผลลัพธ์แบบ realtime — ใช้วางแผนและเสนอราคาลูกค้า" />
+         <SectionTitle title="คำนวณแผนเช่าของคุณ" desc="ปรับตัวแปรเพื่อดูค่าใช้จ่ายและเลือกแพ็กเกจที่เหมาะสม" />
          <div className="mx-auto grid max-w-5xl gap-8 px-4 lg:grid-cols-2">
            <Card>
              <h3 className="mb-4 font-semibold text-foreground">1) อ้างอิงราคาขาย (ถ้าต้องการใช้เป็น benchmark)</h3>
