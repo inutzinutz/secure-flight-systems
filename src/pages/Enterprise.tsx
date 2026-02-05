@@ -31,6 +31,19 @@ import enterpriseTeam2 from "@/assets/enterprise-team-2.jpg";
 import enterpriseCase1 from "@/assets/enterprise-case-1.jpg";
 import enterpriseCase2 from "@/assets/enterprise-case-2.jpg";
 
+// Import product images
+import matrice4eImg from "@/assets/products/matrice-4e.jpg";
+import matrice4tImg from "@/assets/products/matrice-4t.jpg";
+import matrice400Img from "@/assets/products/matrice-400.jpg";
+import djiDock2Img from "@/assets/products/dji-dock-2.jpg";
+import djiDock3Img from "@/assets/products/dji-dock-3.jpg";
+import zenmuseS1Img from "@/assets/products/zenmuse-s1.jpg";
+import zenmuseV1Img from "@/assets/products/zenmuse-v1.jpg";
+import zenmuseH30Img from "@/assets/products/zenmuse-h30.jpg";
+import zenmuseL3Img from "@/assets/products/zenmuse-l3.jpg";
+import zenmuseH20nImg from "@/assets/products/zenmuse-h20n.jpg";
+import zenmuseP1Img from "@/assets/products/zenmuse-p1.jpg";
+
 // Industries that use DJI Enterprise
 const industries = [
   {
@@ -98,25 +111,25 @@ const droneComparison = [
 
 // Products - Drones
 const droneProducts = [
-  { name: "DJI Matrice 4 Series", tagline: "The Age of Intelligent Flight" },
-  { name: "DJI Matrice 4D Series", tagline: "High-Performance Drones" },
-  { name: "DJI Matrice 400", tagline: "Engineered for Excellence, Designed for Versatility" },
+  { name: "DJI Matrice 4E", tagline: "กล้องความละเอียดสูง เหมาะกับ Mapping", image: matrice4eImg },
+  { name: "DJI Matrice 4T", tagline: "กล้อง Thermal + Zoom สำหรับงานกลางคืน", image: matrice4tImg },
+  { name: "DJI Matrice 400", tagline: "รองรับ Payload หลากหลาย งานอุตสาหกรรม", image: matrice400Img },
 ];
 
 // Products - Payloads
 const payloadProducts = [
-  { name: "Zenmuse S1", desc: "กล้องสำรวจประสิทธิภาพสูง" },
-  { name: "Zenmuse V1", desc: "กล้องวิดีโอมืออาชีพ" },
-  { name: "Zenmuse H30 Series", desc: "กล้อง Hybrid Thermal + Zoom" },
-  { name: "Zenmuse L3", desc: "LiDAR สำหรับ Mapping" },
-  { name: "Zenmuse H20N", desc: "กล้อง Night Vision" },
-  { name: "Zenmuse P1", desc: "กล้อง Photogrammetry" },
+  { name: "Zenmuse S1", desc: "กล้องสำรวจประสิทธิภาพสูง", image: zenmuseS1Img },
+  { name: "Zenmuse V1", desc: "กล้องวิดีโอมืออาชีพ", image: zenmuseV1Img },
+  { name: "Zenmuse H30 Series", desc: "กล้อง Hybrid Thermal + Zoom", image: zenmuseH30Img },
+  { name: "Zenmuse L3", desc: "LiDAR สำหรับ Mapping", image: zenmuseL3Img },
+  { name: "Zenmuse H20N", desc: "กล้อง Night Vision", image: zenmuseH20nImg },
+  { name: "Zenmuse P1", desc: "กล้อง Photogrammetry", image: zenmuseP1Img },
 ];
 
 // Products - Dock
 const dockProducts = [
-  { name: "DJI Dock 2", status: "Available" },
-  { name: "DJI Dock 3", status: "Latest" },
+  { name: "DJI Dock 2", status: "Available", image: djiDock2Img },
+  { name: "DJI Dock 3", status: "Latest", image: djiDock3Img },
 ];
 
 // YouTube Videos
@@ -501,9 +514,15 @@ const Enterprise = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.15 }}
                 whileHover={{ y: -5 }}
-                className="p-6 rounded-2xl bg-card border border-border text-center"
+                className="p-6 rounded-2xl bg-card border border-border text-center overflow-hidden"
               >
-                <Cpu className="w-16 h-16 mx-auto text-primary mb-4" />
+                <div className="w-full h-40 mb-4 overflow-hidden rounded-xl bg-secondary/30">
+                  <img 
+                    src={drone.image} 
+                    alt={drone.name} 
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
                 <h3 className="text-xl font-bold text-foreground mb-2">{drone.name}</h3>
                 <p className="text-muted-foreground text-sm mb-4">{drone.tagline}</p>
                 <a href={contactInfo.formUrl} target="_blank" rel="noopener noreferrer">
@@ -534,17 +553,23 @@ const Enterprise = () => {
               เสริมศักยภาพของโดรน DJI ด้วยกล้องและโมดูลตรวจจับที่ออกแบบเฉพาะทาง รองรับทั้งงานสำรวจ ตรวจวัดความร้อน บันทึกภาพความละเอียดสูง และภารกิจกู้ภัย
             </p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-5xl mx-auto">
             {payloadProducts.map((payload, i) => (
               <motion.div
                 key={payload.name}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: i * 0.1 }}
-                whileHover={{ scale: 1.05 }}
-                className="p-5 rounded-2xl bg-card border border-border text-center"
+                whileHover={{ scale: 1.03 }}
+                className="p-5 rounded-2xl bg-card border border-border text-center overflow-hidden"
               >
-                <Camera className="w-10 h-10 mx-auto text-primary mb-3" />
+                <div className="w-full h-32 mb-3 overflow-hidden rounded-xl bg-secondary/30">
+                  <img 
+                    src={payload.image} 
+                    alt={payload.name} 
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
                 <h3 className="font-bold text-foreground mb-1">{payload.name}</h3>
                 <p className="text-xs text-muted-foreground">{payload.desc}</p>
               </motion.div>
@@ -591,14 +616,20 @@ const Enterprise = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.15 }}
                 whileHover={{ y: -5 }}
-                className={`p-8 rounded-2xl bg-card border-2 text-center ${dock.status === 'Latest' ? 'border-primary ring-2 ring-primary/20' : 'border-border'}`}
+                className={`p-8 rounded-2xl bg-card border-2 text-center overflow-hidden ${dock.status === 'Latest' ? 'border-primary ring-2 ring-primary/20' : 'border-border'}`}
               >
                 {dock.status === 'Latest' && (
                   <span className="inline-block px-3 py-1 rounded-full bg-primary text-primary-foreground text-xs font-bold mb-4">
                     รุ่นใหม่ล่าสุด
                   </span>
                 )}
-                <Database className="w-16 h-16 mx-auto text-primary mb-4" />
+                <div className="w-full h-48 mb-4 overflow-hidden rounded-xl bg-secondary/30">
+                  <img 
+                    src={dock.image} 
+                    alt={dock.name} 
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
                 <h3 className="text-2xl font-bold text-foreground mb-4">{dock.name}</h3>
                 <a href={contactInfo.formUrl} target="_blank" rel="noopener noreferrer">
                   <button className="btn-navy">
