@@ -126,9 +126,9 @@ const payloadProducts = [
   { name: "Zenmuse P1", desc: "กล้อง Photogrammetry", image: zenmuseP1Img },
 ];
 
-// Products - Dock
+// Products - Dock & Platform
 const dockProducts = [
-  { name: "DJI Dock 2", status: "Available", image: djiDock2Img },
+  { name: "LM Platform", status: "Command Center", image: djiDock2Img, link: "/platform" },
   { name: "DJI Dock 3", status: "Latest", image: djiDock3Img },
 ];
 
@@ -616,11 +616,16 @@ const Enterprise = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.15 }}
                 whileHover={{ y: -5 }}
-                className={`p-8 rounded-2xl bg-card border-2 text-center overflow-hidden ${dock.status === 'Latest' ? 'border-primary ring-2 ring-primary/20' : 'border-border'}`}
+                className={`p-8 rounded-2xl bg-card border-2 text-center overflow-hidden ${dock.status === 'Latest' ? 'border-primary ring-2 ring-primary/20' : dock.status === 'Command Center' ? 'border-blue-500 ring-2 ring-blue-500/20' : 'border-border'}`}
               >
                 {dock.status === 'Latest' && (
                   <span className="inline-block px-3 py-1 rounded-full bg-primary text-primary-foreground text-xs font-bold mb-4">
                     รุ่นใหม่ล่าสุด
+                  </span>
+                )}
+                {dock.status === 'Command Center' && (
+                  <span className="inline-block px-3 py-1 rounded-full bg-blue-500 text-white text-xs font-bold mb-4">
+                    ศูนย์บัญชาการ
                   </span>
                 )}
                 <div className="w-full h-48 mb-4 overflow-hidden rounded-xl bg-secondary/30">
@@ -631,11 +636,20 @@ const Enterprise = () => {
                   />
                 </div>
                 <h3 className="text-2xl font-bold text-foreground mb-4">{dock.name}</h3>
-                <a href={contactInfo.formUrl} target="_blank" rel="noopener noreferrer">
-                  <button className="btn-navy">
-                    สอบถามข้อมูล
-                  </button>
-                </a>
+                {dock.link ? (
+                  <Link to={dock.link}>
+                    <button className="btn-navy">
+                      <ArrowRight size={18} />
+                      ดูรายละเอียด Platform
+                    </button>
+                  </Link>
+                ) : (
+                  <a href={contactInfo.formUrl} target="_blank" rel="noopener noreferrer">
+                    <button className="btn-navy">
+                      สอบถามข้อมูล
+                    </button>
+                  </a>
+                )}
               </motion.div>
             ))}
           </div>
