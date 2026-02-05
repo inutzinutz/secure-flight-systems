@@ -1,5 +1,6 @@
  import React, { useEffect, useMemo, useState } from "react";
  import { CheckCircle } from "lucide-react";
+ import { cn } from "@/lib/utils";
  
  const PRODUCTS = [
    {
@@ -52,7 +53,7 @@
  
  function Pill({ children }: { children: React.ReactNode }) {
    return (
-     <span className="inline-block rounded-full bg-zinc-100 px-3 py-1 text-xs font-medium text-zinc-700">
+     <span className="inline-block rounded-full bg-secondary px-3 py-1 text-xs font-medium text-muted-foreground">
        {children}
      </span>
    );
@@ -61,31 +62,31 @@
  function SectionTitle({ eyebrow, title, desc }: { eyebrow?: string; title: string; desc?: string }) {
    return (
      <div className="mb-8 text-center">
-       {eyebrow ? <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-amber-600">{eyebrow}</p> : null}
-       <h2 className="text-2xl font-bold text-zinc-900 md:text-3xl">{title}</h2>
-       {desc ? <p className="mx-auto mt-3 max-w-2xl text-zinc-600">{desc}</p> : null}
+       {eyebrow ? <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-primary">{eyebrow}</p> : null}
+       <h2 className="text-2xl font-bold text-foreground md:text-3xl">{title}</h2>
+       {desc ? <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">{desc}</p> : null}
      </div>
    );
  }
  
  function Card({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-   return <div className={`rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm ${className}`}>{children}</div>;
+   return <div className={cn("rounded-3xl border border-border bg-card p-6 shadow-sm", className)}>{children}</div>;
  }
  
  function Input({ label, value, onChange, placeholder, suffix }: { label: string; value: string; onChange: (v: string) => void; placeholder?: string; suffix?: string }) {
    return (
      <div>
-       <p className="mb-1 text-xs font-medium text-zinc-500">{label}</p>
+       <p className="mb-1 text-xs font-medium text-muted-foreground">{label}</p>
        <div className="relative">
          <input
            type="text"
            value={value}
            onChange={(e) => onChange(e.target.value)}
            placeholder={placeholder}
-           className="w-full rounded-xl border border-zinc-200 bg-white px-3 py-2 pr-14 text-sm text-zinc-900 outline-none ring-0 focus:border-zinc-400"
+           className="w-full rounded-xl border border-input bg-background px-3 py-2 pr-14 text-sm text-foreground outline-none ring-0 focus:border-primary focus:ring-1 focus:ring-ring"
          />
          {suffix ? (
-           <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-xs text-zinc-400">
+           <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-xs text-muted-foreground">
              {suffix}
            </span>
          ) : null}
@@ -97,11 +98,11 @@
  function Select({ label, value, onChange, options }: { label: string; value: string; onChange: (v: string) => void; options: { value: string; label: string }[] }) {
    return (
      <div>
-       <p className="mb-1 text-xs font-medium text-zinc-500">{label}</p>
+       <p className="mb-1 text-xs font-medium text-muted-foreground">{label}</p>
        <select
          value={value}
          onChange={(e) => onChange(e.target.value)}
-         className="w-full rounded-xl border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-900 outline-none focus:border-zinc-400"
+         className="w-full rounded-xl border border-input bg-background px-3 py-2 text-sm text-foreground outline-none focus:border-primary focus:ring-1 focus:ring-ring"
        >
          {options.map((o) => (
            <option key={o.value} value={o.value}>
@@ -117,19 +118,19 @@
    const base = "inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold transition active:scale-[0.99]";
    const styles =
      variant === "primary"
-       ? "bg-zinc-900 text-white hover:bg-zinc-800"
+       ? "btn-navy"
        : variant === "ghost"
-       ? "bg-transparent text-zinc-900 hover:bg-zinc-100"
-       : "bg-zinc-100 text-zinc-900 hover:bg-zinc-200";
+       ? "bg-transparent text-foreground hover:bg-accent"
+       : "bg-secondary text-secondary-foreground hover:bg-accent";
    return (
-     <button onClick={onClick} className={`${base} ${styles}`}>
+     <button onClick={onClick} className={cn(base, styles)}>
        {children}
      </button>
    );
  }
  
  function Divider() {
-   return <div className="my-4 h-px bg-zinc-100" />;
+   return <div className="my-4 h-px bg-border" />;
  }
  
  interface Product {
@@ -288,15 +289,15 @@
    }, [rec, useCase, product, calc, leadName, leadOrg, leadPhone, leadEmail]);
  
    return (
-     <div className="min-h-screen bg-zinc-50 font-sans text-zinc-900 antialiased">
+     <div className="min-h-screen bg-background font-sans text-foreground antialiased">
        {/* Top bar */}
-       <div className="sticky top-0 z-50 border-b border-zinc-200 bg-white/90 backdrop-blur">
+       <div className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur-nav">
          <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
            <div className="flex items-center gap-3">
-             <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-zinc-900 text-lg font-bold text-white">13</div>
+             <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-foreground text-lg font-bold text-background">13</div>
              <div>
-               <p className="text-sm font-bold leading-tight">13 STORE — Drone Rental</p>
-               <p className="text-xs text-zinc-500">เช่าระบบโดรนแบบครบวงจร (โหมดกำไรสูง)</p>
+               <p className="text-sm font-bold leading-tight text-foreground">13 STORE — Drone Rental</p>
+               <p className="text-xs text-muted-foreground">เช่าระบบโดรนแบบครบวงจร (โหมดกำไรสูง)</p>
              </div>
            </div>
            <div className="flex items-center gap-2">
@@ -309,7 +310,7 @@
        </div>
  
        {/* Hero */}
-       <div className="bg-gradient-to-b from-zinc-100 to-zinc-50 py-16 md:py-24">
+       <div className="bg-secondary py-16 md:py-24">
          <div className="mx-auto grid max-w-6xl gap-10 px-4 lg:grid-cols-2 lg:items-center">
            <div className="space-y-6">
              <div className="flex flex-wrap gap-2">
@@ -317,10 +318,10 @@
                <Pill>สัญญา 1–3 ปี (12/24/36 เดือน)</Pill>
                <Pill>Setup + Service Fee + Insurance Admin</Pill>
              </div>
-             <h1 className="text-3xl font-extrabold leading-tight tracking-tight md:text-4xl lg:text-5xl">
-               ระบบโดรนเช่าแบบ <span className="text-amber-600">พร้อมใช้งาน</span> สำหรับหน่วยงานและองค์กร
+             <h1 className="text-3xl font-extrabold leading-tight tracking-tight text-foreground md:text-4xl lg:text-5xl">
+               ระบบโดรนเช่าแบบ <span className="text-primary">พร้อมใช้งาน</span> สำหรับหน่วยงานและองค์กร
              </h1>
-             <p className="max-w-xl text-lg text-zinc-600">
+             <p className="max-w-xl text-lg text-muted-foreground">
                ไม่ต้องลงทุนก้อนใหญ่ — ได้เครื่อง, บริการ, PM, ซัพพอร์ต และประกันชั้น 1 รวมในโครงราคา พร้อมระบบแนะนำแพ็กเกจและคำนวณแผนเช่าแบบครบวงจร
              </p>
  
@@ -333,9 +334,9 @@
  
              <div className="grid grid-cols-2 gap-3 pt-4 sm:grid-cols-4">
                {["ส่งมอบ+เทรน", "PM ตามรอบ", "ระบบแจ้งเคส", "เอกสารครบชุด"].map((t) => (
-                 <div key={t} className="rounded-2xl bg-white p-4 shadow-sm">
-                   <p className="text-sm font-semibold">{t}</p>
-                   <p className="mt-1 text-xs text-zinc-500">มาตรฐานเดียวกันทุกโครงการ</p>
+                 <div key={t} className="rounded-2xl bg-card p-4 shadow-sm border border-border">
+                   <p className="text-sm font-semibold text-foreground">{t}</p>
+                   <p className="mt-1 text-xs text-muted-foreground">มาตรฐานเดียวกันทุกโครงการ</p>
                  </div>
                ))}
              </div>
@@ -344,10 +345,10 @@
            <Card className="relative overflow-hidden">
              <div className="mb-4 flex items-center justify-between">
                <div>
-                 <p className="text-sm font-semibold text-zinc-500">ข้อเสนอแนะนำ (Realtime)</p>
-                 <p className="text-xs text-zinc-400">ระบบเอนเอียงไป Pro/Managed เพื่อคุมงาน + กำไร + SLA</p>
+                 <p className="text-sm font-semibold text-muted-foreground">ข้อเสนอแนะนำ (Realtime)</p>
+                 <p className="text-xs text-muted-foreground/70">ระบบเอนเอียงไป Pro/Managed เพื่อคุมงาน + กำไร + SLA</p>
                </div>
-               <span className="rounded-full bg-amber-100 px-2 py-0.5 text-xs font-bold text-amber-700">High Profit Mode</span>
+               <span className="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-bold text-primary">High Profit Mode</span>
              </div>
              <Divider />
              <div className="space-y-3">
@@ -366,32 +367,32 @@
                  onChange={setPreferredTerm}
                  options={[{ value: "", label: "ให้ระบบแนะนำ" }, ...TERMS.map((m) => ({ value: String(m), label: `${m} เดือน` }))]}
                />
-               <div className="rounded-xl bg-zinc-100 p-3">
-                 <p className="text-xs text-zinc-500">แพ็กเกจแนะนำ</p>
-                 <p className="text-lg font-bold text-amber-600">
+               <div className="rounded-xl bg-secondary p-3">
+                 <p className="text-xs text-muted-foreground">แพ็กเกจแนะนำ</p>
+                 <p className="text-lg font-bold text-primary">
                    {rec.pkg === "standard" ? "Rent Standard" : rec.pkg === "pro" ? "Rent Pro" : "Rent Managed"}
                  </p>
-                 <p className="text-xs text-zinc-500">ระยะสัญญา: {rec.term} เดือน</p>
+                 <p className="text-xs text-muted-foreground">ระยะสัญญา: {rec.term} เดือน</p>
                </div>
              </div>
              <Divider />
              <div className="space-y-2">
                <div className="flex items-center justify-between">
                  <div>
-                   <p className="text-xs text-zinc-500">ค่าเช่า/เดือน (ประมาณการ)</p>
-                   <p className="text-xl font-bold text-zinc-900">{thb(calc.monthlySelected)} บาท</p>
-                   <p className="text-xs text-zinc-400">ตัวคูณ: 1.60 / 1.90 / 2.30 + Service + Insurance admin</p>
+                   <p className="text-xs text-muted-foreground">ค่าเช่า/เดือน (ประมาณการ)</p>
+                   <p className="text-xl font-bold text-foreground">{thb(calc.monthlySelected)} บาท</p>
+                   <p className="text-xs text-muted-foreground/70">ตัวคูณ: 1.60 / 1.90 / 2.30 + Service + Insurance admin</p>
                  </div>
                  <div className="text-right">
-                   <p className="text-xs text-zinc-500">มัดจำ ({calc.depositMonths} เดือน)</p>
-                   <p className="font-semibold text-zinc-800">≈ {thb(calc.deposit)} บาท</p>
-                   <p className="text-xs text-zinc-500">Setup ครั้งเดียว</p>
-                   <p className="font-semibold text-zinc-800">≈ {thb(calc.setup)} บาท</p>
-                   <p className="text-xs text-zinc-500">รวมจ่ายวันแรก</p>
-                   <p className="font-bold text-amber-600">≈ {thb(calc.upfront)} บาท</p>
+                   <p className="text-xs text-muted-foreground">มัดจำ ({calc.depositMonths} เดือน)</p>
+                   <p className="font-semibold text-foreground">≈ {thb(calc.deposit)} บาท</p>
+                   <p className="text-xs text-muted-foreground">Setup ครั้งเดียว</p>
+                   <p className="font-semibold text-foreground">≈ {thb(calc.setup)} บาท</p>
+                   <p className="text-xs text-muted-foreground">รวมจ่ายวันแรก</p>
+                   <p className="font-bold text-primary">≈ {thb(calc.upfront)} บาท</p>
                  </div>
                </div>
-               <p className="text-xs text-zinc-400">
+               <p className="text-xs text-muted-foreground/70">
                  * ตัวเลขเป็น "ประมาณการขาย" — ปรับตามเบี้ยประกันจริง + SLA + ค่าใช้จ่ายหน้างานจริงได้
                </p>
              </div>
@@ -407,49 +408,49 @@
        </div>
  
        {/* Packages */}
-       <div id="packages" className="py-16">
+       <div id="packages" className="py-16 bg-background">
          <SectionTitle eyebrow="Packages" title="เลือกแพ็กเกจที่เหมาะกับองค์กร" desc="ทุกแพ็กเกจรวมประกันชั้น 1 และบริการพื้นฐาน — ต่างกันที่ SLA และระดับการดูแล" />
          <div className="mx-auto grid max-w-5xl gap-6 px-4 md:grid-cols-3">
            <Card>
              <div className="mb-3 flex items-center gap-2">
-               <p className="text-lg font-bold">Rent Standard</p>
-               <span className="rounded-full bg-zinc-200 px-2 py-0.5 text-xs font-semibold">Multiplier 1.60</span>
+               <p className="text-lg font-bold text-foreground">Rent Standard</p>
+               <span className="rounded-full bg-secondary px-2 py-0.5 text-xs font-semibold text-muted-foreground">Multiplier 1.60</span>
              </div>
-             <p className="mb-4 text-sm text-zinc-600">เหมาะสำหรับเริ่มต้นใช้งานและคุมงบ</p>
+             <p className="mb-4 text-sm text-muted-foreground">เหมาะสำหรับเริ่มต้นใช้งานและคุมงบ</p>
              <ul className="space-y-2 text-sm">
                {["เครื่อง+อุปกรณ์", "ประกันชั้น 1", "Service fee (Basic)", "PM ตามรอบ (ตามสัญญา)"].map((x) => (
-                 <li key={x} className="flex items-center gap-2">
+                 <li key={x} className="flex items-center gap-2 text-foreground">
                    <CheckCircle className="h-4 w-4 text-green-500" />
                    {x}
                  </li>
                ))}
              </ul>
            </Card>
-           <Card className="border-2 border-amber-400">
+           <Card className="border-2 border-primary">
              <div className="mb-3 flex items-center gap-2">
-               <p className="text-lg font-bold">Rent Pro</p>
-               <span className="rounded-full bg-amber-100 px-2 py-0.5 text-xs font-semibold text-amber-700">Multiplier 1.90</span>
+               <p className="text-lg font-bold text-foreground">Rent Pro</p>
+               <span className="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-semibold text-primary">Multiplier 1.90</span>
              </div>
-             <p className="mb-4 text-sm text-zinc-600">เหมาะสำหรับงานหน้างานจริง — เน้น SLA และการตอบรับเคส</p>
+             <p className="mb-4 text-sm text-muted-foreground">เหมาะสำหรับงานหน้างานจริง — เน้น SLA และการตอบรับเคส</p>
              <ul className="space-y-2 text-sm">
                {["ทุกอย่างใน Standard", "SLA ตอบรับเคส", "รายงานสถานะรายเดือน", "เพิ่มเงื่อนไขเครื่องสำรอง (ตามตกลง)"].map((x) => (
-                 <li key={x} className="flex items-center gap-2">
+                 <li key={x} className="flex items-center gap-2 text-foreground">
                    <CheckCircle className="h-4 w-4 text-green-500" />
                    {x}
                  </li>
                ))}
              </ul>
            </Card>
-           <Card className="bg-zinc-900 text-white">
+           <Card className="card-navy">
              <div className="mb-3 flex items-center gap-2">
                <p className="text-lg font-bold">Rent Managed</p>
                <span className="rounded-full bg-white/20 px-2 py-0.5 text-xs font-semibold">Multiplier 2.30</span>
              </div>
-             <p className="mb-4 text-sm text-zinc-300">เหมาะสำหรับภาครัฐ/โรงงาน/ระบบเฝ้าระวัง — ให้ทีมเราดูแลทั้งระบบ</p>
+             <p className="mb-4 text-sm text-white/70">เหมาะสำหรับภาครัฐ/โรงงาน/ระบบเฝ้าระวัง — ให้ทีมเราดูแลทั้งระบบ</p>
              <ul className="space-y-2 text-sm">
                {["ทุกอย่างใน Pro", "SOP + Training", "On-site ตามโควตา", "แผน PM/Spare", "รายงานผู้บริหาร"].map((x) => (
                  <li key={x} className="flex items-center gap-2">
-                   <CheckCircle className="h-4 w-4 text-amber-400" />
+                   <CheckCircle className="h-4 w-4 text-primary" />
                    {x}
                  </li>
                ))}
@@ -459,76 +460,76 @@
        </div>
  
        {/* Calculator */}
-       <div id="calculator" className="bg-zinc-100 py-16">
+       <div id="calculator" className="bg-secondary py-16">
          <SectionTitle eyebrow="Calculator" title="คำนวณแผนเช่าของคุณ" desc="ปรับตัวแปรเพื่อดูผลลัพธ์แบบ realtime — ใช้วางแผนและเสนอราคาลูกค้า" />
          <div className="mx-auto grid max-w-5xl gap-8 px-4 lg:grid-cols-2">
            <Card>
-             <h3 className="mb-4 font-semibold">1) อ้างอิงราคาขาย (ถ้าต้องการใช้เป็น benchmark)</h3>
+             <h3 className="mb-4 font-semibold text-foreground">1) อ้างอิงราคาขาย (ถ้าต้องการใช้เป็น benchmark)</h3>
              <div className="grid gap-4 sm:grid-cols-2">
                <Input label="GM ขายเครื่อง (%)" value={gmSell} onChange={setGmSell} suffix="%" />
                <Input label="VAT (%)" value={vat} onChange={setVat} suffix="%" />
              </div>
-             <div className="mt-4 rounded-xl bg-zinc-100 p-4">
+             <div className="mt-4 rounded-xl bg-secondary p-4">
                <div className="grid grid-cols-2 gap-2 text-sm">
                  <div>
-                   <p className="text-xs text-zinc-500">ต้นทุน (EX Tax)</p>
-                   <p className="font-semibold">{thb(calc.cost)} บาท</p>
+                   <p className="text-xs text-muted-foreground">ต้นทุน (EX Tax)</p>
+                   <p className="font-semibold text-foreground">{thb(calc.cost)} บาท</p>
                  </div>
                  <div>
-                   <p className="text-xs text-zinc-500">ราคาขายแนะนำ (Ex VAT)</p>
-                   <p className="font-semibold">{thb(calc.sellExVat)} บาท</p>
+                   <p className="text-xs text-muted-foreground">ราคาขายแนะนำ (Ex VAT)</p>
+                   <p className="font-semibold text-foreground">{thb(calc.sellExVat)} บาท</p>
                  </div>
                  <div>
-                   <p className="text-xs text-zinc-500">ราคาขายแนะนำ (รวม VAT)</p>
-                   <p className="font-semibold">{thb(calc.sellIncVat)} บาท</p>
+                   <p className="text-xs text-muted-foreground">ราคาขายแนะนำ (รวม VAT)</p>
+                   <p className="font-semibold text-foreground">{thb(calc.sellIncVat)} บาท</p>
                  </div>
                  <div>
-                   <p className="text-xs text-zinc-500">ระยะสัญญาที่คำนวณ</p>
-                   <p className="font-semibold">{calc.term} เดือน</p>
+                   <p className="text-xs text-muted-foreground">ระยะสัญญาที่คำนวณ</p>
+                   <p className="font-semibold text-foreground">{calc.term} เดือน</p>
                  </div>
                </div>
              </div>
            </Card>
  
            <Card>
-             <h3 className="mb-4 font-semibold">2) ตัวเลขเช่า (รวมประกันชั้น 1) + คันโยกกำไร</h3>
+             <h3 className="mb-4 font-semibold text-foreground">2) ตัวเลขเช่า (รวมประกันชั้น 1) + คันโยกกำไร</h3>
  
              <div className="grid gap-4 sm:grid-cols-2">
                <Input label="ประกันชั้น 1/ปี (บาท)" value={insuranceYear} onChange={setInsuranceYear} suffix="฿/ปี" />
                <Input label="Setup/Onboarding ครั้งเดียว" value={setupFee} onChange={setSetupFee} suffix="฿" />
                <Input label="Insurance Admin/เดือน" value={insuranceAdminMonth} onChange={setInsuranceAdminMonth} suffix="฿/ด" />
                <div className="space-y-2">
-                 <p className="text-xs font-medium text-zinc-500">ค่าบริการรายเดือน (เพิ่มกำไรจริง)</p>
+                 <p className="text-xs font-medium text-muted-foreground">ค่าบริการรายเดือน (เพิ่มกำไรจริง)</p>
                  <div className="grid grid-cols-3 gap-2">
                    <div>
-                     <p className="text-xs text-zinc-400">Standard</p>
+                     <p className="text-xs text-muted-foreground/70">Standard</p>
                      <input
                        type="text"
                        value={serviceStandard}
                        onChange={(e) => setServiceStandard(e.target.value)}
-                       className="w-full rounded-xl border border-zinc-200 bg-white px-3 py-2 text-sm outline-none focus:border-zinc-400"
+                       className="w-full rounded-xl border border-input bg-background px-3 py-2 text-sm text-foreground outline-none focus:border-primary"
                      />
                    </div>
                    <div>
-                     <p className="text-xs text-zinc-400">Pro</p>
+                     <p className="text-xs text-muted-foreground/70">Pro</p>
                      <input
                        type="text"
                        value={servicePro}
                        onChange={(e) => setServicePro(e.target.value)}
-                       className="w-full rounded-xl border border-zinc-200 bg-white px-3 py-2 text-sm outline-none focus:border-zinc-400"
+                       className="w-full rounded-xl border border-input bg-background px-3 py-2 text-sm text-foreground outline-none focus:border-primary"
                      />
                    </div>
                    <div>
-                     <p className="text-xs text-zinc-400">Managed</p>
+                     <p className="text-xs text-muted-foreground/70">Managed</p>
                      <input
                        type="text"
                        value={serviceManaged}
                        onChange={(e) => setServiceManaged(e.target.value)}
-                       className="w-full rounded-xl border border-zinc-200 bg-white px-3 py-2 text-sm outline-none focus:border-zinc-400"
+                       className="w-full rounded-xl border border-input bg-background px-3 py-2 text-sm text-foreground outline-none focus:border-primary"
                      />
                    </div>
                  </div>
-                 <p className="text-xs text-zinc-400">หน่วย: บาท/เดือน</p>
+                 <p className="text-xs text-muted-foreground/70">หน่วย: บาท/เดือน</p>
                </div>
  
                <Input label="Ops ภายใน/เดือน (ถ้ามี)" value={opsMonth} onChange={setOpsMonth} suffix="฿/ด" />
@@ -536,43 +537,43 @@
                <Input label="Risk Buffer/เดือน (ถ้ามี)" value={riskBufferMonth} onChange={setRiskBufferMonth} suffix="฿/ด" />
              </div>
  
-             <div className="mt-4 rounded-xl bg-zinc-100 p-4">
+             <div className="mt-4 rounded-xl bg-secondary p-4">
                <div className="grid grid-cols-3 gap-2 text-center text-sm">
                  <div>
-                   <p className="text-xs text-zinc-500">Standard/เดือน</p>
-                   <p className="font-semibold">{thb(calc.standard)}</p>
+                   <p className="text-xs text-muted-foreground">Standard/เดือน</p>
+                   <p className="font-semibold text-foreground">{thb(calc.standard)}</p>
                  </div>
                  <div>
-                   <p className="text-xs text-zinc-500">Pro/เดือน</p>
-                   <p className="font-semibold">{thb(calc.pro)}</p>
+                   <p className="text-xs text-muted-foreground">Pro/เดือน</p>
+                   <p className="font-semibold text-foreground">{thb(calc.pro)}</p>
                  </div>
                  <div>
-                   <p className="text-xs text-zinc-500">Managed/เดือน</p>
-                   <p className="font-semibold">{thb(calc.managed)}</p>
+                   <p className="text-xs text-muted-foreground">Managed/เดือน</p>
+                   <p className="font-semibold text-foreground">{thb(calc.managed)}</p>
                  </div>
                </div>
-               <p className="mt-2 text-xs text-zinc-400">สูตร: (ต้นทุน×Multiplier÷เดือน) + (ประกัน/12) + InsuranceAdmin + ServiceFee + Provision(Optional)</p>
+               <p className="mt-2 text-xs text-muted-foreground/70">สูตร: (ต้นทุน×Multiplier÷เดือน) + (ประกัน/12) + InsuranceAdmin + ServiceFee + Provision(Optional)</p>
              </div>
  
-             <div className="mt-4 rounded-xl bg-amber-50 p-4">
+             <div className="mt-4 rounded-xl bg-primary/10 p-4">
                <div className="flex items-center justify-between">
                  <div>
-                   <p className="text-xs text-amber-600">แพ็กเกจที่ระบบแนะนำ</p>
-                   <p className="text-lg font-bold text-amber-700">
+                   <p className="text-xs text-primary">แพ็กเกจที่ระบบแนะนำ</p>
+                   <p className="text-lg font-bold text-primary">
                      {rec.pkg === "standard" ? "Rent Standard" : rec.pkg === "pro" ? "Rent Pro" : "Rent Managed"}
                    </p>
                  </div>
                  <div className="text-right">
-                   <p className="text-xs text-amber-600">มูลค่าสัญญา (รวม Setup)</p>
-                   <p className="text-lg font-bold text-amber-700">{thb(calc.contractValue)} บาท</p>
+                   <p className="text-xs text-primary">มูลค่าสัญญา (รวม Setup)</p>
+                   <p className="text-lg font-bold text-primary">{thb(calc.contractValue)} บาท</p>
                  </div>
                </div>
-               <p className="mt-2 text-xs text-amber-600">มัดจำ: {calc.depositMonths} เดือน ≈ {thb(calc.deposit)} บาท · Setup ≈ {thb(calc.setup)} บาท · รวมจ่ายวันแรก ≈ {thb(calc.upfront)} บาท</p>
+               <p className="mt-2 text-xs text-primary/80">มัดจำ: {calc.depositMonths} เดือน ≈ {thb(calc.deposit)} บาท · Setup ≈ {thb(calc.setup)} บาท · รวมจ่ายวันแรก ≈ {thb(calc.upfront)} บาท</p>
  
-               <div className="mt-3 rounded-lg bg-amber-100 p-3">
-                 <p className="text-xs font-semibold text-amber-700">กำไรขั้นต้น (ประมาณการ) ต่อ 1 สัญญา*</p>
-                 <p className="text-xl font-bold text-amber-700">≈ {thb(calc.grossProfitEstimate)} บาท</p>
-                 <p className="mt-1 text-xs text-amber-600">
+               <div className="mt-3 rounded-lg bg-primary/20 p-3">
+                 <p className="text-xs font-semibold text-primary">กำไรขั้นต้น (ประมาณการ) ต่อ 1 สัญญา*</p>
+                 <p className="text-xl font-bold text-primary">≈ {thb(calc.grossProfitEstimate)} บาท</p>
+                 <p className="mt-1 text-xs text-primary/80">
                    *กำไรจากตัวคูณเครื่อง + (ServiceFee + InsuranceAdmin) + Setup (ไม่รวม/ไม่หักต้นทุนการให้บริการจริง เช่น ทีม/โลจิสติกส์/อะไหล่)
                  </p>
                </div>
@@ -582,7 +583,7 @@
        </div>
  
        {/* Lead */}
-       <div id="lead" className="py-16">
+       <div id="lead" className="py-16 bg-background">
          <SectionTitle eyebrow="Contact" title="ขอใบเสนอราคาหรือพูดคุยโครงการ" desc="กรอกข้อมูลด้านล่าง — เราจะติดต่อกลับภายใน 1 วันทำการ" />
          <div className="mx-auto grid max-w-5xl gap-8 px-4 lg:grid-cols-2">
            <Card>
@@ -593,14 +594,14 @@
                <Input label="อีเมล" value={leadEmail} onChange={setLeadEmail} placeholder="name@company.com" />
              </div>
  
-             <div className="mt-6 rounded-xl bg-zinc-100 p-4">
-               <p className="mb-2 text-xs font-semibold text-zinc-500">สรุปข้อเสนอ</p>
-               <p className="font-semibold">{product?.name}</p>
-               <p className="text-sm text-zinc-600">
+             <div className="mt-6 rounded-xl bg-secondary p-4">
+               <p className="mb-2 text-xs font-semibold text-muted-foreground">สรุปข้อเสนอ</p>
+               <p className="font-semibold text-foreground">{product?.name}</p>
+               <p className="text-sm text-muted-foreground">
                  แพ็กเกจ: {rec.pkg === "standard" ? "Rent Standard" : rec.pkg === "pro" ? "Rent Pro" : "Rent Managed"} · ระยะสัญญา: {calc.term} เดือน
                </p>
-               <p className="mt-2 text-sm">ค่าเช่า/เดือน (ประมาณ): <span className="font-semibold">{thb(calc.monthlySelected)} บาท</span></p>
-               <p className="text-sm">มัดจำ: {calc.depositMonths} เดือน ≈ {thb(calc.deposit)} บาท · Setup ≈ {thb(calc.setup)} บาท</p>
+               <p className="mt-2 text-sm text-foreground">ค่าเช่า/เดือน (ประมาณ): <span className="font-semibold">{thb(calc.monthlySelected)} บาท</span></p>
+               <p className="text-sm text-muted-foreground">มัดจำ: {calc.depositMonths} เดือน ≈ {thb(calc.deposit)} บาท · Setup ≈ {thb(calc.setup)} บาท</p>
  
                <div className="mt-4 flex gap-2">
                  <Button
@@ -630,22 +631,22 @@
            </Card>
  
            <Card>
-             <p className="mb-2 text-xs font-semibold text-zinc-500">ข้อความที่จะส่ง</p>
+             <p className="mb-2 text-xs font-semibold text-muted-foreground">ข้อความที่จะส่ง</p>
              <textarea
                readOnly
                value={offerMessage}
-               className="h-64 w-full resize-none rounded-xl border border-zinc-200 bg-zinc-50 p-3 text-sm text-zinc-700"
+               className="h-64 w-full resize-none rounded-xl border border-input bg-secondary p-3 text-sm text-foreground"
              />
-             <div className="mt-3 text-xs text-zinc-500">*ต่อยอดเก็บ Lead อัตโนมัติ: Make.com → Google Sheet/CRM แล้วยิง webhook</div>
+             <div className="mt-3 text-xs text-muted-foreground">*ต่อยอดเก็บ Lead อัตโนมัติ: Make.com → Google Sheet/CRM แล้วยิง webhook</div>
            </Card>
          </div>
  
          <div className="mx-auto mt-10 max-w-5xl px-4">
-           <div className="rounded-3xl bg-zinc-900 p-6 text-white">
+           <div className="rounded-3xl card-navy p-6">
              <div className="grid gap-4 lg:grid-cols-3">
                <div>
                  <div className="text-lg font-semibold">พร้อมทำให้เป็นเว็บใช้งานจริง</div>
-                 <div className="mt-2 text-sm text-zinc-200">เพิ่ม SEO, UTM, Lead to CRM, LINE OA auto-reply, และ KPI dashboard</div>
+                 <div className="mt-2 text-sm text-white/70">เพิ่ม SEO, UTM, Lead to CRM, LINE OA auto-reply, และ KPI dashboard</div>
                </div>
                <div className="grid gap-3 sm:grid-cols-3 lg:col-span-2">
                  {[
@@ -655,7 +656,7 @@
                  ].map((x) => (
                    <div key={x.t} className="rounded-2xl bg-white/10 p-4">
                      <div className="text-sm font-semibold">{x.t}</div>
-                     <div className="mt-1 text-xs text-zinc-200">{x.d}</div>
+                     <div className="mt-1 text-xs text-white/70">{x.d}</div>
                    </div>
                  ))}
                </div>
@@ -665,14 +666,14 @@
        </div>
  
        {/* Footer */}
-       <div className="border-t border-zinc-200 bg-white">
+       <div className="border-t border-border bg-card">
          <div className="mx-auto max-w-6xl px-4 py-8">
            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
              <div>
-               <div className="text-sm font-semibold">13 STORE Co., Ltd.</div>
-               <div className="text-xs text-zinc-500">Drone Rental • High Profit Mode • Insurance Included</div>
+               <div className="text-sm font-semibold text-foreground">13 STORE Co., Ltd.</div>
+               <div className="text-xs text-muted-foreground">Drone Rental • High Profit Mode • Insurance Included</div>
              </div>
-             <div className="text-xs text-zinc-500">© {new Date().getFullYear()} 13 STORE. All rights reserved.</div>
+             <div className="text-xs text-muted-foreground">© {new Date().getFullYear()} 13 STORE. All rights reserved.</div>
            </div>
          </div>
        </div>
