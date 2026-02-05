@@ -25,6 +25,9 @@ const navLinks = [{
 }, {
   label: "ROI Calculator",
   href: "/roi-calculator"
+ }, {
+   label: "Drone Rental",
+   href: "/drone-rental"
 }];
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
