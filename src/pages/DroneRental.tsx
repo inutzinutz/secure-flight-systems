@@ -26,14 +26,7 @@
      costExTax: 348190,
      highlights: ["อัตโนมัติ/เฝ้าระวัง 24/7", "เหมาะ 36 เดือน", "มี SLA"],
    },
-   {
-     id: "dock3_m4td_b",
-     name: "Dock 3 + Matrice 4TD (RC Plus 2, Extended Warranty)",
-     type: "Automation Bundle",
-     costExTax: 385890,
-     highlights: ["แพ็กเต็ม", "เหมาะไซต์ใหญ่", "มี SLA"],
-   },
- ];
+];
  
  const PACKAGE_MULTIPLIER = { standard: 1.6, pro: 1.9, managed: 2.3 };
  
