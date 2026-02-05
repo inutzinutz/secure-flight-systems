@@ -37,6 +37,7 @@ import matrice4tImg from "@/assets/products/matrice-4t.jpg";
 import matrice400Img from "@/assets/products/matrice-400.jpg";
 import djiDock2Img from "@/assets/products/dji-dock-2.jpg";
 import djiDock3Img from "@/assets/products/dji-dock-3.jpg";
+import lmPlatformImg from "@/assets/products/lm-platform-command.jpg";
 import zenmuseS1Img from "@/assets/products/zenmuse-s1.jpg";
 import zenmuseV1Img from "@/assets/products/zenmuse-v1.jpg";
 import zenmuseH30Img from "@/assets/products/zenmuse-h30.jpg";
@@ -128,8 +129,8 @@ const payloadProducts = [
 
 // Products - Dock & Platform
 const dockProducts = [
-  { name: "LM Platform", status: "Command Center", image: djiDock2Img, link: "/platform" },
-  { name: "DJI Dock 3", status: "Latest", image: djiDock3Img },
+  { name: "LM Platform", desc: "Command & Intelligence Platform", status: "Command Center", image: lmPlatformImg, link: "/platform" },
+  { name: "DJI Dock 3", desc: "Autonomous Drone-in-a-Box", status: "Latest", image: djiDock3Img },
 ];
 
 // YouTube Videos
@@ -635,7 +636,10 @@ const Enterprise = () => {
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                   />
                 </div>
-                <h3 className="text-2xl font-bold text-foreground mb-4">{dock.name}</h3>
+                <h3 className="text-2xl font-bold text-foreground mb-1">{dock.name}</h3>
+                {dock.desc && (
+                  <p className="text-sm text-muted-foreground mb-4">{dock.desc}</p>
+                )}
                 {dock.link ? (
                   <Link to={dock.link}>
                     <button className="btn-navy">
