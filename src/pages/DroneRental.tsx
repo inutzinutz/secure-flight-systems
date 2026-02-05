@@ -1,6 +1,8 @@
  import React, { useEffect, useMemo, useState } from "react";
- import { CheckCircle } from "lucide-react";
+ import { CheckCircle, Shield, Clock, Wrench, Zap, Building2, Cpu, MapPin, HardHat, MessageSquare, ChevronDown } from "lucide-react";
  import { cn } from "@/lib/utils";
+ import { Navbar } from "@/components/layout/Navbar";
+ import { Footer } from "@/components/layout/Footer";
  
  const PRODUCTS = [
    {
@@ -8,7 +10,7 @@
      name: "M4T (Extended Warranty)",
      type: "Drone",
      costExTax: 127530,
-     highlights: ["งานตรวจการณ์/ความปลอดภัย", "เริ่มต้นเร็ว", "คุ้มค่า"],
+     highlights: ["งานตรวจการณ์/ความปลอดภัย", "เริ่มต้นเร็ว", "ราคาคุ้มค่า"],
    },
    {
      id: "m4e",
@@ -33,13 +35,30 @@
    },
  ];
  
- const PACKAGE_MULTIPLIER = {
-   standard: 1.6,
-   pro: 1.9,
-   managed: 2.3,
- };
+ const PACKAGE_MULTIPLIER = { standard: 1.6, pro: 1.9, managed: 2.3 };
  
  const TERMS = [12, 24, 36];
+ 
+ const USE_CASES = [
+   { id: "patrol", icon: Shield, title: "ความปลอดภัย/เฝ้าระวัง", desc: "ตรวจรอบพื้นที่, เหตุฉุกเฉิน, งานรักษาความปลอดภัย" },
+   { id: "inspection", icon: HardHat, title: "Inspection โรงงาน/พลังงาน", desc: "ลดการขึ้นที่สูง ลดความเสี่ยงคน" },
+   { id: "mapping", icon: MapPin, title: "สำรวจ/แผนที่/ก่อสร้าง", desc: "ติดตามความคืบหน้า รายงานเร็ว" },
+   { id: "dock", icon: Cpu, title: "ระบบอัตโนมัติ (Dock)", desc: "งานตรวจซ้ำรายวัน/รายชั่วโมง" },
+ ];
+ 
+ const WHY_US = [
+   { icon: Shield, title: "คุมงบได้", desc: "ค่าใช้จ่ายรายเดือนชัดเจน ไม่ต้องลงทุนก้อนใหญ่" },
+   { icon: Zap, title: "ลดความเสี่ยง", desc: "รวมประกันชั้น 1 และเงื่อนไขชัดเจน" },
+   { icon: Wrench, title: "ใช้งานต่อเนื่อง", desc: "มี PM + ทีมซัพพอร์ต + SLA/เครื่องสำรอง" },
+   { icon: Clock, title: "ได้ผลลัพธ์เร็ว", desc: "ส่งมอบ + เทรน + SOP พร้อมเริ่มงาน" },
+ ];
+ 
+ const FAQ_ITEMS = [
+   { q: "เช่ารวมประกันชั้น 1 แล้วต้องจ่ายเพิ่มไหม?", a: "รวมเบี้ยในค่าเช่าแล้ว อาจมีส่วนร่วมจ่าย (Deductible) ตามเงื่อนไขเพื่อความเป็นธรรมครับ" },
+   { q: "สัญญาขั้นต่ำกี่ปี?", a: "1–3 ปี (12/24/36 เดือน) ครับ" },
+   { q: "มีเครื่องสำรองไหม?", a: "มีตามแพ็กเกจ Pro/Managed และ SLA ที่ระบุในข้อเสนอครับ" },
+   { q: "ถ้าต้องการซื้อขาด?", a: "ได้ครับ เรามีราคาซื้อขาดและแพ็กเกจบริการ/ประกัน/ดูแลต่อเนื่องให้เลือกครับ" },
+ ];
  
  function thb(n: number) {
    if (Number.isNaN(n) || n === null || n === undefined) return "-";
@@ -69,9 +88,9 @@
    );
  }
  
- function Card({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-   return <div className={cn("rounded-3xl border border-border bg-card p-6 shadow-sm", className)}>{children}</div>;
- }
+function Card({ children, className = "", onClick }: { children: React.ReactNode; className?: string; onClick?: () => void }) {
+  return <div onClick={onClick} className={cn("rounded-3xl border border-border bg-card p-6 shadow-sm", className)}>{children}</div>;
+}
  
  function Input({ label, value, onChange, placeholder, suffix }: { label: string; value: string; onChange: (v: string) => void; placeholder?: string; suffix?: string }) {
    return (
@@ -126,6 +145,22 @@
      <button onClick={onClick} className={cn(base, styles)}>
        {children}
      </button>
+   );
+ }
+ 
+ function FAQItem({ question, answer }: { question: string; answer: string }) {
+   const [open, setOpen] = useState(false);
+   return (
+     <div className="border-b border-border">
+       <button
+         onClick={() => setOpen(!open)}
+         className="w-full flex items-center justify-between py-4 text-left"
+       >
+         <span className="font-medium text-foreground">{question}</span>
+         <ChevronDown className={cn("w-5 h-5 text-muted-foreground transition-transform", open && "rotate-180")} />
+       </button>
+       {open && <p className="pb-4 text-sm text-muted-foreground">{answer}</p>}
+     </div>
    );
  }
  
@@ -290,24 +325,7 @@
  
    return (
      <div className="min-h-screen bg-background font-sans text-foreground antialiased">
-       {/* Top bar */}
-       <div className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur-nav">
-         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-           <div className="flex items-center gap-3">
-             <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-foreground text-lg font-bold text-background">13</div>
-             <div>
-               <p className="text-sm font-bold leading-tight text-foreground">13 STORE — Drone Rental</p>
-               <p className="text-xs text-muted-foreground">เช่าระบบโดรนแบบครบวงจร</p>
-             </div>
-           </div>
-           <div className="flex items-center gap-2">
-             <Button variant="ghost" onClick={() => document.getElementById("calculator")?.scrollIntoView({ behavior: "smooth" })}>
-               คำนวณแผนเช่า
-             </Button>
-             <Button onClick={() => document.getElementById("lead")?.scrollIntoView({ behavior: "smooth" })}>ขอใบเสนอราคา</Button>
-           </div>
-         </div>
-       </div>
+        <Navbar />
  
        {/* Hero */}
        <div className="bg-secondary py-16 md:py-24">
@@ -356,7 +374,7 @@
                  label="รุ่นโดรน/ชุดระบบ"
                  value={productId}
                  onChange={setProductId}
-                 options={PRODUCTS.map((p) => ({ value: p.id, label: `${p.name} — ต้นทุน ${thb(p.costExTax)} (EX Tax)` }))}
+                  options={PRODUCTS.map((p) => ({ value: p.id, label: p.name }))}
                />
                <Select label="Use Case" value={useCase} onChange={setUseCase} options={[{ value: "patrol", label: "เฝ้าระวัง/ความปลอดภัย" }, { value: "mapping", label: "สำรวจ/แผนที่" }, { value: "inspection", label: "ตรวจสอบ/ตรวจสภาพ" }, { value: "dock", label: "Dock automation" }]} />
                <Select label="ระดับความต้องการ Ops" value={opsNeed} onChange={setOpsNeed} options={[{ value: "basic", label: "ปกติ (ไม่ต้อง SLA)" }, { value: "sla", label: "ต้องการ SLA ตอบรับเคส" }, { value: "spare", label: "ต้องการเครื่องสำรอง" }, { value: "managed", label: "ให้ดูแลแบบ Managed" }]} />
@@ -381,7 +399,7 @@
                  <div>
                    <p className="text-xs text-muted-foreground">ค่าเช่า/เดือน (ประมาณการ)</p>
                    <p className="text-xl font-bold text-foreground">{thb(calc.monthlySelected)} บาท</p>
-                   <p className="text-xs text-muted-foreground/70">ตัวคูณ: 1.60 / 1.90 / 2.30 + Service + Insurance admin</p>
+                    <p className="text-xs text-muted-foreground/70">รวม Service + Insurance admin</p>
                  </div>
                  <div className="text-right">
                    <p className="text-xs text-muted-foreground">มัดจำ ({calc.depositMonths} เดือน)</p>
@@ -392,13 +410,13 @@
                    <p className="font-bold text-primary">≈ {thb(calc.upfront)} บาท</p>
                  </div>
                </div>
-               <p className="text-xs text-muted-foreground/70">
-                 * ตัวเลขเป็น "ประมาณการขาย" — ปรับตามเบี้ยประกันจริง + SLA + ค่าใช้จ่ายหน้างานจริงได้
-               </p>
+                <p className="text-xs text-muted-foreground/70">
+                  * ตัวเลขเป็นประมาณการ — ราคาจริงอาจปรับตามเงื่อนไขโครงการ
+                </p>
              </div>
  
              <div className="mt-4 flex gap-2">
-               <Button variant="ghost" onClick={() => document.getElementById("calculator")?.scrollIntoView({ behavior: "smooth" })}>ปรับตัวเลขละเอียด</Button>
+              <Button variant="ghost" onClick={() => document.getElementById("packages")?.scrollIntoView({ behavior: "smooth" })}>ดูแพ็กเกจทั้งหมด</Button>
                <Button onClick={() => document.getElementById("lead")?.scrollIntoView({ behavior: "smooth" })}>
                  ขอใบเสนอราคา
                </Button>
@@ -414,13 +432,13 @@
            <Card>
              <div className="mb-3 flex items-center gap-2">
                <p className="text-lg font-bold text-foreground">Rent Standard</p>
-               <span className="rounded-full bg-secondary px-2 py-0.5 text-xs font-semibold text-muted-foreground">Multiplier 1.60</span>
+                <span className="rounded-full bg-secondary px-2 py-0.5 text-xs font-semibold text-muted-foreground">เริ่มต้น</span>
              </div>
              <p className="mb-4 text-sm text-muted-foreground">เหมาะสำหรับเริ่มต้นใช้งานและคุมงบ</p>
              <ul className="space-y-2 text-sm">
                {["เครื่อง+อุปกรณ์", "ประกันชั้น 1", "Service fee (Basic)", "PM ตามรอบ (ตามสัญญา)"].map((x) => (
                  <li key={x} className="flex items-center gap-2 text-foreground">
-                   <CheckCircle className="h-4 w-4 text-green-500" />
+                    <CheckCircle className="h-4 w-4 text-primary" />
                    {x}
                  </li>
                ))}
@@ -429,13 +447,13 @@
            <Card className="border-2 border-primary">
              <div className="mb-3 flex items-center gap-2">
                <p className="text-lg font-bold text-foreground">Rent Pro</p>
-               <span className="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-semibold text-primary">Multiplier 1.90</span>
+                <span className="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-semibold text-primary">แนะนำ</span>
              </div>
              <p className="mb-4 text-sm text-muted-foreground">เหมาะสำหรับงานหน้างานจริง — เน้น SLA และการตอบรับเคส</p>
              <ul className="space-y-2 text-sm">
                {["ทุกอย่างใน Standard", "SLA ตอบรับเคส", "รายงานสถานะรายเดือน", "เพิ่มเงื่อนไขเครื่องสำรอง (ตามตกลง)"].map((x) => (
                  <li key={x} className="flex items-center gap-2 text-foreground">
-                   <CheckCircle className="h-4 w-4 text-green-500" />
+                    <CheckCircle className="h-4 w-4 text-primary" />
                    {x}
                  </li>
                ))}
@@ -444,7 +462,7 @@
            <Card className="card-navy">
              <div className="mb-3 flex items-center gap-2">
                <p className="text-lg font-bold">Rent Managed</p>
-               <span className="rounded-full bg-white/20 px-2 py-0.5 text-xs font-semibold">Multiplier 2.30</span>
+                <span className="rounded-full bg-white/20 px-2 py-0.5 text-xs font-semibold">Enterprise</span>
              </div>
              <p className="mb-4 text-sm text-white/70">เหมาะสำหรับภาครัฐ/โรงงาน/ระบบเฝ้าระวัง — ให้ทีมเราดูแลทั้งระบบ</p>
              <ul className="space-y-2 text-sm">
@@ -515,46 +533,119 @@
                value={offerMessage}
                className="h-64 w-full resize-none rounded-xl border border-input bg-secondary p-3 text-sm text-foreground"
              />
-             <div className="mt-3 text-xs text-muted-foreground">*ต่อยอดเก็บ Lead อัตโนมัติ: Make.com → Google Sheet/CRM แล้วยิง webhook</div>
+              <div className="mt-3 text-xs text-muted-foreground">ทีมงานจะติดต่อกลับภายใน 24 ชั่วโมงในวันทำการ</div>
            </Card>
          </div>
  
-         <div className="mx-auto mt-10 max-w-5xl px-4">
-           <div className="rounded-3xl card-navy p-6">
-             <div className="grid gap-4 lg:grid-cols-3">
-               <div>
-                 <div className="text-lg font-semibold">พร้อมทำให้เป็นเว็บใช้งานจริง</div>
-                 <div className="mt-2 text-sm text-white/70">เพิ่ม SEO, UTM, Lead to CRM, LINE OA auto-reply, และ KPI dashboard</div>
-               </div>
-               <div className="grid gap-3 sm:grid-cols-3 lg:col-span-2">
-                 {[
-                   { t: "SEO Landing", d: "คีย์เวิร์ด + โครงสร้างหน้า" },
-                   { t: "Lead to CRM", d: "Make.com → Sheet/HubSpot" },
-                   { t: "SLA Templates", d: "เอกสารและ SOP" },
-                 ].map((x) => (
-                   <div key={x.t} className="rounded-2xl bg-white/10 p-4">
-                     <div className="text-sm font-semibold">{x.t}</div>
-                     <div className="mt-1 text-xs text-white/70">{x.d}</div>
-                   </div>
-                 ))}
-               </div>
-             </div>
-           </div>
-         </div>
+          <div className="mx-auto mt-10 max-w-5xl px-4">
+            <div className="rounded-3xl card-navy p-6 text-center">
+              <p className="text-lg font-semibold">LINE Official Account</p>
+              <p className="mt-1 text-2xl font-bold text-primary">@dji13enterprise</p>
+              <p className="mt-2 text-sm text-white/70">เพิ่มเพื่อนเพื่อติดต่อทีมงานได้เลย</p>
+            </div>
+          </div>
        </div>
  
-       {/* Footer */}
-       <div className="border-t border-border bg-card">
-         <div className="mx-auto max-w-6xl px-4 py-8">
-           <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-             <div>
-               <div className="text-sm font-semibold text-foreground">13 STORE Co., Ltd.</div>
-               <div className="text-xs text-muted-foreground">Drone Rental • High Profit Mode • Insurance Included</div>
-             </div>
-             <div className="text-xs text-muted-foreground">© {new Date().getFullYear()} 13 STORE. All rights reserved.</div>
-           </div>
-         </div>
-       </div>
-     </div>
-   );
- }
+        {/* Why Us Section */}
+        <div id="why-us" className="py-16 bg-secondary">
+          <SectionTitle eyebrow="Why Us" title="ความคุ้มค่า ที่วัดผลได้จริง" />
+          <div className="mx-auto grid max-w-5xl gap-6 px-4 md:grid-cols-2 lg:grid-cols-4">
+            {WHY_US.map((item) => (
+              <Card key={item.title} className="text-center">
+                <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
+                  <item.icon className="h-6 w-6 text-primary" />
+                </div>
+                <h3 className="font-semibold text-foreground">{item.title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{item.desc}</p>
+              </Card>
+            ))}
+          </div>
+          <p className="mx-auto mt-8 max-w-2xl text-center text-muted-foreground italic">
+            "ไม่ใช่แค่เช่าโดรน แต่ได้ระบบที่พร้อมทำงานและดูแลต่อเนื่องครับ"
+          </p>
+        </div>
+
+        {/* Use Cases Section */}
+        <div id="use-cases" className="py-16 bg-background">
+          <SectionTitle eyebrow="Use Cases" title="เหมาะกับงานแบบไหน" desc="คลิกเลือกประเภทงานเพื่อดูค่าเช่าที่เหมาะสม" />
+          <div className="mx-auto grid max-w-5xl gap-6 px-4 md:grid-cols-2 lg:grid-cols-4">
+            {USE_CASES.map((uc) => (
+              <Card 
+                key={uc.id} 
+                className="cursor-pointer hover:border-primary/50 transition-colors"
+                onClick={() => {
+                  setUseCase(uc.id);
+                  document.getElementById("packages")?.scrollIntoView({ behavior: "smooth" });
+                }}
+              >
+                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
+                  <uc.icon className="h-5 w-5 text-primary" />
+                </div>
+                <h3 className="font-semibold text-foreground">{uc.title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{uc.desc}</p>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        {/* Insurance Section */}
+        <div id="insurance" className="py-16 bg-secondary">
+          <SectionTitle eyebrow="Insurance" title="คุมความเสี่ยงให้ชัด ตั้งแต่วันแรก" desc="ค่าเช่ารวมประกันชั้น 1 (Hull + Third-party) ครอบคลุมตามเงื่อนไขกรมธรรม์" />
+          <div className="mx-auto grid max-w-5xl gap-6 px-4 md:grid-cols-3">
+            <Card>
+              <h3 className="font-semibold text-foreground">ค่าเช่ารวมประกันชั้น 1</h3>
+              <p className="mt-2 text-sm text-muted-foreground">รายละเอียดตามรุ่น/กรมธรรม์ ไม่ต้องจัดการเอง</p>
+            </Card>
+            <Card>
+              <h3 className="font-semibold text-foreground">Deductible ชัดเจน</h3>
+              <p className="mt-2 text-sm text-muted-foreground">มีส่วนร่วมจ่ายตามเงื่อนไข เพื่อคุมค่าใช้จ่ายอย่างเป็นธรรม</p>
+            </Card>
+            <Card>
+              <h3 className="font-semibold text-foreground">กระบวนการเคลมชัด</h3>
+              <p className="mt-2 text-sm text-muted-foreground">แจ้งเหตุ/เคลมตามขั้นตอน ลดเวลาหยุดงาน</p>
+            </Card>
+          </div>
+          <p className="mx-auto mt-8 max-w-2xl text-center text-muted-foreground italic">
+            "ทีมเราช่วยดูแลเอกสารเคลมและกระบวนการซ่อมให้ตามขั้นตอนครับ"
+          </p>
+        </div>
+
+        {/* Trust Section */}
+        <div id="trust" className="py-16 bg-background">
+          <SectionTitle eyebrow="Trust" title="มาตรฐานที่คุณวางใจได้" />
+          <div className="mx-auto grid max-w-5xl gap-6 px-4 md:grid-cols-3">
+            <Card className="text-center">
+              <Building2 className="mx-auto h-8 w-8 text-primary mb-3" />
+              <h3 className="font-semibold text-foreground">กระบวนการส่งมอบมาตรฐาน</h3>
+              <p className="mt-2 text-sm text-muted-foreground">Checklist + เทรน + SOP</p>
+            </Card>
+            <Card className="text-center">
+              <MessageSquare className="mx-auto h-8 w-8 text-primary mb-3" />
+              <h3 className="font-semibold text-foreground">รายงานประจำเดือน</h3>
+              <p className="mt-2 text-sm text-muted-foreground">(Pro/Managed) สรุปการใช้งาน/PM/สถานะเครื่อง</p>
+            </Card>
+            <Card className="text-center">
+              <Shield className="mx-auto h-8 w-8 text-primary mb-3" />
+              <h3 className="font-semibold text-foreground">ทีมซัพพอร์ต</h3>
+              <p className="mt-2 text-sm text-muted-foreground">13 STORE Co., Ltd.</p>
+            </Card>
+          </div>
+        </div>
+
+        {/* FAQ Section */}
+        <div id="faq" className="py-16 bg-secondary">
+          <SectionTitle eyebrow="FAQ" title="คำถามที่พบบ่อย" />
+          <div className="mx-auto max-w-3xl px-4">
+            <Card>
+              {FAQ_ITEMS.map((item) => (
+                <FAQItem key={item.q} question={item.q} answer={item.a} />
+              ))}
+            </Card>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <Footer />
+      </div>
+    );
+  }
