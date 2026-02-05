@@ -17,6 +17,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { FlyingDrone } from "@/components/icons/DroneIcon";
 
 const useCaseOptions = [
   { value: "industrial", label: "Industrial Monitoring", icon: Factory, multiplier: 1.2 },
@@ -84,7 +85,25 @@ const ROICalculator = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative overflow-hidden">
+      {/* Animated Drones */}
+      <FlyingDrone
+        className="w-11 h-11"
+        pathX={[60, 220, 380, 280, 100, 60]}
+        pathY={[130, 170, 110, 190, 150, 130]}
+        rotation={[0, 10, -8, 12, -5, 0]}
+        duration={17}
+        color="text-primary/20"
+      />
+      <FlyingDrone
+        className="w-9 h-9"
+        pathX={[350, 180, 30, 150, 320, 350]}
+        pathY={[250, 200, 230, 290, 220, 250]}
+        rotation={[0, -10, 8, -10, 6, 0]}
+        duration={15}
+        delay={4}
+        color="text-emerald-500/20"
+      />
       <Navbar />
       <main className="pt-20 pb-16">
         <div className="section-container">

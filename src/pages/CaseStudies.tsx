@@ -8,6 +8,7 @@ import {
   CheckCircle, TrendingUp, Clock, Users, DollarSign, Award,
   Quote, Star, MapPin, Zap
 } from "lucide-react";
+import { FlyingDrone } from "@/components/icons/DroneIcon";
 
 const caseStudies = [
   {
@@ -349,7 +350,25 @@ const CaseStudies = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative overflow-hidden">
+      {/* Animated Drones representing successful missions */}
+      <FlyingDrone
+        className="w-11 h-11"
+        pathX={[80, 280, 480, 320, 120, 80]}
+        pathY={[180, 220, 150, 250, 200, 180]}
+        rotation={[0, 10, -8, 12, -5, 0]}
+        duration={20}
+        color="text-primary/20"
+      />
+      <FlyingDrone
+        className="w-9 h-9"
+        pathX={[450, 250, 80, 200, 400, 450]}
+        pathY={[350, 280, 320, 400, 300, 350]}
+        rotation={[0, -8, 10, -10, 6, 0]}
+        duration={17}
+        delay={6}
+        color="text-violet-500/20"
+      />
       <Navbar />
       <main className="pt-16">
         <PresentationLayout sections={sections} />

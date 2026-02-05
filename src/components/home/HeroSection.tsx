@@ -3,8 +3,28 @@ import { ArrowRight, Play, Calendar, FileText } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-drone-city.jpg";
+import { FlyingDrone } from "@/components/icons/DroneIcon";
+
 export function HeroSection() {
   return <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Animated Drones */}
+      <FlyingDrone
+        className="w-14 h-14"
+        pathX={[100, 300, 500, 400, 200, 100]}
+        pathY={[100, 150, 80, 180, 120, 100]}
+        rotation={[0, 8, -6, 12, -4, 0]}
+        duration={20}
+        color="text-primary/40"
+      />
+      <FlyingDrone
+        className="w-12 h-12"
+        pathX={[500, 300, 100, 250, 450, 500]}
+        pathY={[200, 120, 180, 250, 160, 200]}
+        rotation={[0, -10, 8, -8, 6, 0]}
+        duration={18}
+        delay={5}
+        color="text-primary/30"
+      />
       {/* Background Image */}
       <div className="absolute inset-0">
         <img src={heroImage} alt="Enterprise Drone Solutions" className="w-full h-full object-cover" />

@@ -4,26 +4,7 @@ import {
   ArrowRight, CheckCircle
 } from "lucide-react";
 import { useState } from "react";
-
-// Custom Drone SVG Icon
-const DroneIcon = ({ className }: { className?: string }) => (
-  <svg viewBox="0 0 64 64" className={className} fill="currentColor">
-    <ellipse cx="32" cy="32" rx="8" ry="4" />
-    <circle cx="32" cy="34" r="2" />
-    <rect x="12" y="30" width="16" height="3" rx="1.5" />
-    <rect x="36" y="30" width="16" height="3" rx="1.5" />
-    <rect x="30" y="18" width="3" height="12" rx="1.5" />
-    <rect x="30" y="34" width="3" height="12" rx="1.5" />
-    <ellipse cx="12" cy="20" rx="6" ry="2" />
-    <ellipse cx="52" cy="20" rx="6" ry="2" />
-    <ellipse cx="12" cy="44" rx="6" ry="2" />
-    <ellipse cx="52" cy="44" rx="6" ry="2" />
-    <circle cx="12" cy="20" r="2.5" />
-    <circle cx="52" cy="20" r="2.5" />
-    <circle cx="12" cy="44" r="2.5" />
-    <circle cx="52" cy="44" r="2.5" />
-  </svg>
-);
+import { FlyingDrone } from "@/components/icons/DroneIcon";
 
 const useCases = [
   {
@@ -90,41 +71,35 @@ export function UseCasesDiagram() {
   return (
     <div className="relative py-8 overflow-hidden">
       {/* Animated Drones flying across use cases */}
-      <motion.div
-        className="absolute top-10 left-20 z-10 opacity-60"
-        animate={isAnimating ? {
-          x: [0, 300, 600, 450, 150, 0],
-          y: [0, 40, 20, 70, 30, 0],
-          rotate: [0, 12, -8, 15, -5, 0]
-        } : {}}
-        transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
-      >
-        <DroneIcon className="w-10 h-10 text-blue-500 drop-shadow-md" />
-      </motion.div>
-
-      <motion.div
-        className="absolute top-32 right-10 z-10 opacity-50"
-        animate={isAnimating ? {
-          x: [0, -200, -400, -300, -100, 0],
-          y: [0, 50, 25, 80, 40, 0],
-          rotate: [0, -10, 8, -12, 6, 0]
-        } : {}}
-        transition={{ duration: 13, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-      >
-        <DroneIcon className="w-8 h-8 text-amber-500 drop-shadow-md" />
-      </motion.div>
-
-      <motion.div
-        className="absolute bottom-48 left-1/3 z-10 opacity-40"
-        animate={isAnimating ? {
-          x: [0, 150, 300, 200, 80, 0],
-          y: [0, -30, -15, -50, -20, 0],
-          rotate: [0, 6, -10, 8, -4, 0]
-        } : {}}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 5 }}
-      >
-        <DroneIcon className="w-7 h-7 text-red-500 drop-shadow-md" />
-      </motion.div>
+      <FlyingDrone
+        className="w-10 h-10"
+        pathX={[0, 300, 600, 450, 150, 0]}
+        pathY={[0, 40, 20, 70, 30, 0]}
+        rotation={[0, 12, -8, 15, -5, 0]}
+        duration={16}
+        isAnimating={isAnimating}
+        color="text-blue-500"
+      />
+      <FlyingDrone
+        className="w-8 h-8"
+        pathX={[0, -200, -400, -300, -100, 0]}
+        pathY={[0, 50, 25, 80, 40, 0]}
+        rotation={[0, -10, 8, -12, 6, 0]}
+        duration={13}
+        delay={2}
+        isAnimating={isAnimating}
+        color="text-amber-500"
+      />
+      <FlyingDrone
+        className="w-7 h-7"
+        pathX={[0, 150, 300, 200, 80, 0]}
+        pathY={[0, -30, -15, -50, -20, 0]}
+        rotation={[0, 6, -10, 8, -4, 0]}
+        duration={10}
+        delay={5}
+        isAnimating={isAnimating}
+        color="text-red-500"
+      />
       {/* Title */}
       <motion.div 
         initial={{ opacity: 0, y: -20 }}

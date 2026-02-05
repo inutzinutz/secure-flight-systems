@@ -10,6 +10,7 @@ import {
 import { Link } from "react-router-dom";
 import { StrategicDiagram } from "@/components/altura/StrategicDiagram";
 import { DeploymentDiagram } from "@/components/altura/DeploymentDiagram";
+import { FlyingDrone } from "@/components/icons/DroneIcon";
 
 const executiveNarrative = [
   { icon: Eye, title: "ดวงตา", subtitle: "เฝ้าระวัง", desc: "ดวงตาเฝ้าระวังทุกพื้นที่" },
@@ -432,7 +433,34 @@ const Altura = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative overflow-hidden">
+      {/* Animated VTOL Drones */}
+      <FlyingDrone
+        className="w-14 h-14"
+        pathX={[50, 300, 550, 400, 150, 50]}
+        pathY={[200, 280, 180, 320, 240, 200]}
+        rotation={[0, 12, -10, 15, -6, 0]}
+        duration={24}
+        color="text-primary/20"
+      />
+      <FlyingDrone
+        className="w-12 h-12"
+        pathX={[520, 300, 80, 220, 480, 520]}
+        pathY={[450, 360, 420, 500, 380, 450]}
+        rotation={[0, -12, 10, -12, 8, 0]}
+        duration={20}
+        delay={8}
+        color="text-emerald-500/20"
+      />
+      <FlyingDrone
+        className="w-10 h-10"
+        pathX={[280, 450, 600, 400, 200, 280]}
+        pathY={[100, 160, 80, 180, 120, 100]}
+        rotation={[0, 8, -8, 10, -5, 0]}
+        duration={18}
+        delay={4}
+        color="text-blue-500/20"
+      />
       <Navbar />
       <main className="pt-16">
         <PresentationLayout sections={sections} />

@@ -5,26 +5,7 @@ import {
   Camera, Brain, Zap
 } from "lucide-react";
 import { useState } from "react";
-
-// Custom Drone SVG Icon
-const DroneIcon = ({ className }: { className?: string }) => (
-  <svg viewBox="0 0 64 64" className={className} fill="currentColor">
-    <ellipse cx="32" cy="32" rx="8" ry="4" />
-    <circle cx="32" cy="34" r="2" />
-    <rect x="12" y="30" width="16" height="3" rx="1.5" />
-    <rect x="36" y="30" width="16" height="3" rx="1.5" />
-    <rect x="30" y="18" width="3" height="12" rx="1.5" />
-    <rect x="30" y="34" width="3" height="12" rx="1.5" />
-    <ellipse cx="12" cy="20" rx="6" ry="2" />
-    <ellipse cx="52" cy="20" rx="6" ry="2" />
-    <ellipse cx="12" cy="44" rx="6" ry="2" />
-    <ellipse cx="52" cy="44" rx="6" ry="2" />
-    <circle cx="12" cy="20" r="2.5" />
-    <circle cx="52" cy="20" r="2.5" />
-    <circle cx="12" cy="44" r="2.5" />
-    <circle cx="52" cy="44" r="2.5" />
-  </svg>
-);
+import { FlyingDrone } from "@/components/icons/DroneIcon";
 
 const aiCategories = [
   {
@@ -72,29 +53,25 @@ export function AIFunctionsDiagram() {
   return (
     <div className="relative py-8 overflow-hidden">
       {/* Animated Drones */}
-      <motion.div
-        className="absolute top-16 right-10 z-10 opacity-60"
-        animate={isAnimating ? {
-          x: [0, -180, -350, -250, -80, 0],
-          y: [0, 60, 30, 90, 40, 0],
-          rotate: [0, -10, 5, -15, 8, 0]
-        } : {}}
-        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-      >
-        <DroneIcon className="w-10 h-10 text-primary drop-shadow-md" />
-      </motion.div>
-
-      <motion.div
-        className="absolute bottom-40 left-5 z-10 opacity-50"
-        animate={isAnimating ? {
-          x: [0, 120, 280, 200, 60, 0],
-          y: [0, -30, -50, -20, -40, 0],
-          rotate: [0, 8, -5, 12, -8, 0]
-        } : {}}
-        transition={{ duration: 11, repeat: Infinity, ease: "easeInOut", delay: 3 }}
-      >
-        <DroneIcon className="w-8 h-8 text-emerald-500 drop-shadow-md" />
-      </motion.div>
+      <FlyingDrone
+        className="w-10 h-10"
+        pathX={[0, -180, -350, -250, -80, 0]}
+        pathY={[0, 60, 30, 90, 40, 0]}
+        rotation={[0, -10, 5, -15, 8, 0]}
+        duration={14}
+        isAnimating={isAnimating}
+        color="text-primary"
+      />
+      <FlyingDrone
+        className="w-8 h-8"
+        pathX={[0, 120, 280, 200, 60, 0]}
+        pathY={[0, -30, -50, -20, -40, 0]}
+        rotation={[0, 8, -5, 12, -8, 0]}
+        duration={11}
+        delay={3}
+        isAnimating={isAnimating}
+        color="text-emerald-500"
+      />
       {/* Title */}
       <motion.div 
         initial={{ opacity: 0, y: -20 }}

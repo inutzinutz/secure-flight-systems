@@ -3,6 +3,7 @@
  import { cn } from "@/lib/utils";
  import { Navbar } from "@/components/layout/Navbar";
  import { Footer } from "@/components/layout/Footer";
+ import { FlyingDrone } from "@/components/icons/DroneIcon";
  
  const PRODUCTS = [
    {
@@ -317,7 +318,25 @@ function Card({ children, className = "", onClick }: { children: React.ReactNode
    }, [rec, useCase, product, calc, leadName, leadOrg, leadPhone, leadEmail]);
  
    return (
-     <div className="min-h-screen bg-background font-sans text-foreground antialiased">
+     <div className="min-h-screen bg-background font-sans text-foreground antialiased relative overflow-hidden">
+       {/* Animated Rental Drones */}
+       <FlyingDrone
+         className="w-11 h-11"
+         pathX={[80, 300, 520, 380, 140, 80]}
+         pathY={[140, 200, 120, 220, 160, 140]}
+         rotation={[0, 8, -10, 12, -6, 0]}
+         duration={19}
+         color="text-primary/20"
+       />
+       <FlyingDrone
+         className="w-9 h-9"
+         pathX={[480, 260, 60, 180, 420, 480]}
+         pathY={[280, 220, 260, 320, 240, 280]}
+         rotation={[0, -10, 8, -8, 6, 0]}
+         duration={16}
+         delay={5}
+         color="text-amber-500/20"
+       />
         <Navbar />
  
        {/* Hero */}
