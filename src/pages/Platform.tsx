@@ -27,7 +27,7 @@ const Platform = () => {
         <ScrollSection variant="hero" id="hero">
           <SlideTitle
             badge="แผนงานแพลตฟอร์มโดรน LM — เชิงยุทธศาสตร์ + ใช้งานจริง + ขายได้"
-            title="LM Platform"
+            title="UAV AI Platform"
             subtitle="Command & Intelligence Platform"
             description="ระบบปฏิบัติการโดรนอัจฉริยะของรัฐและองค์กรขนาดใหญ่"
           />
