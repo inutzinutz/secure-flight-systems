@@ -55,7 +55,7 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-3 text-sm text-muted-foreground">
                 <Mail size={16} className="text-primary" />
-                <span>contact@dji13store.com</span>
+                <span>contact@uavsystem.cloud</span>
               </li>
             </ul>
             <div className="flex items-center gap-4 mt-6">
