@@ -10,8 +10,8 @@ import {
 import { Link } from "react-router-dom";
 import { StrategicDiagram } from "@/components/altura/StrategicDiagram";
 import { DeploymentDiagram } from "@/components/altura/DeploymentDiagram";
+import { ProductShowcase } from "@/components/altura/ProductShowcase";
 import { FlyingDrone } from "@/components/icons/DroneIcon";
-
 const executiveNarrative = [
   { icon: Eye, title: "ดวงตา", subtitle: "เฝ้าระวัง", desc: "ดวงตาเฝ้าระวังทุกพื้นที่" },
   { icon: Brain, title: "สมอง", subtitle: "วิเคราะห์", desc: "สมองวิเคราะห์และประมวลผล" },
@@ -153,6 +153,16 @@ const Altura = () => {
       content: (
         <PresentationSlide centered={false}>
           <StrategicDiagram />
+        </PresentationSlide>
+      )
+    },
+
+    // Slide 4: Product Showcase (NEW)
+    {
+      id: "products",
+      content: (
+        <PresentationSlide centered={false}>
+          <ProductShowcase />
         </PresentationSlide>
       )
     },
