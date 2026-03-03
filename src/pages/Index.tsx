@@ -8,8 +8,6 @@ import { ProcessSection } from "@/components/home/ProcessSection";
 import { UseCasesSection } from "@/components/home/UseCasesSection";
 import { CTASection } from "@/components/home/CTASection";
 import { ClientsSection } from "@/components/home/ClientsSection";
-import { TestimonialsSection } from "@/components/home/TestimonialsSection";
-
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
@@ -19,10 +17,9 @@ const Index = () => {
         <PainSection />
         <ArchitectureSection />
         <PillarsSection />
-         <ClientsSection />
+        <ClientsSection />
         <ProcessSection />
         <UseCasesSection />
-        <TestimonialsSection />
         <CTASection />
       </main>
       <Footer />
