@@ -727,7 +727,7 @@ export default function DroneRental() {
                 <p className="text-sm font-semibold text-muted-foreground">
                   ข้อเสนอแนะนำ (Realtime)
                 </p>
-                <p className="text-xs text-muted-foreground/70">
+                <p className="text-xs text-muted-foreground">
                   ระบบแนะนำแพ็กเกจที่เหมาะสมตามความต้องการ
                 </p>
               </div>
@@ -800,7 +800,7 @@ export default function DroneRental() {
                   <p className="text-xl font-bold text-foreground">
                     {thb(calc.monthlySelected)} บาท
                   </p>
-                  <p className="text-xs text-muted-foreground/70">
+                  <p className="text-xs text-muted-foreground">
                     รวม Service + Insurance admin
                   </p>
                 </div>
@@ -819,7 +819,7 @@ export default function DroneRental() {
                   <p className="font-bold text-primary">≈ {thb(calc.upfront)} บาท</p>
                 </div>
               </div>
-              <p className="text-xs text-muted-foreground/70">
+              <p className="text-xs text-muted-foreground">
                 * ตัวเลขเป็นประมาณการ — ราคาจริงอาจปรับตามเงื่อนไขโครงการ
               </p>
             </div>
@@ -930,7 +930,7 @@ export default function DroneRental() {
               <p
                 className={cn(
                   "mb-4 text-sm",
-                  pkg.id === "managed" ? "text-white/70" : "text-muted-foreground"
+                  pkg.id === "managed" ? "text-white/90" : "text-muted-foreground"
                 )}
               >
                 {pkg.desc}
@@ -1120,7 +1120,7 @@ export default function DroneRental() {
                 <p className="text-sm font-semibold text-muted-foreground mb-1">
                   ผลลัพธ์ประมาณการ
                 </p>
-                <p className="text-xs text-muted-foreground/70 mb-4">
+                <p className="text-xs text-muted-foreground mb-4">
                   {product?.name} · {pkgLabel} · {calc.term} เดือน
                 </p>
 
@@ -1156,7 +1156,7 @@ export default function DroneRental() {
                   ))}
                 </div>
 
-                <p className="mt-3 text-xs text-muted-foreground/70">
+                <p className="mt-3 text-xs text-muted-foreground">
                   * ตัวเลขเป็นประมาณการ — ราคาจริงอาจปรับตามเงื่อนไขโครงการ
                 </p>
               </div>
@@ -1396,7 +1396,7 @@ export default function DroneRental() {
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
               พร้อมเริ่มต้นโครงการของคุณ?
             </h2>
-            <p className="text-white/70 mb-8 max-w-xl mx-auto">
+            <p className="text-white/90 mb-8 max-w-xl mx-auto">
               ติดต่อทีมเราวันนี้ รับคำปรึกษาฟรี พร้อมใบเสนอราคาแบบครบวงจร
             </p>
             <div className="flex flex-wrap justify-center gap-4">

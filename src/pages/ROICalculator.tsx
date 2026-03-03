@@ -315,7 +315,7 @@ const ROICalculator = () => {
                     >
                       {calculations.threeYearROI}%
                     </motion.p>
-                    <p className="text-sm text-white/70">ROI 3 ปี</p>
+                    <p className="text-sm text-white/90">ROI 3 ปี</p>
                   </div>
                   <div className="text-center">
                     <motion.p 
@@ -325,7 +325,7 @@ const ROICalculator = () => {
                     >
                       {calculations.savingsPercent}%
                     </motion.p>
-                    <p className="text-sm text-white/70">ประหยัดค่าใช้จ่าย</p>
+                    <p className="text-sm text-white/90">ประหยัดค่าใช้จ่าย</p>
                   </div>
                 </div>
               </div>

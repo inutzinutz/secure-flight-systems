@@ -84,7 +84,7 @@ const Resources = () => {
                       <FileText className="w-6 h-6 text-primary" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="font-semibold text-foreground mb-1">{resource.title}</h3>
+                      <h2 className="font-semibold text-foreground mb-1">{resource.title}</h2>
                       <p className="text-sm text-muted-foreground mb-3">{resource.description}</p>
                       <div className="flex items-center justify-between">
                         <span className="text-xs text-muted-foreground">{resource.type} • {resource.size}</span>

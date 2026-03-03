@@ -108,7 +108,7 @@ const Contact = () => {
               {/* Contact Info */}
               <div className="space-y-8">
                 <div>
-                  <h3 className="text-xl font-semibold text-foreground mb-4">ติดต่อเรา</h3>
+                  <h2 className="text-xl font-semibold text-foreground mb-4">ติดต่อเรา</h2>
                   <div className="space-y-4">
                     <div className="flex items-start gap-3">
                       <MapPin className="w-5 h-5 text-primary mt-0.5" />
@@ -135,7 +135,7 @@ const Contact = () => {
                 </div>
 
                 <div className="p-6 rounded-2xl bg-card border border-border/50">
-                  <h4 className="font-semibold text-foreground mb-3">เราทำอะไรได้บ้าง?</h4>
+                  <h3 className="font-semibold text-foreground mb-3">เราทำอะไรได้บ้าง?</h3>
                   <ul className="space-y-2">
                     {["จัด Workshop กับทีมของคุณ", "Survey พื้นที่และออกแบบ Solution", "Demo ระบบและอุปกรณ์จริง", "จัดทำใบเสนอราคา TOR-ready"].map((item) => (
                       <li key={item} className="flex items-center gap-2 text-sm text-muted-foreground">

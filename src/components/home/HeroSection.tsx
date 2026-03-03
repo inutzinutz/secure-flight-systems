@@ -39,6 +39,9 @@ export function HeroSection() {
           src={heroImage}
           alt="Enterprise Drone Solutions"
           className="w-full h-full object-cover"
+          width={1920}
+          height={1080}
+          fetchPriority="high"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background/85 via-background/65 to-background" />
         <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/30 to-transparent" />
@@ -158,14 +161,14 @@ export function HeroSection() {
         transition={{ delay: 1.2 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
       >
-        <span className="text-xs text-muted-foreground/60 tracking-widest uppercase">
+        <span className="text-xs text-muted-foreground tracking-widest uppercase">
           scroll
         </span>
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
         >
-          <ChevronDown className="w-5 h-5 text-muted-foreground/50" />
+          <ChevronDown className="w-5 h-5 text-muted-foreground" />
         </motion.div>
       </motion.div>
     </section>

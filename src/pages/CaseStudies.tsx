@@ -282,7 +282,7 @@ const CaseStudies = () => {
                 </div>
                 <div>
                   <p className="font-medium text-white">{cs.testimonial.author}</p>
-                  <p className="text-sm text-white/70">{cs.testimonial.company}</p>
+                  <p className="text-sm text-white/90">{cs.testimonial.company}</p>
                 </div>
                 <div className="ml-auto flex gap-1">
                   {[1,2,3,4,5].map((star) => (

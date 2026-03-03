@@ -140,7 +140,7 @@ export function PillarsSection() {
                   </p>
 
                   {/* Description */}
-                  <p className="text-white/70 text-sm mb-6 leading-relaxed">
+                  <p className="text-white/90 text-sm mb-6 leading-relaxed">
                     {pillar.description}
                   </p>
 

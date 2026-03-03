@@ -253,7 +253,7 @@ export function ProductShowcase() {
             </div>
             {/* Category badge */}
             <div className="absolute bottom-4 left-4 right-4 px-4 py-2 rounded-xl bg-black/70 backdrop-blur-sm text-white">
-              <p className="text-xs text-white/70">{currentProduct.category}</p>
+              <p className="text-xs text-white/90">{currentProduct.category}</p>
               <p className="font-semibold">{currentProduct.name}</p>
             </div>
           </div>

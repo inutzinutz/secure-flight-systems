@@ -837,7 +837,7 @@ const Enterprise = () => {
               transition={{ delay: 0.3 }}
               className="relative overflow-hidden rounded-2xl"
             >
-              <img src={enterpriseTeam1} alt="ทีม Enterprise หน้างาน" className="w-full h-56 object-cover" />
+              <img src={enterpriseTeam1} alt="ทีม Enterprise หน้างาน" className="w-full h-56 object-cover" width={800} height={224} loading="lazy" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               <div className="absolute bottom-4 left-4 right-4">
                 <p className="text-white font-bold">ทีมปฏิบัติการหน้างาน</p>
@@ -850,7 +850,7 @@ const Enterprise = () => {
               transition={{ delay: 0.4 }}
               className="relative overflow-hidden rounded-2xl"
             >
-              <img src={enterpriseTeam2} alt="ทีม Training & Support" className="w-full h-56 object-cover" />
+              <img src={enterpriseTeam2} alt="ทีม Training & Support" className="w-full h-56 object-cover" width={800} height={224} loading="lazy" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               <div className="absolute bottom-4 left-4 right-4">
                 <p className="text-white font-bold">ทีม Training & Support</p>
@@ -1003,7 +1003,7 @@ const Enterprise = () => {
               className="rounded-2xl overflow-hidden bg-card border border-border"
             >
               <div className="relative h-44 overflow-hidden">
-                <img src={enterpriseCase1} alt="Case Study - ภาครัฐ" className="w-full h-full object-cover" />
+                <img src={enterpriseCase1} alt="Case Study - ภาครัฐ" className="w-full h-full object-cover" width={800} height={176} loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                 <div className="absolute bottom-3 left-3 right-3">
                   <span className="px-2 py-0.5 rounded-full bg-primary text-primary-foreground text-xs font-bold">ภาครัฐ</span>
@@ -1035,7 +1035,7 @@ const Enterprise = () => {
               className="rounded-2xl overflow-hidden bg-card border border-border"
             >
               <div className="relative h-44 overflow-hidden">
-                <img src={enterpriseCase2} alt="Case Study - นิคมอุตสาหกรรม" className="w-full h-full object-cover" />
+                <img src={enterpriseCase2} alt="Case Study - นิคมอุตสาหกรรม" className="w-full h-full object-cover" width={800} height={176} loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                 <div className="absolute bottom-3 left-3 right-3">
                   <span className="px-2 py-0.5 rounded-full bg-emerald-500 text-white text-xs font-bold">อุตสาหกรรม</span>
