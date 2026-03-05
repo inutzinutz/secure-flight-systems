@@ -502,7 +502,7 @@ export default function DroneRental() {
     const monthlySelected =
       pkg === "standard" ? standard : pkg === "pro" ? pro : managed;
 
-    const depositMonths = term === 12 ? 3 : term === 24 ? 2 : 1;
+    const depositMonths = 2;
     const deposit = monthlySelected * depositMonths;
     const upfront = deposit + setup;
     const contractValue = monthlySelected * term + setup;
