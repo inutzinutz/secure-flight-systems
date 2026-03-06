@@ -24,7 +24,6 @@ import {
   Download,
   X,
   Printer,
-  Building,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Navbar } from "@/components/layout/Navbar";
@@ -1513,21 +1512,12 @@ export default function DroneRental() {
                 </p>
               </div>
 
-              <div className="mt-6 flex flex-col gap-2">
-                <button
-                  onClick={() => scrollTo("lead")}
-                  className="btn-hero-primary justify-center w-full"
-                >
-                  ขอใบเสนอราคาอย่างเป็นทางการ
-                </button>
-                <button
-                  onClick={() => setShowGovContract(true)}
-                  className="flex items-center justify-center gap-2 w-full rounded-xl border-2 border-primary/50 bg-primary/5 px-4 py-2.5 text-sm font-semibold text-primary hover:bg-primary/10 transition"
-                >
-                  <Building size={16} />
-                  ดาวน์โหลดสัญญาภาครัฐ (ร่าง)
-                </button>
-              </div>
+              <button
+                onClick={() => scrollTo("lead")}
+                className="btn-hero-primary mt-6 justify-center w-full"
+              >
+                ขอใบเสนอราคาอย่างเป็นทางการ
+              </button>
             </Card>
           </div>
         </div>
@@ -1678,14 +1668,6 @@ export default function DroneRental() {
                   className="btn-hero-primary disabled:opacity-60"
                 >
                   {isSubmitting ? "กำลังส่ง..." : "ขอใบเสนอราคา"}
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setShowGovContract(true)}
-                  className="inline-flex items-center gap-2 rounded-xl border-2 border-primary/50 bg-primary/5 px-4 py-2 text-sm font-semibold text-primary hover:bg-primary/10 transition"
-                >
-                  <Building size={16} />
-                  สัญญาภาครัฐ (ร่าง)
                 </button>
                 <button
                   type="button"
