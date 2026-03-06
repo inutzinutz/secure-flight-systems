@@ -18,6 +18,7 @@ const Contact = lazy(() => import("./pages/Contact"));
 const CaseStudies = lazy(() => import("./pages/CaseStudies"));
 const ROICalculator = lazy(() => import("./pages/ROICalculator"));
 const DroneRental = lazy(() => import("./pages/DroneRental"));
+const DroneRentalAgreement = lazy(() => import("./pages/DroneRentalAgreement"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -49,6 +50,7 @@ const App = () => (
             <Route path="/case-studies" element={<CaseStudies />} />
             <Route path="/roi-calculator" element={<ROICalculator />} />
             <Route path="/drone-rental" element={<DroneRental />} />
+            <Route path="/drone-rental/agreement" element={<DroneRentalAgreement />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

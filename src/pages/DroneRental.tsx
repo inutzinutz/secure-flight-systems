@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   CheckCircle,
   Shield,
@@ -21,6 +21,10 @@ import {
   Mail,
   ArrowRight,
   Zap,
+  Download,
+  X,
+  Printer,
+  Building,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Navbar } from "@/components/layout/Navbar";
@@ -455,6 +459,16 @@ export default function DroneRental() {
   const [leadEmail, setLeadEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Government contract state
+  const [showGovContract, setShowGovContract] = useState(false);
+  const [govAgency, setGovAgency] = useState("");
+  const [govAddress, setGovAddress] = useState("");
+  const [govTaxId, setGovTaxId] = useState("");
+  const [govAuthorized, setGovAuthorized] = useState("");
+  const [govPosition, setGovPosition] = useState("");
+  const [govDept, setGovDept] = useState("");
+  const contractRef = useRef<HTMLDivElement>(null);
+
   const product = useMemo(() => PRODUCTS.find((p) => p.id === productId), [productId]);
 
   // Auto-adjust defaults for Automation Bundle
@@ -620,10 +634,348 @@ export default function DroneRental() {
   const scrollTo = (id: string) =>
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
+  const handlePrintContract = () => {
+    if (!govAgency.trim()) {
+      toast.error("กรุณากรอกชื่อหน่วยงานก่อนพิมพ์สัญญา");
+      return;
+    }
+    window.print();
+  };
+
+  // ─── Government Contract Modal ────────────────────────────────────────────
+
+  const today = new Date();
+  const buddhistYear = today.getFullYear() + 543;
+  const thaiMonths = [
+    "มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน",
+    "กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม",
+  ];
+  const contractDate = `${today.getDate()} ${thaiMonths[today.getMonth()]} พ.ศ. ${buddhistYear}`;
+  const contractEndDate = (() => {
+    const end = new Date(today);
+    end.setMonth(end.getMonth() + calc.term);
+    return `${end.getDate()} ${thaiMonths[end.getMonth()]} พ.ศ. ${end.getFullYear() + 543}`;
+  })();
+
+  const GovContractModal = () => (
+    <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/60 backdrop-blur-sm overflow-y-auto py-8 px-4">
+      <div className="relative w-full max-w-4xl bg-white rounded-2xl shadow-2xl">
+        {/* Modal header */}
+        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200 print:hidden">
+          <div className="flex items-center gap-2">
+            <Building className="w-5 h-5 text-primary" />
+            <span className="font-semibold text-foreground">สัญญาเช่าโดรนสำหรับหน่วยงานภาครัฐ</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={handlePrintContract}
+              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition"
+            >
+              <Printer size={16} />
+              พิมพ์ / บันทึก PDF
+            </button>
+            <button
+              onClick={() => setShowGovContract(false)}
+              className="p-2 rounded-xl hover:bg-gray-100 transition"
+            >
+              <X size={20} />
+            </button>
+          </div>
+        </div>
+
+        {/* Gov info form */}
+        <div className="px-6 py-4 bg-blue-50 border-b border-blue-100 print:hidden">
+          <p className="text-xs font-semibold text-blue-700 uppercase tracking-wide mb-3">
+            กรอกข้อมูลหน่วยงานภาครัฐ (จะแสดงในสัญญา)
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <p className="mb-1 text-xs font-medium text-gray-600">ชื่อหน่วยงาน <span className="text-red-500">*</span></p>
+              <input
+                type="text"
+                value={govAgency}
+                onChange={(e) => setGovAgency(e.target.value)}
+                placeholder="เช่น กรมป่าไม้ / กองทัพบก"
+                className="w-full rounded-xl border border-gray-300 bg-white px-3 py-2 text-sm outline-none focus:border-primary focus:ring-1 focus:ring-primary"
+              />
+            </div>
+            <div>
+              <p className="mb-1 text-xs font-medium text-gray-600">กรม/กอง/ฝ่าย</p>
+              <input
+                type="text"
+                value={govDept}
+                onChange={(e) => setGovDept(e.target.value)}
+                placeholder="เช่น กองการบิน"
+                className="w-full rounded-xl border border-gray-300 bg-white px-3 py-2 text-sm outline-none focus:border-primary focus:ring-1 focus:ring-primary"
+              />
+            </div>
+            <div>
+              <p className="mb-1 text-xs font-medium text-gray-600">ที่อยู่หน่วยงาน</p>
+              <input
+                type="text"
+                value={govAddress}
+                onChange={(e) => setGovAddress(e.target.value)}
+                placeholder="เลขที่ ถนน แขวง เขต จังหวัด รหัสไปรษณีย์"
+                className="w-full rounded-xl border border-gray-300 bg-white px-3 py-2 text-sm outline-none focus:border-primary focus:ring-1 focus:ring-primary"
+              />
+            </div>
+            <div>
+              <p className="mb-1 text-xs font-medium text-gray-600">เลขประจำตัวผู้เสียภาษี</p>
+              <input
+                type="text"
+                value={govTaxId}
+                onChange={(e) => setGovTaxId(e.target.value)}
+                placeholder="13 หลัก"
+                className="w-full rounded-xl border border-gray-300 bg-white px-3 py-2 text-sm outline-none focus:border-primary focus:ring-1 focus:ring-primary"
+              />
+            </div>
+            <div>
+              <p className="mb-1 text-xs font-medium text-gray-600">ผู้มีอำนาจลงนาม</p>
+              <input
+                type="text"
+                value={govAuthorized}
+                onChange={(e) => setGovAuthorized(e.target.value)}
+                placeholder="ชื่อ-นามสกุล"
+                className="w-full rounded-xl border border-gray-300 bg-white px-3 py-2 text-sm outline-none focus:border-primary focus:ring-1 focus:ring-primary"
+              />
+            </div>
+            <div>
+              <p className="mb-1 text-xs font-medium text-gray-600">ตำแหน่ง</p>
+              <input
+                type="text"
+                value={govPosition}
+                onChange={(e) => setGovPosition(e.target.value)}
+                placeholder="เช่น ผู้อำนวยการ / ผู้บังคับการ"
+                className="w-full rounded-xl border border-gray-300 bg-white px-3 py-2 text-sm outline-none focus:border-primary focus:ring-1 focus:ring-primary"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Contract body */}
+        <div ref={contractRef} className="px-10 py-10 text-gray-900 text-sm leading-relaxed font-serif print:px-16 print:py-12">
+          {/* Header */}
+          <div className="text-center mb-8">
+            <p className="text-base font-bold tracking-widest">สัญญาเช่าครุภัณฑ์อากาศยานไร้คนขับ (โดรน)</p>
+            <p className="text-base font-bold tracking-widest">สำหรับหน่วยงานภาครัฐ</p>
+            <p className="mt-2 text-sm text-gray-600">เลขที่สัญญา ........../........../..........&nbsp;&nbsp;&nbsp; วันที่ {contractDate}</p>
+          </div>
+
+          <hr className="border-gray-400 mb-6" />
+
+          {/* Parties */}
+          <p className="mb-4">
+            สัญญาฉบับนี้ทำขึ้นระหว่าง
+          </p>
+          <div className="pl-6 mb-4 space-y-1">
+            <p><span className="font-bold">ผู้ให้เช่า</span>&nbsp;&nbsp;บริษัท 13 สโตร์ จำกัด สำนักงานใหญ่ตั้งอยู่ ณ ........................................................................
+              เลขประจำตัวผู้เสียภาษี 0105565126744 โทรศัพท์ 061-417-6015 อีเมล contact@dji13store.com
+              ซึ่งต่อไปในสัญญานี้เรียกว่า <span className="font-bold">"ผู้ให้เช่า"</span>
+            </p>
+          </div>
+          <p className="mb-2 pl-6">กับ</p>
+          <div className="pl-6 mb-6 space-y-1">
+            <p>
+              <span className="font-bold">ผู้เช่า</span>&nbsp;&nbsp;
+              {govAgency || ".............................................."}
+              {govDept ? ` ${govDept}` : ""}
+              {govAddress ? ` ตั้งอยู่ที่ ${govAddress}` : " ตั้งอยู่ที่ .............................................."}
+              {govTaxId ? ` เลขประจำตัวผู้เสียภาษี ${govTaxId}` : ""}
+              {" "}โดย
+              {govAuthorized ? ` ${govAuthorized}` : " .............................................."}
+              {govPosition ? ` ตำแหน่ง ${govPosition}` : " ตำแหน่ง .............................................."}
+              {" "}ผู้มีอำนาจลงนามผูกพัน ซึ่งต่อไปในสัญญานี้เรียกว่า <span className="font-bold">"ผู้เช่า"</span>
+            </p>
+          </div>
+          <p className="mb-6">
+            คู่สัญญาทั้งสองฝ่ายตกลงทำสัญญาเช่ากันโดยมีข้อความดังต่อไปนี้
+          </p>
+
+          {/* Clause 1 */}
+          <p className="font-bold mb-2">ข้อ 1. วัตถุประสงค์และทรัพย์สินที่ให้เช่า</p>
+          <div className="pl-4 mb-4 space-y-1">
+            <p>ผู้ให้เช่าตกลงให้เช่าและผู้เช่าตกลงเช่าครุภัณฑ์อากาศยานไร้คนขับ รายละเอียดดังนี้</p>
+            <table className="w-full mt-3 border-collapse text-sm">
+              <tbody>
+                <tr className="border border-gray-300">
+                  <td className="px-3 py-2 font-semibold bg-gray-50 w-40">รุ่น / ชุดระบบ</td>
+                  <td className="px-3 py-2">{product?.name ?? "..."}</td>
+                </tr>
+                <tr className="border border-gray-300">
+                  <td className="px-3 py-2 font-semibold bg-gray-50">ประเภท</td>
+                  <td className="px-3 py-2">{product?.type ?? "..."}</td>
+                </tr>
+                <tr className="border border-gray-300">
+                  <td className="px-3 py-2 font-semibold bg-gray-50">แพ็กเกจ</td>
+                  <td className="px-3 py-2">{pkgLabel}</td>
+                </tr>
+                <tr className="border border-gray-300">
+                  <td className="px-3 py-2 font-semibold bg-gray-50">วัตถุประสงค์การใช้งาน</td>
+                  <td className="px-3 py-2">{useCaseLabel}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          {/* Clause 2 */}
+          <p className="font-bold mb-2">ข้อ 2. ระยะเวลาสัญญา</p>
+          <div className="pl-4 mb-4">
+            <p>สัญญาเช่ามีกำหนดระยะเวลา <span className="font-semibold">{calc.term} เดือน</span> นับตั้งแต่วันส่งมอบทรัพย์สินที่เช่า
+              สิ้นสุดวันที่ประมาณ <span className="font-semibold">{contractEndDate}</span> (หรือตามวันส่งมอบจริง)
+              เมื่อครบกำหนดระยะเวลาเช่า คู่สัญญาอาจตกลงต่ออายุสัญญาเป็นลายลักษณ์อักษร
+            </p>
+          </div>
+
+          {/* Clause 3 */}
+          <p className="font-bold mb-2">ข้อ 3. ค่าเช่าและการชำระเงิน</p>
+          <div className="pl-4 mb-4">
+            <table className="w-full border-collapse text-sm">
+              <tbody>
+                <tr className="border border-gray-300 bg-gray-50">
+                  <td className="px-3 py-2 font-semibold w-52">รายการ</td>
+                  <td className="px-3 py-2 font-semibold text-right">จำนวนเงิน (บาท)</td>
+                </tr>
+                <tr className="border border-gray-300">
+                  <td className="px-3 py-2">ค่าเช่ารายเดือน (ประมาณการ)</td>
+                  <td className="px-3 py-2 text-right font-semibold">{thb(calc.monthlySelected)}</td>
+                </tr>
+                <tr className="border border-gray-300">
+                  <td className="px-3 py-2">เงินมัดจำ ({calc.depositMonths} เดือน)</td>
+                  <td className="px-3 py-2 text-right">{thb(calc.deposit)}</td>
+                </tr>
+                <tr className="border border-gray-300">
+                  <td className="px-3 py-2">ค่า Setup / Onboarding (ครั้งเดียว)</td>
+                  <td className="px-3 py-2 text-right">{thb(calc.setup)}</td>
+                </tr>
+                <tr className="border border-gray-300 bg-blue-50">
+                  <td className="px-3 py-2 font-bold">รวมจ่ายวันแรก (ประมาณการ)</td>
+                  <td className="px-3 py-2 text-right font-bold">{thb(calc.upfront)}</td>
+                </tr>
+                <tr className="border border-gray-300">
+                  <td className="px-3 py-2 font-bold">มูลค่าสัญญารวม (ประมาณการ)</td>
+                  <td className="px-3 py-2 text-right font-bold">{thb(calc.contractValue)}</td>
+                </tr>
+              </tbody>
+            </table>
+            <p className="mt-2 text-xs text-gray-500">* ราคาข้างต้นยังไม่รวมภาษีมูลค่าเพิ่ม (VAT 7%) — ราคาจริงตามใบเสนอราคาที่ผู้ให้เช่าออกให้</p>
+            <p className="mt-1 text-xs text-gray-500">** ผู้เช่าชำระค่าเช่ารายเดือนภายในวันที่ 5 ของทุกเดือน โดยโอนเข้าบัญชีที่ผู้ให้เช่ากำหนด</p>
+          </div>
+
+          {/* Clause 4 */}
+          <p className="font-bold mb-2">ข้อ 4. การประกันภัย</p>
+          <div className="pl-4 mb-4 space-y-1">
+            <p>ผู้ให้เช่าจัดทำประกันภัยชั้น 1 (Hull Insurance) ครอบคลุมอากาศยานตลอดระยะเวลาสัญญา
+              โดยผู้เช่ารับผิดชอบส่วนร่วมจ่าย (Deductible) ตามเงื่อนไขในกรมธรรม์ แพ็กเกจ {pkgLabel} ครอบคลุม Third-party Liability
+              ตามเงื่อนไขที่ระบุในข้อเสนอ</p>
+          </div>
+
+          {/* Clause 5 */}
+          <p className="font-bold mb-2">ข้อ 5. การบำรุงรักษาและซัพพอร์ต</p>
+          <div className="pl-4 mb-4">
+            <ul className="list-disc pl-5 space-y-1">
+              <li>ผู้ให้เช่าดำเนินการ Preventive Maintenance (PM) ตามรอบที่กำหนด</li>
+              <li>มีระบบ Remote Support ในเวลาทำการ</li>
+              {rec.pkg !== "standard" && <li>SLA ตอบรับเคสตามแพ็กเกจ {pkgLabel}</li>}
+              {(rec.pkg === "pro" || rec.pkg === "managed") && <li>เงื่อนไขเครื่องสำรองตามข้อเสนอ</li>}
+              {rec.pkg === "managed" && <li>On-site Support ตามโควตาที่กำหนดในข้อเสนอ</li>}
+              {rec.pkg === "managed" && <li>จัดทำรายงานสรุปให้ผู้บริหารรายเดือน</li>}
+            </ul>
+          </div>
+
+          {/* Clause 6 */}
+          <p className="font-bold mb-2">ข้อ 6. หน้าที่และความรับผิดชอบของผู้เช่า</p>
+          <div className="pl-4 mb-4">
+            <ul className="list-disc pl-5 space-y-1">
+              <li>ใช้งานอากาศยานตามวัตถุประสงค์ที่ระบุในสัญญาและตามกฎหมายการบินพลเรือน</li>
+              <li>ห้ามดัดแปลง ซ่อมแซม หรือโอนสิทธิ์เช่าให้แก่บุคคลภายนอกโดยไม่ได้รับอนุญาต</li>
+              <li>แจ้งเหตุขัดข้องหรืออุบัติเหตุให้ผู้ให้เช่าทราบภายใน 24 ชั่วโมง</li>
+              <li>ชำระค่าเช่าตามกำหนดเวลาที่ระบุ</li>
+              <li>ดูแลรักษาทรัพย์สินที่เช่าด้วยความระมัดระวังตามสมควร</li>
+            </ul>
+          </div>
+
+          {/* Clause 7 */}
+          <p className="font-bold mb-2">ข้อ 7. การยกเลิกสัญญา</p>
+          <div className="pl-4 mb-4">
+            <p>คู่สัญญาสามารถยกเลิกสัญญาได้โดยแจ้งเป็นลายลักษณ์อักษรล่วงหน้าไม่น้อยกว่า 60 วัน
+              ในกรณีผู้เช่าผิดนัดชำระค่าเช่าเกินกว่า 30 วัน ผู้ให้เช่ามีสิทธิ์ยกเลิกสัญญาทันทีและเรียกคืนทรัพย์สินที่เช่า
+              เงินมัดจำจะถูกริบเป็นค่าเสียหายตามที่ระบุในข้อเสนอ
+            </p>
+          </div>
+
+          {/* Clause 8 */}
+          <p className="font-bold mb-2">ข้อ 8. การระงับข้อพิพาท</p>
+          <div className="pl-4 mb-4">
+            <p>หากมีข้อพิพาทเกิดขึ้น คู่สัญญาจะพยายามระงับโดยการเจรจาก่อนเป็นเวลา 30 วัน
+              หากไม่สำเร็จให้ระงับโดยอนุญาโตตุลาการหรือศาลที่มีเขตอำนาจ
+            </p>
+          </div>
+
+          {/* Clause 9 */}
+          <p className="font-bold mb-2">ข้อ 9. เอกสารแนบ</p>
+          <div className="pl-4 mb-6">
+            <ul className="list-disc pl-5 space-y-1">
+              <li>ใบเสนอราคาจากผู้ให้เช่า</li>
+              <li>ข้อกำหนด SLA (Service Level Agreement)</li>
+              <li>รายการครุภัณฑ์และอุปกรณ์ที่ส่งมอบ</li>
+              <li>กรมธรรม์ประกันภัย</li>
+            </ul>
+          </div>
+
+          <p className="mb-8">
+            สัญญาฉบับนี้ทำขึ้นสองฉบับ มีข้อความตรงกัน คู่สัญญาแต่ละฝ่ายยึดถือไว้ฝ่ายละหนึ่งฉบับ
+          </p>
+
+          {/* Signatures */}
+          <div className="grid grid-cols-2 gap-16 mt-8">
+            <div className="text-center">
+              <p className="font-bold mb-16">ลงชื่อ ผู้ให้เช่า</p>
+              <div className="border-t border-gray-400 pt-2">
+                <p>(...............................................)</p>
+                <p className="text-xs text-gray-600 mt-1">บริษัท 13 สโตร์ จำกัด</p>
+                <p className="text-xs text-gray-600">วันที่ ...................</p>
+              </div>
+              <div className="mt-6 border-t border-gray-400 pt-2">
+                <p className="text-xs text-gray-600">พยาน (...............................................)</p>
+              </div>
+            </div>
+            <div className="text-center">
+              <p className="font-bold mb-16">ลงชื่อ ผู้เช่า</p>
+              <div className="border-t border-gray-400 pt-2">
+                <p>({govAuthorized || "..............................................."})</p>
+                <p className="text-xs text-gray-600 mt-1">{govPosition || "ตำแหน่ง ..."}</p>
+                <p className="text-xs text-gray-600">{govAgency || "หน่วยงาน ..."}</p>
+                <p className="text-xs text-gray-600">วันที่ ...................</p>
+              </div>
+              <div className="mt-6 border-t border-gray-400 pt-2">
+                <p className="text-xs text-gray-600">พยาน (...............................................)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom actions */}
+        <div className="flex items-center justify-between px-6 py-4 border-t border-gray-200 bg-gray-50 rounded-b-2xl print:hidden">
+          <p className="text-xs text-gray-500">* ร่างสัญญานี้เป็นต้นแบบเพื่อใช้ในการเจรจา — ราคาจริงตามใบเสนอราคาที่ออกอย่างเป็นทางการ</p>
+          <button
+            onClick={handlePrintContract}
+            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition"
+          >
+            <Download size={16} />
+            บันทึก / พิมพ์ PDF
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+
   // ─── Render ───────────────────────────────────────────────────────────────
 
   return (
     <div className="min-h-screen bg-background font-sans text-foreground antialiased relative overflow-hidden">
+      {/* Government Contract Modal */}
+      {showGovContract && <GovContractModal />}
+
       {/* Animated Drones */}
       <FlyingDrone
         className="w-11 h-11"
@@ -1161,12 +1513,21 @@ export default function DroneRental() {
                 </p>
               </div>
 
-              <button
-                onClick={() => scrollTo("lead")}
-                className="btn-hero-primary mt-6 justify-center w-full"
-              >
-                ขอใบเสนอราคาอย่างเป็นทางการ
-              </button>
+              <div className="mt-6 flex flex-col gap-2">
+                <button
+                  onClick={() => scrollTo("lead")}
+                  className="btn-hero-primary justify-center w-full"
+                >
+                  ขอใบเสนอราคาอย่างเป็นทางการ
+                </button>
+                <button
+                  onClick={() => setShowGovContract(true)}
+                  className="flex items-center justify-center gap-2 w-full rounded-xl border-2 border-primary/50 bg-primary/5 px-4 py-2.5 text-sm font-semibold text-primary hover:bg-primary/10 transition"
+                >
+                  <Building size={16} />
+                  ดาวน์โหลดสัญญาภาครัฐ (ร่าง)
+                </button>
+              </div>
             </Card>
           </div>
         </div>
@@ -1320,6 +1681,14 @@ export default function DroneRental() {
                 </button>
                 <button
                   type="button"
+                  onClick={() => setShowGovContract(true)}
+                  className="inline-flex items-center gap-2 rounded-xl border-2 border-primary/50 bg-primary/5 px-4 py-2 text-sm font-semibold text-primary hover:bg-primary/10 transition"
+                >
+                  <Building size={16} />
+                  สัญญาภาครัฐ (ร่าง)
+                </button>
+                <button
+                  type="button"
                   onClick={handleCopyLine}
                   className="btn-hero-secondary"
                 >
@@ -1400,6 +1769,13 @@ export default function DroneRental() {
               ติดต่อทีมเราวันนี้ รับคำปรึกษาฟรี พร้อมใบเสนอราคาแบบครบวงจร
             </p>
             <div className="flex flex-wrap justify-center gap-4">
+              <a
+                href="/drone-rental/agreement"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition"
+              >
+                <FileText size={20} />
+                สัญญาเช่าโดรน
+              </a>
               <a
                 href="https://line.me/R/ti/p/@357kaaxa"
                 target="_blank"

@@ -316,3 +316,61 @@
     backdrop-filter: blur(12px) saturate(180%);
   }
 }
+
+/* ── Print / PDF styles for Government Contract ─────────────────────────── */
+@media print {
+  /* Hide everything except the contract */
+  body > * {
+    display: none !important;
+  }
+
+  /* Show modal overlay content */
+  body .fixed.inset-0 {
+    display: block !important;
+    position: static !important;
+    background: white !important;
+    overflow: visible !important;
+    padding: 0 !important;
+  }
+
+  body .fixed.inset-0 > div {
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  /* Hide UI chrome in print */
+  .print\:hidden {
+    display: none !important;
+  }
+
+  /* Page setup */
+  @page {
+    size: A4 portrait;
+    margin: 20mm 25mm;
+  }
+
+  /* Contract body font for print */
+  .font-serif {
+    font-family: "TH Sarabun New", "Sarabun", "IBM Plex Sans Thai", serif;
+    font-size: 14pt;
+    line-height: 1.8;
+    color: #000 !important;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  td, th {
+    border: 1px solid #666 !important;
+    padding: 6px 10px !important;
+  }
+
+  /* Avoid page break inside signature area */
+  .grid.grid-cols-2 {
+    page-break-inside: avoid;
+  }
+}
